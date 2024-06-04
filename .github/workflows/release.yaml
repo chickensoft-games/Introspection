@@ -1,4 +1,4 @@
-name: '📦 Release'
+name: "📦 Release"
 on:
   # Make a release whenever the developer wants.
   workflow_dispatch:
@@ -26,7 +26,7 @@ on:
         default: "patch"
 jobs:
   release:
-    name: '📦 Release'
+    name: "📦 Release"
     runs-on: ubuntu-latest
     env:
       DOTNET_CLI_TELEMETRY_OPTOUT: true
@@ -37,7 +37,7 @@ jobs:
         with:
           token: ${{ secrets.GH_BASIC }}
           lfs: true
-          submodules: 'recursive'
+          submodules: "recursive"
           fetch-depth: 0 # So we can get all tags.
 
       - name: 🔎 Read Current Project Version
@@ -73,16 +73,34 @@ jobs:
           regex: false
           include: Chickensoft.Introspection/Chickensoft.Introspection.csproj
 
+      - name: 📝 Write Generator Version to File
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "0.0.0-devbuild"
+          replace: ${{ steps.next-version.outputs.version }}
+          regex: false
+          include: Chickensoft.Introspection.Generator/Chickensoft.Introspection.Generator.csproj
+
       - name: 📦 Build
-        run: dotnet build \
-          Chickensoft.Introspection/Chickensoft.Introspection.csproj -c Release
+        run: |
+          dotnet build \
+            Chickensoft.Introspection/Chickensoft.Introspection.csproj -c Release
+          dotnet build \
+            Chickensoft.Introspection.Generator/Chickensoft.Introspection.Generator.csproj -c Release
 
       - name: 🔎 Get Package Path
         id: package-path
         run: |
-          package=$(find ./Chickensoft.Introspection/nupkg -name "*.nupkg")
+          package=$(find . -name "Chickensoft.Introspection.*.nupkg")
           echo "package=$package" >> "$GITHUB_OUTPUT"
           echo "📦 Found package: $package"
+
+      - name: 🔎 Get Generator Package Path
+        id: gen-package-path
+        run: |
+          package=$(find . -name "Chickensoft.Introspection.Generator*.nupkg")
+          echo "package=$package" >> "$GITHUB_OUTPUT"
+          echo "📦 Found generator package: $package"
 
       - name: ✨ Create Release
         env:
@@ -90,10 +108,14 @@ jobs:
         run: |
           version="${{ steps.next-version.outputs.version }}"
           gh release create --title "v$version" --generate-notes "$version" \
-            "${{ steps.package-path.outputs.package }}"
+            "${{ steps.package-path.outputs.package }}" "${{ steps.gen-package-path.outputs.package }}"
 
       - name: 🛜 Publish to Nuget
         run: |
           dotnet nuget push "${{ steps.package-path.outputs.package }}" \
+            --api-key "${{ secrets.NUGET_API_KEY }}" \
+            --source "https://api.nuget.org/v3/index.json" --skip-duplicate
+
+            dotnet nuget push "${{ steps.gen-package-path.outputs.package }}" \
             --api-key "${{ secrets.NUGET_API_KEY }}" \
             --source "https://api.nuget.org/v3/index.json" --skip-duplicate

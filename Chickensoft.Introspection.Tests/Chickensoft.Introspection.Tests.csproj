@@ -1,36 +1,44 @@
-<Project Sdk="Godot.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <EnableDynamicLoading>true</EnableDynamicLoading>
-    <LangVersion>preview</LangVersion>
-    <RootNamespace>Chickensoft.Introspection.Tests</RootNamespace>
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
 
-    <!-- Required for some nuget packages to work -->
-    <!-- godotengine/godot/issues/42271#issuecomment-751423827 -->
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <LangVersion>preview</LangVersion>
+    <DebugType>portable</DebugType>
 
     <!-- To show generated files -->
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <CompilerGeneratedFilesOutputPath>.generated</CompilerGeneratedFilesOutputPath>
+
+    <!-- Tracks generator performance when dotnet build /binaryLogger -->
+    <ReportAnalyzer>true</ReportAnalyzer>
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- Test executor. -->
-    <PackageReference Include="Chickensoft.GoDotTest" Version="1.5.2" />
-    <!-- Assertions library. -->
-    <PackageReference Include="Shouldly" Version="4.2.1" />
-    <!-- Generated mocks. -->
-    <PackageReference Include="LightMock.Generator" Version="1.2.2" />
-    <!-- Convenience wrapper around generated mocks. -->
-    <PackageReference Include="LightMoq" Version="0.1.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageReference Include="Moq" Version="4.20.69" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.msbuild" Version="3.1.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="3.1.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Shouldly" Version="4.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <!-- Include the package to test. -->
     <ProjectReference Include="../Chickensoft.Introspection/Chickensoft.Introspection.csproj" />
+    <ProjectReference Include="../Chickensoft.Introspection.Generator/Chickensoft.Introspection.Generator.csproj" PrivateAssets="all" OutputItemType="analyzer" />
   </ItemGroup>
 </Project>

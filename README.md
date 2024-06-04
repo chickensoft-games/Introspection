@@ -1,8 +1,8 @@
-# Chickensoft.Introspection
+# 🔮 Introspection
 
 [![Chickensoft Badge][chickensoft-badge]][chickensoft-website] [![Discord][discord-badge]][discord] [![Read the docs][read-the-docs-badge]][docs] ![line coverage][line-coverage] ![branch coverage][branch-coverage]
 
-A .NET template for quickly creating a C# nuget package for use with Godot 4.
+Create mixins and generate metadata about types at build time to enable reflection in ahead-of-time (AOT) environments.
 
 ---
 
@@ -10,133 +10,188 @@ A .NET template for quickly creating a C# nuget package for use with Godot 4.
 <img alt="Chickensoft.Introspection" src="Chickensoft.Introspection/icon.png" width="200">
 </p>
 
-## 🥚 Getting Started
+## 🥚 Installation
 
-This template allows you to easily create a nuget package for use in Godot 4 C# projects. Microsoft's `dotnet` tool allows you to easily create, install, and use templates.
+Find the latest version of the [Introspection] and [Introspection Generator] packages from nuget and add them to your C# project.
 
-```sh
-# Install this template
-dotnet new --install Chickensoft.Introspection
-
-# Generate a new project based on this template
-dotnet new chickenpackage --name "MyPackageName" --param:author "My Name"
-
-# Use Godot to generate files needed to compile the package's test project.
-cd MyPackageName/MyPackageName.Tests/
-$GODOT --headless --build-solutions --quit
-dotnet build
+```xml
+<PackageReference Include="Chickensoft.Introspection" Version=... />
+<PackageReference Include="Chickensoft.Introspection.Generator" Version=... PrivateAssets="all" OutputItemType="analyzer" />
 ```
 
-## 💁 Getting Help
+## 📙 Background
 
-*Is this template broken? Encountering obscure C# build problems?* We'll be happy to help you in the [Chickensoft Discord server][discord].
+This package powers several other Chickensoft tools and directly supersedes [SuperNodes]. It is designed to be leveraged by simple metaprogramming tools like [PowerUps], as well as provide the foundation for other systems, such as [Serialization].
 
-## 🏝 Environment Setup
+The introspection package provides the following features:
 
-For the provided debug configurations and test coverage to work correctly, you must setup your development environment correctly. The [Chickensoft Setup Docs][setup-docs] describe how to setup your Godot and C# development environment, following Chickensoft's best practices.
+- Create a registry of all types visible from the global scope.
+- Generate metadata about visible types.
+- Track types by id and version.
+- Allow types to implement and look up mixins.
+- Compute and cache type hierarchies, attributes, and properties.
+- Track generic types of properties in a way that enables convenient serialization in AOT environments.
 
-### VSCode Settings
+The introspection generator is designed to be performant as a project grows. The generator only uses syntax information to generate metadata, rather than relying on the C# analyzer's symbol data, which can be very slow.
 
-This template includes some Visual Studio Code settings in `.vscode/settings.json`. The settings facilitate terminal environments on Windows (Git Bash, PowerShell, Command Prompt) and macOS (zsh), as well as fixing some syntax colorization issues that Omnisharp suffers from. You'll also find settings that enable editor config support in Omnisharp and the .NET Roslyn analyzers for a more enjoyable coding experience.
+## 📄 Usage
 
-> Please double-check that the provided VSCode settings don't conflict with your existing settings.
+### 🧘‍♀️ Introspective Types
 
-## .NET Versioning
+Simply add the `[Meta]` attribute to a partial class or record that is visible from the global scope.
 
-The included [`global.json`](./global.json) specifies the version of the .NET SDK that the included projects should use. It also specifies the `Godot.NET.Sdk` version that the included test project should use (since tests run inside an actual Godot game so you can use the full Godot API to verify your package is working as intended).
+```csharp
+using Chickensoft.Introspection;
 
-## 🐞 Debugging
+[Meta]
+public partial class MyType;
 
-You can debug the included test project for your package in `Chickensoft.Introspection.Tests/` by opening the root of this repository in VSCode and selecting one of the launch configurations: `Debug Tests` or `Debug Current Test`.
-
-> For the launch profile `Debug Current Test` to work, your test file must share the same name as the test class inside of it. For example, a test class named `PackageTest` must reside in a test file named `PackageTest.cs`.
-
-The launch profiles will trigger a build (without restoring packages) and then instruct .NET to run Godot 4 (while communicating with VSCode for interactive debugging).
-
-> **Important:** You must setup a `GODOT` environment variable for the launch configurations above. If you're using [GodotEnv] to install and manage Godot versions, you're already setup! For more info, see the [Chickensoft Setup Docs][setup-docs].
-
-## 👷 Testing
-
-By default, a test project in `Chickensoft.Introspection.Tests/` is created for you to write tests for your package. [GoDotTest] is already included and setup, allowing you to focus on development and testing.
-
-[GoDotTest] is an easy-to-use testing framework for Godot and C# that allows you to run tests from the command line, collect code coverage, and debug tests in VSCode.
-
-The project is configured to allow tests to be easily run and debugged from VSCode or executed via CI/CD workflows, without having to include the test files or test dependencies in the final release build.
-
-The `Main.tscn` and `Main.cs` scene and script file are the entry point of your game. In general, you probably won't need to modify these unless you're doing something highly custom. If the game isn't running in test mode (or it's a release build), it will just immediately change the scene to `game/Game.tscn`. In general, prefer editing `game/Game.tscn` over `Main.tscn`.
-If you run Godot with the `--run-tests` command line argument, the game will run the tests instead of switching to the game scene located at `game/Game.tscn`. The provided debug configurations in `.vscode/launch.json` allow you to easily debug tests (or just the currently open test, provided its filename matches its class name).
-
-Please see `test/ExampleTest.cs` and the [GoDotTest] readme for more examples.
-
-## 🚦 Test Coverage
-
-Code coverage requires a few `dotnet` global tools to be installed first. You should install these tools from the root of the project directory.
-
-```sh
-dotnet tool install --global coverlet.console
-dotnet tool update --global coverlet.console
-dotnet tool install --global dotnet-reportgenerator-globaltool
-dotnet tool update --global dotnet-reportgenerator-globaltool
+public partial class Container {
+  // Nested types are supported, too.
+  [Meta]
+  public partial class MyType;
+}
 ```
 
-> Running `dotnet tool update` for the global tool is often necessary on Apple Silicon computers to ensure the tools are installed correctly.
+The generator will generate a [type registry] for your assembly that lists every type it can discover in the codebase, along with their generated metadata. Introspective types have much additional metadata compared to types without the `[Meta]` attribute.
 
-You can collect code coverage and generate coverage badges by running the bash script in `test/coverage.sh` (on Windows, you can use the Git Bash shell that comes with git).
+The generated registry automatically registers types with the Introspection library's [type graph] using a [module initializer], so no action is needed on the developer's part. The module initializer registration process also performs some logic at runtime to resolve the type graph and cache the type hierarchy in a way that makes it performant to lookup. This preprocessing runs in roughly linear time and is negligible.
 
-```sh
-# Must give coverage script permission to run the first time it is used.
-chmod +x test/.coverage.sh
+All introspective types must be a class or record, partial, visible from the global scope. Introspective types cannot be generic.
 
-# Run code coverage:
-cd Chickensoft.Introspection.Tests
-./coverage.sh
+### 🪪 Identifiable Types
+
+An introspective type can also be an identifiable type if it is given the `[Id]` attribute. Identifiable types get additional metadata generated about them, allowing them to be looked up by their identifier.
+
+```csharp
+  [Meta, Id("my_type")]
+  public partial class MyType;
 ```
 
-You can also run test coverage through VSCode by opening the command palette and selecting `Tasks: Run Task` and then choosing `coverage`.
+### ⤵️ The Type Graph
 
-## 🏭 CI/CD
+The type graph can be used to query information about types at runtime. If the type graph has to compute a query, the results are cached for all future queries. Most api's are simple O(1) lookups.
 
-This package includes various GitHub Actions workflows to make developing and deploying your package easier.
+```csharp
 
-### 🚥 Tests
+// Get every type that is a valid subtype of Ancestor.  
+var allSubtypes = Types.Graph.GetDescendantSubtypes(typeof(Ancestor));
 
-Tests run on every push or pull request to the repository. You can configure which platforms you want to run tests on in [`.github/workflows/tests.yaml`](.github/workflows/tests.yaml).
+// Only get the types that directly inherit from Parent.
+var subtypes = Types.Graph.GetSubtypes(typeof(Parent));
 
-By default, tests run each platform (macOS, Windows, and Linux) using the latest beta version of Godot 4.
+// Get generated metadata associated with a type.
+if (Types.Graph.GetMetadata(typeof(Model)) is { } metadata) {
+  // ...
+}
 
-Tests are executed by running the Godot test project in `Chickensoft.Introspection.Tests` from the command line and passing in the relevant arguments to Godot so that [GoDotTest] can discover and run tests.
+// Get properties, including those from parent introspective types.
+var properties = Types.Graph.GetProperties(typeof(Model));
 
-### 🧑‍🏫 Spellcheck
+// ...see the source for all possible type graph operations.
+```
 
-A spell check runs on every push or pull request to the repository. Spellcheck settings can be configured in [`.github/workflows/spellcheck.yaml`](.github/workflows/spellcheck.yaml)
+### 👯‍♀️ Versioning
 
-The [Code Spell Checker][cspell] plugin for VSCode is recommended to help you catch typos before you commit them. If you need add a word to the dictionary, you can add it to the `cspell.json` file.
+All concrete introspective types have a simple integer version associated with them. By default, the version is `1`. You can use the `[Version]` attribute to denote the version of an introspective type.
 
-You can also words to the local `cspell.json` file from VSCode by hovering over a misspelled word and selecting `Quick Fix...` and then `Add "{word}" to config: GodotPackage/cspell.json`.
+```csharp
+[Meta, Version(2)]
+public partial class MyType;
 
-![Fix Spelling](docs/spelling_fix.png)
+// Or, multiple versions of the same identifiable type.
 
-### 📦 Release
+[Meta, Id("my_type")]
+public abstract class MyType;
 
-The included workflow in [`.github/workflows/release.yaml`](.github/workflows/publish.yaml) can be manually dispatched when you're ready to make a new release. Once you specify `major`, `minor`, or `patch` for the version bump strategy, the workflow will build your package with the updated version and release it on both GitHub and nuget.
+[Meta, Version(1)]
+public class MyType1 : MyType;
 
-The accompanying [`.github/workflows/auto_release.yaml`](.github/workflows/auto_release.yaml) will trigger the publish workflow if it detects a new commit in main that is a routine dependency update from renovatebot. Since Renovatebot is configured to auto-merge dependency updates, your package will automatically be published to Nuget when a new version of Godot.NET.Sdk is released or other packages you depend on are updated. If this behavior is undesired, remove the `"automerge": true` property from [`renovate.json`](./renovate.json).
+[Meta, Version(2)]
+public class MyType2 : MyType;
 
-> To publish to nuget, you need to configure a repository or organization secret within GitHub named `NUGET_API_KEY` that contains your Nuget API key. Make sure you setup `NUGET_API_KEY` as a **secret** (rather than an environment variable) to keep it safe!
+[Meta, Version(3)]
+public class MyType3 : MyType;
+```
 
-### 🏚 Renovatebot
+During type registration, the type graph will "promote" introspective types which inherit from an identifiable type to an identifiable type themselves, sharing the same identifier as their parent or ancestor identifiable type. Promoted identifiable types must, however, have uniquely specified versions.
 
-This repository includes a [`renovate.json`](./renovate.json) configuration for use with [Renovatebot]. Renovatebot can automatically open and merge pull requests to help you keep your dependencies up to date when it detects new dependency versions have been released.
+## 🔎 Metadata Types
 
-![Renovatebot Pull Request](docs/renovatebot_pr.png)
+The introspection generator differentiates between the following categories of types and constructs the appropriate metadata for the type, depending on which category it belongs to.
 
-> Unlike Dependabot, Renovatebot is able to combine all dependency updates into a single pull request — a must-have for Godot C# repositories where each sub-project needs the same Godot.NET.Sdk versions. If dependency version bumps were split across multiple repositories, the builds would fail in CI.
+| Category                        | Metadata                            |
+|---------------------------------|-------------------------------------|
+| 🫥 Abstract or generic types    | `TypeMetadata`                      |
+| 🪨 Non-generic, concrete types  | `ConcreteTypeMetadata`              |
+| 👻 Abstract introspective types | `AbstractIntrospectiveTypeMetadata` |
+| 🗿 Concrete introspective types | `IntrospectiveTypeMetadata`         |
+| 🆔 Abstract identifiable types  | `AbstractIdentifiableTypeMetadata`  |
+| 🪪 Concrete identifiable types  | `IdentifiableTypeMetadata`          |
 
-The easiest way to add Renovatebot to your repository is to [install it from the GitHub Marketplace][get-renovatebot]. Note that you have to grant it access to each organization and repository you want it to monitor.
+You can check the type of metadata that a type has to understand what its capabilities are. Each type of metadata has different fields associated with it.
 
-The included `renovate.json` includes a few configuration options to limit how often Renovatebot can open pull requests as well as regex's to filter out some poorly versioned dependencies to prevent invalid dependency version updates.
+In addition to the metadata classes, each metadata class implements the appropriate interfaces:
 
-If your project is setup to require approvals before pull requests can be merged *and* you wish to take advantage of Renovatebot's auto-merge feature, you can install the [Renovate Approve][renovate-approve] bot to automatically approve the Renovate dependency PR's. If you need two approvals, you can install the identical [Renovate Approve 2][renovate-approve-2] bot. See [this][about-renovate-approvals] for more information.
+| Metadata                    | Conforms To                                     |
+|-----------------------------|-------------------------------------------------|
+| `TypeMetadata`              | `ITypeMetadata`                                 |
+| `ConcreteTypeMetadata`      | ..., `IClosedTypeMetadata`, `IConcreteMetadata` |
+| `IntrospectiveTypeMetadata` | ..., `IConcreteIntrospectiveTypeMetadata`       |
+| `IdentifiableTypeMetadata`  | ..., `IIdentifiableTypeMetadata`                |
+| ... etc.                    |                                                 |
+
+```csharp
+public class MyTypeReceiver : ITypeReceiver {
+  public void Receive<T>() {
+    // Do whatever you want with the type as a generic parameter.
+  }
+}
+
+var metadata = Types.Graph.GetMetadata(typeof(Model));
+
+if (metadata is IClosedTypeMetadata closedMetadata) {
+  // Closed types allow you to receive the type as a generic argument in
+  // a TypeReceiver's Receive<T>() method.
+  closedMetadata.GenericTypeGetter(new MyTypeReceiver())
+}
+
+if (metadata is IConcreteTypeMetadata concreteMetadata) {
+  // Concrete types allow you to create a new instance of the type, if
+  // it has a parameterless constructor.
+  var instance = concreteMetadata.Factory();
+}
+
+if (metadata is IIntrospectiveTypeMetadata introMetadata) {
+  // Introspective types provide a metatype instance which allows you to access
+  // more information about that type, such as its properties and attributes.
+  var metatype = introMetadata.Metatype;
+}
+
+if (metadata is IConcreteIntrospectiveTypeMetadata concreteIntroMetadata) {
+  // Concrete introspective types have a version number.
+  var version = concreteIntroMetadata.Version;
+}
+
+if (metadata is IIdentifiableTypeMetadata idMetadata) {
+  // Identifiable types have an id.
+  var id = idMetadata.Id;
+}
+```
+
+## Δ Metatypes
+
+The introspection generator generates additional metadata for introspective and identifiable types known as a "metatype." A type's metatype information can be accessed from its metadata.
+
+```csharp
+var metadata = Types.Graph.GetMetadata(typeof(Model));
+
+if (metadata is IIntrospectiveTypeMetadata introMetadata) {
+  var metatype = introMetadata.Metatype;
+}
+```
+
+Metatype data provides information about a specific type, its properties, and attributes. The type graph combines metatype information with its understanding of the type hierarchy to enable you to fetch all properties of an introspective type, including those it inherited from other introspective types. Metatypes will only contain information about the type itself, not anything it inherits from.
 
 ---
 
@@ -147,16 +202,15 @@ If your project is setup to require approvals before pull requests can be merged
 [discord-badge]: https://raw.githubusercontent.com/chickensoft-games/chickensoft_site/main/static/img/badges/discord_badge.svg
 [discord]: https://discord.gg/gSjaPgMmYW
 [read-the-docs-badge]: https://raw.githubusercontent.com/chickensoft-games/chickensoft_site/main/static/img/badges/read_the_docs_badge.svg
-[docs]: https://chickensoft.games/docsickensoft%20Discord-%237289DA.svg?style=flat&logo=discord&logoColor=white
+[docs]: https://chickensoft.games/docs/
 [line-coverage]: Chickensoft.Introspection.Tests/badges/line_coverage.svg
 [branch-coverage]: Chickensoft.Introspection.Tests/badges/branch_coverage.svg
 
-[GoDotTest]: https://github.com/chickensoft-games/go_dot_test
-[setup-docs]: https://chickensoft.games/docs/setup
-[cspell]: https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker
-[Renovatebot]: https://www.mend.io/free-developer-tools/renovate/
-[get-renovatebot]: https://github.com/apps/renovate
-[renovate-approve]: https://github.com/apps/renovate-approve
-[renovate-approve-2]: https://github.com/apps/renovate-approve-2
-[about-renovate-approvals]: https://stackoverflow.com/a/66575885
-[GodotEnv]: https://github.com/chickensoft-games/GodotEnv
+[Introspection]: https://www.nuget.org/packages/Chickensoft.Introspection
+[Introspection Generator]: https://www.nuget.org/packages/Chickensoft.Introspection.Generator
+[SuperNodes]: https://github.com/chickensoft-games/SuperNodes
+[PowerUps]: https://github.com/chickensoft-games/PowerUps
+[Serialization]: https://github.com/chickensoft-games/Serialization
+[type registry]: Chickensoft.Introspection.Generator.Tests/.generated/Chickensoft.Introspection.Generator/Chickensoft.Introspection.Generator.TypeGenerator/TypeRegistry.g.cs
+[type graph]: Chickensoft.Introspection/src/TypeGraph.cs
+[module initializer]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-9.0/module-initializers

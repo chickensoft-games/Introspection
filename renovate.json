@@ -26,7 +26,7 @@
         "GodotSharp",
         "Godot.NET.Sdk"
       ],
-      "allowedVersions": "/^(\\d+\\.\\d+\\.\\d+)(-(beta|rc)\\.(\\d+)(\\.\\d+)*)?$/"
+      "allowedVersions": "/^$/"
     },
     {
       "matchPackagePrefixes": [

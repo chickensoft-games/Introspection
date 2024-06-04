@@ -1,6 +1,6 @@
 {
   "files": [
-    "**/*.*"
+    "**/*.cs"
   ],
   "ignorePaths": [
     "**/*.tscn",
@@ -10,7 +10,8 @@
     "**/.godot/**/*.*",
     "**/obj/**/*.*",
     "**/bin/**/*.*",
-    "**/nupkg/**/*.*"
+    "**/nupkg/**/*.*",
+    "**/*.binlog"
   ],
   "words": [
     "assemblyfilters",
@@ -36,6 +37,9 @@
     "lcov",
     "lihop",
     "linecoverage",
+    "metaprogramming",
+    "Metatype",
+    "Metatypes",
     "methodcoverage",
     "missingall",
     "msbuild",
@@ -48,6 +52,7 @@
     "Omnisharp",
     "opencover",
     "OPTOUT",
+    "parameterless",
     "paramref",
     "pascalcase",
     "Postinitialize",
@@ -57,6 +62,7 @@
     "reporttypes",
     "Shouldly",
     "subfolders",
+    "SYSLIB",
     "targetargs",
     "targetdir",
     "tscn",
@@ -65,6 +71,7 @@
     "typeparamref",
     "ulong",
     "Unparented",
+    "VBCS",
     "Xunit"
   ]
 }

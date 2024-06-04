@@ -4,7 +4,6 @@ nupkg/
 .godot/
 bin/
 obj/
-.generated/
 .vs/
 .DS_Store
 *.DotSettings.user

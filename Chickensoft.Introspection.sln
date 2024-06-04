@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chickensoft.Introspection", "Chickensoft.Introspection\Chickensoft.Introspection.csproj", "{AECCC1EF-6F74-4E42-9BDF-E5FA1993B71F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chickensoft.Introspection", "Chickensoft.Introspection\Chickensoft.Introspection.csproj", "{F5416F77-E7E5-414C-9233-E43E64839D3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chickensoft.Introspection.Tests", "Chickensoft.Introspection.Tests\Chickensoft.Introspection.Tests.csproj", "{334D4A20-4F78-4F90-A09C-353160BF8BFE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chickensoft.Introspection.Generator", "Chickensoft.Introspection.Generator\Chickensoft.Introspection.Generator.csproj", "{6ECC3F60-729D-4A0F-9465-7E12B038AA19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chickensoft.Introspection.Tests", "Chickensoft.Introspection.Tests\Chickensoft.Introspection.Tests.csproj", "{FF46F059-3ED4-4D9B-BDC8-045C1F656D41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chickensoft.Introspection.Generator.Tests", "Chickensoft.Introspection.Generator.Tests\Chickensoft.Introspection.Generator.Tests.csproj", "{BBD2DAA4-54DA-47E9-B1F9-DDD2FCDE3A9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,13 +20,21 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AECCC1EF-6F74-4E42-9BDF-E5FA1993B71F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AECCC1EF-6F74-4E42-9BDF-E5FA1993B71F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AECCC1EF-6F74-4E42-9BDF-E5FA1993B71F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AECCC1EF-6F74-4E42-9BDF-E5FA1993B71F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{334D4A20-4F78-4F90-A09C-353160BF8BFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{334D4A20-4F78-4F90-A09C-353160BF8BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{334D4A20-4F78-4F90-A09C-353160BF8BFE}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{334D4A20-4F78-4F90-A09C-353160BF8BFE}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{F5416F77-E7E5-414C-9233-E43E64839D3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5416F77-E7E5-414C-9233-E43E64839D3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5416F77-E7E5-414C-9233-E43E64839D3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5416F77-E7E5-414C-9233-E43E64839D3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ECC3F60-729D-4A0F-9465-7E12B038AA19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ECC3F60-729D-4A0F-9465-7E12B038AA19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ECC3F60-729D-4A0F-9465-7E12B038AA19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ECC3F60-729D-4A0F-9465-7E12B038AA19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF46F059-3ED4-4D9B-BDC8-045C1F656D41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF46F059-3ED4-4D9B-BDC8-045C1F656D41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF46F059-3ED4-4D9B-BDC8-045C1F656D41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF46F059-3ED4-4D9B-BDC8-045C1F656D41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBD2DAA4-54DA-47E9-B1F9-DDD2FCDE3A9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBD2DAA4-54DA-47E9-B1F9-DDD2FCDE3A9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBD2DAA4-54DA-47E9-B1F9-DDD2FCDE3A9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBD2DAA4-54DA-47E9-B1F9-DDD2FCDE3A9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

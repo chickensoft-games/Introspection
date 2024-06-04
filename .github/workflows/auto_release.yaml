@@ -14,7 +14,7 @@
 # You can disable this action by setting the DISABLE_AUTO_RELEASE repository
 # variable to true.
 
-name: '🦾 Auto-Release'
+name: "🦾 Auto-Release"
 on:
   workflow_run:
     workflows: ["🚥 Tests"]
@@ -36,7 +36,7 @@ jobs:
           # Use your GitHub Personal Access Token variable here.
           token: ${{ secrets.GH_BASIC }}
           lfs: true
-          submodules: 'recursive'
+          submodules: "recursive"
 
       - name: 🧑‍🔬 Check Test Results
         id: tests
@@ -71,7 +71,7 @@ jobs:
           fi
 
   trigger_release:
-    uses: './.github/workflows/release.yaml'
+    uses: "./.github/workflows/release.yaml"
     needs: auto_release
     if: needs.auto_release.outputs.should_release == 'true'
     secrets:

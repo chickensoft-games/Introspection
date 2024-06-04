@@ -1,34 +1,33 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
     <LangVersion>preview</LangVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Nullable>enable</Nullable>
     <CopyAllFiles>true</CopyAllFiles>
     <RootNamespace>Chickensoft.Introspection</RootNamespace>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <OutputPath>./nupkg</OutputPath>
     <DebugType>portable</DebugType>
 
-    <Title>Chickensoft.Introspection</Title>
+    <Title>Introspection</Title>
     <Version>0.0.0-devbuild</Version>
-    <Description>Chickensoft.Introspection description.</Description>
-    <Copyright>© 2024 Your Name</Copyright>
-    <Authors>Your Name</Authors>
-    <Company>Your Name</Company>
+    <Description>Generate type metadata at build time.</Description>
+    <Copyright>© 2024 Chickensoft</Copyright>
+    <Authors>Chickensoft</Authors>
+    <Company>Chickensoft</Company>
 
     <PackageId>Chickensoft.Introspection</PackageId>
     <PackageReleaseNotes>Chickensoft.Introspection release.</PackageReleaseNotes>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageTags />
+    <PackageTags>chickensoft;reflection;introspection;generator;utilities;godot;game engine;gamedev</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageProjectUrl></PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/chickensoft-games/Introspection</PackageProjectUrl>
 
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl></RepositoryUrl>
+    <RepositoryUrl>git@github.com:chickensoft-games/Introspection.git</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -47,6 +46,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="GodotSharp" Version="4.2.2" />
+    <PackageReference Include="Chickensoft.Collections" Version="1.6.0" />
   </ItemGroup>
 </Project>

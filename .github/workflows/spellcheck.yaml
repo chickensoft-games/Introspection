@@ -1,11 +1,11 @@
-name: '🧑‍🏫 Spellcheck'
+name: "🧑‍🏫 Spellcheck"
 on:
   push:
   pull_request:
 
 jobs:
   spellcheck:
-    name: '🧑‍🏫 Spellcheck'
+    name: "🧑‍🏫 Spellcheck"
     # Only run the workflow if it's not a PR or if it's a PR from a fork.
     # This prevents duplicate workflows from running on PR's that originate
     # from the repository itself.
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: '.'
+        working-directory: "."
     steps:
       - uses: actions/checkout@v4
         name: 🧾 Checkout
@@ -21,6 +21,6 @@ jobs:
       - uses: streetsidesoftware/cspell-action@v6
         name: 📝 Check Spelling
         with:
-          config: './cspell.json'
+          config: "./cspell.json"
           incremental_files_only: false
-          root: '.'
+          root: "."

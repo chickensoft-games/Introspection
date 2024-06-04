@@ -33,7 +33,7 @@ jobs:
         with:
           token: ${{ secrets.GH_BASIC }}
           lfs: true
-          submodules: 'recursive'
+          submodules: "recursive"
 
       - name: 💽 Setup .NET SDK
         uses: actions/setup-dotnet@v4
@@ -44,25 +44,8 @@ jobs:
       - name: 📦 Restore Dependencies
         run: dotnet restore
 
-      - name: 🤖 Setup Godot
-        uses: chickensoft-games/setup-godot@v2
-        with:
-          # Version must include major, minor, and patch, and be >= 4.0.0
-          # Pre-release label is optional.
-          #
-          # In this case, we are using the version from global.json.
-          #
-          # This allows checks on renovatebot PR's to succeed whenever
-          # renovatebot updates the Godot SDK version.
-          version: global.json
-
-      - name: 🧑‍🔬 Generate .NET Bindings
-        working-directory: Chickensoft.Introspection.Tests
-        run: godot --headless --build-solutions --quit || exit 0
-
       - name: 🦺 Build Projects
         run: dotnet build
 
       - name: 🧪 Run Tests
-        working-directory: Chickensoft.Introspection.Tests
-        run: godot --headless --run-tests --quit-on-finish
+        run: dotnet test
