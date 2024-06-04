@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chickensoft.Introspection", "Chickensoft.Introspection\Chickensoft.Introspection.csproj", "{AECCC1EF-6F74-4E42-9BDF-E5FA1993B71F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chickensoft.Introspection.Tests", "Chickensoft.Introspection.Tests\Chickensoft.Introspection.Tests.csproj", "{334D4A20-4F78-4F90-A09C-353160BF8BFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AECCC1EF-6F74-4E42-9BDF-E5FA1993B71F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AECCC1EF-6F74-4E42-9BDF-E5FA1993B71F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AECCC1EF-6F74-4E42-9BDF-E5FA1993B71F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AECCC1EF-6F74-4E42-9BDF-E5FA1993B71F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{334D4A20-4F78-4F90-A09C-353160BF8BFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{334D4A20-4F78-4F90-A09C-353160BF8BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{334D4A20-4F78-4F90-A09C-353160BF8BFE}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{334D4A20-4F78-4F90-A09C-353160BF8BFE}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+EndGlobal

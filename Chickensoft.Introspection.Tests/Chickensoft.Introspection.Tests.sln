@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chickensoft.Introspection.Tests", "Chickensoft.Introspection.Tests.csproj", "{0EB6C566-A30D-4DC6-8CEB-683CD35F5BBF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0EB6C566-A30D-4DC6-8CEB-683CD35F5BBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EB6C566-A30D-4DC6-8CEB-683CD35F5BBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EB6C566-A30D-4DC6-8CEB-683CD35F5BBF}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{0EB6C566-A30D-4DC6-8CEB-683CD35F5BBF}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{0EB6C566-A30D-4DC6-8CEB-683CD35F5BBF}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{0EB6C566-A30D-4DC6-8CEB-683CD35F5BBF}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal

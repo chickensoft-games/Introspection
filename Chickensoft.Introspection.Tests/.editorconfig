@@ -1,0 +1,8 @@
+# EditorConfig for the test project.
+
+root = false
+
+[*.{cs,csx,cake}]
+
+# Not disposing of objects in a test is normal within Godot
+dotnet_diagnostic.CA1001.severity = none

@@ -1,0 +1,36 @@
+<Project Sdk="Godot.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <LangVersion>preview</LangVersion>
+    <RootNamespace>Chickensoft.Introspection.Tests</RootNamespace>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+
+    <!-- Required for some nuget packages to work -->
+    <!-- godotengine/godot/issues/42271#issuecomment-751423827 -->
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+
+    <!-- To show generated files -->
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>.generated</CompilerGeneratedFilesOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Test executor. -->
+    <PackageReference Include="Chickensoft.GoDotTest" Version="1.5.2" />
+    <!-- Assertions library. -->
+    <PackageReference Include="Shouldly" Version="4.2.1" />
+    <!-- Generated mocks. -->
+    <PackageReference Include="LightMock.Generator" Version="1.2.2" />
+    <!-- Convenience wrapper around generated mocks. -->
+    <PackageReference Include="LightMoq" Version="0.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Include the package to test. -->
+    <ProjectReference Include="../Chickensoft.Introspection/Chickensoft.Introspection.csproj" />
+  </ItemGroup>
+</Project>
