@@ -89,7 +89,7 @@ internal class TypeGraph : ITypeGraph {
       // Cache the properties for a type so we never have to do this again.
       _properties[type] =
         GetTypeAndBaseTypes(type)
-          .Select(type => GetMetadata(type))
+          .Select(GetMetadata)
           .OfType<IIntrospectiveTypeMetadata>()
           .SelectMany(metadata => metadata.Metatype.Properties)
           .Distinct()
@@ -218,7 +218,7 @@ internal class TypeGraph : ITypeGraph {
           }
         }
         else {
-          versions = new();
+          versions = [];
           _identifiableTypesByIdAndVersion[id] = versions;
         }
 
@@ -304,12 +304,12 @@ internal class TypeGraph : ITypeGraph {
 
       // As far as we know, any type could be a base type.
       if (!_typesByBaseType.ContainsKey(type)) {
-        _typesByBaseType[type] = new Set<Type>();
+        _typesByBaseType[type] = [];
       }
 
       while (baseType != null) {
         if (!_typesByBaseType.TryGetValue(baseType, out var existingSet)) {
-          existingSet = new Set<Type>();
+          existingSet = [];
           _typesByBaseType[baseType] = existingSet;
         }
         existingSet.Add(lastType);
@@ -344,11 +344,11 @@ internal class TypeGraph : ITypeGraph {
   }
 
   internal class EmptyMetatype(Type type) : IMetatype {
-    private static readonly List<PropertyMetadata> _properties = new();
-    private static readonly Dictionary<Type, Attribute[]> _attributes = new();
-    private static readonly List<Type> _mixins = new();
+    private static readonly List<PropertyMetadata> _properties = [];
+    private static readonly Dictionary<Type, Attribute[]> _attributes = [];
+    private static readonly List<Type> _mixins = [];
     private static readonly Dictionary<Type, Action<object>> _mixinHandlers =
-      new();
+      [];
 
     public Type Type => type;
 
