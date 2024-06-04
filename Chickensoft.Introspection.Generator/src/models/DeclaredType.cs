@@ -5,6 +5,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Security.Cryptography;
 using Chickensoft.Introspection.Generator.Utils;
 using Microsoft.CodeAnalysis;
 
@@ -41,8 +42,29 @@ public sealed record DeclaredType(
   ImmutableArray<DeclaredAttribute> Attributes,
   ImmutableArray<string> Mixins
 ) {
+  private static readonly MD5 _md5 = MD5.Create();
+  private const int NAME_PORTION = 25;
+  private const int HASH_PORTION = 10;
+
   /// <summary>Output filename (only works for non-generic types).</summary>
-  public string Filename => FullNameOpen.Replace('.', '_');
+  public string Filename {
+    get {
+      var name = FullNameOpen.Replace('.', '_');
+
+      if (name.Length <= NAME_PORTION + HASH_PORTION) {
+        return name;
+      }
+
+      // Name is too long, grab last section of the string
+      var truncated = name.Substring(name.Length - NAME_PORTION);
+      var hash = _md5.ComputeHash(System.Text.Encoding.UTF8.GetBytes(name));
+      var hashString = BitConverter.ToString(hash).Replace("-", "");
+      var hashLast = hashString.Substring(
+        hashString.Length - HASH_PORTION
+      );
+      return $"{truncated}{hashLast}";
+    }
+  }
 
   /// <summary>
   /// Fully qualified, open generic name, as determined based on syntax nodes
