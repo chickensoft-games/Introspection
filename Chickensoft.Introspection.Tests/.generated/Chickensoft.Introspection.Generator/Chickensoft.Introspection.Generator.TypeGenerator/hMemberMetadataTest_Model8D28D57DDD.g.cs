@@ -27,7 +27,7 @@ partial class TypeGraphMemberMetadataTest {
           IsInit: true,
           IsRequired: true,
           Getter: (object obj) => ((Model)obj).Age,
-          Setter: (object obj, object? value) => throw new System.InvalidOperationException("Property Age on Model is init-only."),
+          Setter: null,
           GenericType: new GenericType(
             OpenType: typeof(int),
             ClosedType: typeof(int),
@@ -46,7 +46,7 @@ partial class TypeGraphMemberMetadataTest {
           IsInit: true,
           IsRequired: false,
           Getter: (object obj) => ((Model)obj).Name,
-          Setter: (object obj, object? value) => throw new System.InvalidOperationException("Property Name on Model is init-only."),
+          Setter: null,
           GenericType: new GenericType(
             OpenType: typeof(string),
             ClosedType: typeof(string),

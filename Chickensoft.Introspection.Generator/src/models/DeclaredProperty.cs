@@ -31,14 +31,11 @@ public sealed record DeclaredProperty(
     var setter = HasSetter
       ? (
         IsInit
-          ? "(object obj, object? value) => throw new " +
-          "System.InvalidOperationException(" +
-          $"\"Property {Name} on {typeSimpleNameClosed} is init-only.\"" +
-          ")"
+          ? "null"
           : $"(object obj, object? value) => (({typeSimpleNameClosed})obj)" +
           $".{Name} = ({GenericType.ClosedType}){propertyValue}"
       )
-      : "(object obj, object? _) => { }";
+      : "null";
 
     writer.WriteLine($"Name: \"{Name}\",");
     writer.WriteLine($"IsInit: {(IsInit ? "true" : "false")},");

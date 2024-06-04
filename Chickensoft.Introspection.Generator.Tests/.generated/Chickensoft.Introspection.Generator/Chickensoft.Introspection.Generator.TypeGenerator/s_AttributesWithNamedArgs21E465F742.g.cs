@@ -20,7 +20,7 @@ partial class AttributesWithNamedArgs : Chickensoft.Introspection.IIntrospective
         IsInit: true,
         IsRequired: true,
         Getter: (object obj) => ((AttributesWithNamedArgs)obj).Name,
-        Setter: (object obj, object? value) => throw new System.InvalidOperationException("Property Name on AttributesWithNamedArgs is init-only."),
+        Setter: null,
         GenericType: new GenericType(
           OpenType: typeof(string),
           ClosedType: typeof(string),
