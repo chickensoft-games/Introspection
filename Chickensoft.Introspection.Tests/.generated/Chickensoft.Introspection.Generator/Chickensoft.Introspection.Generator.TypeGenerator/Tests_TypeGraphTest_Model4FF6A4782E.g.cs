@@ -27,7 +27,7 @@ partial class TypeGraphTest {
           IsInit: false,
           IsRequired: false,
           Getter: (object obj) => ((Model)obj).Name,
-          Setter: (object obj, object? _) => { },
+          Setter: null,
           GenericType: new GenericType(
             OpenType: typeof(string),
             ClosedType: typeof(string),

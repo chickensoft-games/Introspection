@@ -47,7 +47,7 @@ partial class MyType : Chickensoft.Introspection.IIntrospective, Chickensoft.Int
         IsInit: false,
         IsRequired: false,
         Getter: (object obj) => ((MyType)obj).NoAttributeSoNoMetadata,
-        Setter: (object obj, object? _) => { },
+        Setter: null,
         GenericType: new GenericType(
           OpenType: typeof(int),
           ClosedType: typeof(int),

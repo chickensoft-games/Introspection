@@ -20,7 +20,7 @@ partial class Collections : Chickensoft.Introspection.IIntrospective {
         IsInit: false,
         IsRequired: false,
         Getter: (object obj) => ((Collections)obj).NestedCollections,
-        Setter: (object obj, object? _) => { },
+        Setter: null,
         GenericType: new GenericType(
           OpenType: typeof(Dictionary<,>),
           ClosedType: typeof(Dictionary<List<string>, List<List<int>>>),

@@ -12,7 +12,7 @@ public class DeclaredTypeRegistryTest {
     var registry = new DeclaredTypeRegistry(
       globalUsings: ImmutableArray<UsingDirective>.Empty,
       scopeTree: new ScopeTree(
-        new Dictionary<string, DeclaredType>()
+        [], new Dictionary<string, DeclaredType>()
       ),
       allTypes: ImmutableDictionary<string, DeclaredType>.Empty,
       visibleTypes: ImmutableHashSet<DeclaredType>.Empty
@@ -26,7 +26,7 @@ public class DeclaredTypeRegistryTest {
       new DeclaredTypeRegistry(
         globalUsings: ImmutableArray<UsingDirective>.Empty,
         scopeTree: new ScopeTree(
-          new Dictionary<string, DeclaredType>()
+          [], new Dictionary<string, DeclaredType>()
         ),
         allTypes: ImmutableDictionary<string, DeclaredType>.Empty,
         visibleTypes: ImmutableHashSet<DeclaredType>.Empty
@@ -36,7 +36,7 @@ public class DeclaredTypeRegistryTest {
     new DeclaredTypeRegistry(
       globalUsings: ImmutableArray<UsingDirective>.Empty,
       scopeTree: new ScopeTree(
-        new Dictionary<string, DeclaredType>()
+        [], new Dictionary<string, DeclaredType>()
       ),
       allTypes: ImmutableDictionary<string, DeclaredType>.Empty,
       visibleTypes: ImmutableHashSet<DeclaredType>.Empty
@@ -44,7 +44,7 @@ public class DeclaredTypeRegistryTest {
       new DeclaredTypeRegistry(
         globalUsings: ImmutableArray<UsingDirective>.Empty,
         scopeTree: new ScopeTree(
-          new Dictionary<string, DeclaredType>()
+          [], new Dictionary<string, DeclaredType>()
         ),
         allTypes: ImmutableDictionary<string, DeclaredType>.Empty,
         visibleTypes: new DeclaredType[] {

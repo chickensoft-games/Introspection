@@ -23,7 +23,7 @@ partial class A {
                 IsInit: true,
                 IsRequired: true,
                 Getter: (object obj) => ((SomeBaseClass)obj).Identifier,
-                Setter: (object obj, object? value) => throw new System.InvalidOperationException("Property Identifier on SomeBaseClass is init-only."),
+                Setter: null,
                 GenericType: new GenericType(
                   OpenType: typeof(string),
                   ClosedType: typeof(string),

@@ -45,7 +45,7 @@ jobs:
         run: dotnet restore
 
       - name: 🦺 Build Projects
-        run: dotnet build
+        run: dotnet build-server shutdown; dotnet build --no-incremental
 
       - name: 🧪 Run Tests
         run: dotnet test

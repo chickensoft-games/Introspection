@@ -21,7 +21,7 @@ partial class Container {
             IsInit: true,
             IsRequired: true,
             Getter: (object obj) => ((DeeplyNestedBaseClass)obj).DeepName,
-            Setter: (object obj, object? value) => throw new System.InvalidOperationException("Property DeepName on DeeplyNestedBaseClass is init-only."),
+            Setter: null,
             GenericType: new GenericType(
               OpenType: typeof(string),
               ClosedType: typeof(string),

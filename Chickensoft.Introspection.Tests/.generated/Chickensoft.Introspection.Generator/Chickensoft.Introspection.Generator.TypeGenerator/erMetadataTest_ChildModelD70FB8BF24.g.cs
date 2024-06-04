@@ -27,7 +27,7 @@ partial class TypeGraphMemberMetadataTest {
           IsInit: true,
           IsRequired: false,
           Getter: (object obj) => ((ChildModel)obj).ChildName,
-          Setter: (object obj, object? value) => throw new System.InvalidOperationException("Property ChildName on ChildModel is init-only."),
+          Setter: null,
           GenericType: new GenericType(
             OpenType: typeof(string),
             ClosedType: typeof(string),

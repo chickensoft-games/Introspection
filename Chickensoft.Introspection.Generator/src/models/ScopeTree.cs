@@ -12,13 +12,16 @@ public class ScopeTree {
   /// <summary>Map of types by their full, open generic names.</summary>
   public IDictionary<string, DeclaredType> TypesByFullNameOpen { get; }
 
-  public ScopeTree(IDictionary<string, DeclaredType> typesByFullNameOpen) {
+  public ScopeTree(
+    IEnumerable<DeclaredType> types,
+    IDictionary<string, DeclaredType> typesByFullNameOpen
+  ) {
     TypesByFullNameOpen = typesByFullNameOpen;
-    InitializeTree();
+    InitializeTree(types);
   }
 
-  private void InitializeTree() {
-    foreach (var declaredType in TypesByFullNameOpen.Values) {
+  private void InitializeTree(IEnumerable<DeclaredType> typesByFullNameOpen) {
+    foreach (var declaredType in typesByFullNameOpen) {
       AddType(declaredType);
     }
   }

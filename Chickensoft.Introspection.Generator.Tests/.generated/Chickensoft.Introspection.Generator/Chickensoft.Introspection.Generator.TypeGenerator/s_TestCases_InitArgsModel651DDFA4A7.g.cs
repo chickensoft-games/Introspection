@@ -39,7 +39,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         IsInit: true,
         IsRequired: true,
         Getter: (object obj) => ((InitArgsModel)obj).Age,
-        Setter: (object obj, object? value) => throw new System.InvalidOperationException("Property Age on InitArgsModel is init-only."),
+        Setter: null,
         GenericType: new GenericType(
           OpenType: typeof(int),
           ClosedType: typeof(int),
@@ -58,7 +58,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         IsInit: true,
         IsRequired: false,
         Getter: (object obj) => ((InitArgsModel)obj).Description,
-        Setter: (object obj, object? value) => throw new System.InvalidOperationException("Property Description on InitArgsModel is init-only."),
+        Setter: null,
         GenericType: new GenericType(
           OpenType: typeof(string),
           ClosedType: typeof(string),
@@ -77,7 +77,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         IsInit: true,
         IsRequired: true,
         Getter: (object obj) => ((InitArgsModel)obj).Name,
-        Setter: (object obj, object? value) => throw new System.InvalidOperationException("Property Name on InitArgsModel is init-only."),
+        Setter: null,
         GenericType: new GenericType(
           OpenType: typeof(string),
           ClosedType: typeof(string),

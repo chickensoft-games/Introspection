@@ -20,7 +20,7 @@ partial class PartialModel : Chickensoft.Introspection.IIntrospective, Chickenso
         IsInit: true,
         IsRequired: true,
         Getter: (object obj) => ((PartialModel)obj).Age,
-        Setter: (object obj, object? value) => throw new System.InvalidOperationException("Property Age on PartialModel is init-only."),
+        Setter: null,
         GenericType: new GenericType(
           OpenType: typeof(int),
           ClosedType: typeof(int),
@@ -39,7 +39,7 @@ partial class PartialModel : Chickensoft.Introspection.IIntrospective, Chickenso
         IsInit: true,
         IsRequired: true,
         Getter: (object obj) => ((PartialModel)obj).Name,
-        Setter: (object obj, object? value) => throw new System.InvalidOperationException("Property Name on PartialModel is init-only."),
+        Setter: null,
         GenericType: new GenericType(
           OpenType: typeof(string),
           ClosedType: typeof(string),
