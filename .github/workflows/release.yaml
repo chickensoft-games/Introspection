@@ -91,14 +91,14 @@ jobs:
       - name: 🔎 Get Package Path
         id: package-path
         run: |
-          package=$(find . -name "Chickensoft.Introspection.*.nupkg")
+          package=$(find Chickensoft.Introspection/nupkg -type f -name "*.nupkg")
           echo "package=$package" >> "$GITHUB_OUTPUT"
           echo "📦 Found package: $package"
 
       - name: 🔎 Get Generator Package Path
         id: gen-package-path
         run: |
-          package=$(find . -name "Chickensoft.Introspection.Generator*.nupkg")
+          package=$(find Chickensoft.Introspection.Generator/nupkg -type f -name "*.nupkg")
           echo "package=$package" >> "$GITHUB_OUTPUT"
           echo "📦 Found generator package: $package"
 
