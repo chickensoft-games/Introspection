@@ -1,8 +1,8 @@
 namespace Chickensoft.Introspection.Generator.Tests.Models;
 
 using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
-using Chickensoft.Collections;
 using Chickensoft.Introspection.Generator.Models;
 using Shouldly;
 using Xunit;
@@ -146,7 +146,12 @@ public class ScopeTreeTest {
   public void AddsDeclaredTypes() {
     // Use a map to guarantee types are added in the order shown below.
     var tree = new ScopeTree(
-      new Map<string, DeclaredType>() {
+      [
+        _inner,
+        _outer,
+        _genericOuter
+      ],
+      new Dictionary<string, DeclaredType>() {
         [_inner.FullNameOpen] = _inner,
         [_outer.FullNameOpen] = _outer,
         [_genericOuter.FullNameOpen] = _genericOuter
@@ -173,7 +178,8 @@ public class ScopeTreeTest {
   public void ThrowsIfContainingTypeIsNotAbleToBeFound() =>
     Should.Throw<InvalidOperationException>(
       () => new ScopeTree(
-        new Map<string, DeclaredType>() {
+        [_inner, _outer],
+        new Dictionary<string, DeclaredType>() {
           [_inner.FullNameOpen] = _inner,
           [_outer.FullNameOpen] = _outer
         }
@@ -183,7 +189,8 @@ public class ScopeTreeTest {
   [Fact]
   public void FindsTypesInScope() {
     var tree = new ScopeTree(
-      new Map<string, DeclaredType>() {
+      [_typeInOtherNs, _typeExtendingTypeInOtherNs],
+      new Dictionary<string, DeclaredType>() {
         [_typeInOtherNs.FullNameOpen] = _typeInOtherNs,
         [_typeExtendingTypeInOtherNs.FullNameOpen] = _typeExtendingTypeInOtherNs,
       }

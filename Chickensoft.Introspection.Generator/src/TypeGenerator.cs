@@ -75,7 +75,7 @@ public class TypeGenerator : IIncrementalGenerator {
       var typesByFullName = declaredTypes
         .GroupBy((type) => type.FullNameOpen);
 
-      var uniqueTypes = typesByFullName
+      var uniqueTypeList = typesByFullName
         .Select(
           // Combine non-unique type entries together.
           group => group.Aggregate(
@@ -83,13 +83,14 @@ public class TypeGenerator : IIncrementalGenerator {
               typeA.MergePartialDefinition(typeB)
           )
         )
-        .OrderBy(type => type.FullNameOpen) // Sort for deterministic output
-        .ToDictionary(
-          g => g.FullNameOpen,
-          g => g
-        );
+        .OrderBy(type => type.FullNameOpen);
 
-      var tree = new ScopeTree(uniqueTypes);
+      var uniqueTypes = uniqueTypeList.ToDictionary(
+        type => type.FullNameOpen,
+        type => type
+      );
+
+      var tree = new ScopeTree(uniqueTypeList, uniqueTypes);
 
       var visibleTypeFullNames = tree.GetTypes().Select(t => t.FullNameOpen);
 
