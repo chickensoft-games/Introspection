@@ -188,10 +188,56 @@ var metadata = Types.Graph.GetMetadata(typeof(Model));
 
 if (metadata is IIntrospectiveTypeMetadata introMetadata) {
   var metatype = introMetadata.Metatype;
+
+  foreach (var attribute in metatype.Attributes) {
+    // Iterate the attributes on an introspective type.
+  }
+
+  foreach (var property in metatype.Properties) {
+    // Iterate the properties of an introspective type.
+    if (property.Setter is { } setter) {
+      // We can set the value of the property.
+      setter(obj, value);
+    }
+
+    // etc.
+  }
 }
 ```
 
 Metatype data provides information about a specific type, its properties, and attributes. The type graph combines metatype information with its understanding of the type hierarchy to enable you to fetch all properties of an introspective type, including those it inherited from other introspective types. Metatypes will only contain information about the type itself, not anything it inherits from.
+
+To see all of the information that a metatyp exposes, please see the [Metatype interface definition][metatype].
+
+## 🎛️ Mixins
+
+The introspection generator allows you to create mixins to add additional functionality to the type they are applied to. Unlike [default interface method implementations], mixins are able to add _[instance state]_ via a [blackboard]. Every introspective type has a `MixinState` blackboard which allows mixins to add instance data to the type they are applied to.
+
+Additionally, mixins must implement a single handler method. An introspective type's `Metatype` has a `Mixins` property containing a list of mixin types that were applied to it. Additionally, a `MixinHandler` table is provided which maps the mixin type to a closure which invokes the mixin's handler.
+
+Introspective type instances can also cast themselves to `IIntrospective` to invoke a given mixin easily.
+
+```csharp
+// Declare a mixin
+[Mixin]
+public interface IMyMixin : IMixin<IMyMixin> {
+  void IMixin<IMyMixin>.Handler() { }
+}
+
+// Use a mixin
+[Meta(typeof(Mixin))]
+public partial class MyModel {
+
+  // Use mixins
+  public void MyMethod() {
+    // Call all applied mixin handlers
+    (this as IIntrospective).InvokeMixins();
+
+    // Call a specific mixin handler
+    (this as IIntrospective).InvokeMixin(typeof(IMyMixin));
+  }
+}
+```
 
 ---
 
@@ -214,3 +260,7 @@ Metatype data provides information about a specific type, its properties, and at
 [type registry]: Chickensoft.Introspection.Generator.Tests/.generated/Chickensoft.Introspection.Generator/Chickensoft.Introspection.Generator.TypeGenerator/TypeRegistry.g.cs
 [type graph]: Chickensoft.Introspection/src/TypeGraph.cs
 [module initializer]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-9.0/module-initializers
+[default interface method implementations]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-8.0/default-interface-methods
+[instance state]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-8.0/default-interface-methods#detailed-design
+[blackboard]: https://github.com/chickensoft-games/Collections?tab=readme-ov-file#blackboard
+[metatype]: Chickensoft.Introspection/src/types/IMetatype.cs
