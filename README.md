@@ -207,7 +207,7 @@ if (metadata is IIntrospectiveTypeMetadata introMetadata) {
 
 Metatype data provides information about a specific type, its properties, and attributes. The type graph combines metatype information with its understanding of the type hierarchy to enable you to fetch all properties of an introspective type, including those it inherited from other introspective types. Metatypes will only contain information about the type itself, not anything it inherits from.
 
-To see all of the information that a metatyp exposes, please see the [Metatype interface definition][metatype].
+To see all of the information that a metatype exposes, please see the [Metatype interface definition][metatype].
 
 ## 🎛️ Mixins
 
