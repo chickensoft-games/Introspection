@@ -15,4 +15,5 @@ public static class Constants {
   public const string TYPE_REGISTRY_INTERFACE = "Chickensoft.Introspection.ITypeRegistry";
   public const string TYPES_GRAPH = "Chickensoft.Introspection.Types.Graph";
   public const string PROPERTY_METADATA = "Chickensoft.Introspection.PropertyMetadata";
+  public const string EXCLUDE_COVERAGE = "System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage";
 }

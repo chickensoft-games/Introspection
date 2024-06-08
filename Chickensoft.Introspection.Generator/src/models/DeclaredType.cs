@@ -368,12 +368,14 @@ public sealed record DeclaredType(
     writer.Indent++;
 
     // Add a mixin state bucket to the type itself.
+    writer.WriteLine($"[{Constants.EXCLUDE_COVERAGE}]");
     writer.WriteLine(
       $"public {Constants.MIXIN_BLACKBOARD} MixinState {{ get; }} = new();"
     );
     writer.WriteLine();
 
     // Add a metatype accessor to the type for convenience
+    writer.WriteLine($"[{Constants.EXCLUDE_COVERAGE}]");
     writer.WriteLine(
       $"public {Constants.METATYPE} Metatype " +
       "=> ((Chickensoft.Introspection.IIntrospectiveTypeMetadata)" +
@@ -390,6 +392,7 @@ public sealed record DeclaredType(
 
     // Type property
     // ----------------------------------------------------------------- //
+    writer.WriteLine($"[{Constants.EXCLUDE_COVERAGE}]");
     writer.WriteLine(
       $"public System.Type Type => typeof({Reference.SimpleNameClosed});"
     );
@@ -399,6 +402,7 @@ public sealed record DeclaredType(
     // ----------------------------------------------------------------- //
     var hasInitProperties = initProperties.Any();
 
+    writer.WriteLine($"[{Constants.EXCLUDE_COVERAGE}]");
     writer.WriteLine(
       "public bool HasInitProperties { get; } = " +
       $"{(hasInitProperties ? "true" : "false")};"
@@ -409,6 +413,7 @@ public sealed record DeclaredType(
 
     // Properties property
     // ----------------------------------------------------------------- //
+    writer.WriteLine($"[{Constants.EXCLUDE_COVERAGE}]");
     writer.WriteLine(
       "public System.Collections.Generic.IReadOnlyList<" +
       $"{Constants.PROPERTY_METADATA}> Properties {{ get; }} = " +
@@ -429,6 +434,7 @@ public sealed record DeclaredType(
 
     // Attributes property
     // ----------------------------------------------------------------- //
+    writer.WriteLine($"[{Constants.EXCLUDE_COVERAGE}]");
     writer.WriteLine(
       "public System.Collections.Generic.IReadOnlyDictionary" +
       "<System.Type, System.Attribute[]> Attributes { get; } = " +
@@ -443,6 +449,7 @@ public sealed record DeclaredType(
 
     // Mixins property
     // ----------------------------------------------------------------- //
+    writer.WriteLine($"[{Constants.EXCLUDE_COVERAGE}]");
     writer.WriteLine(
       "public System.Collections.Generic.IReadOnlyList<System.Type> " +
       "Mixins { get; } = new System.Collections.Generic.List<System.Type>() {"
@@ -463,6 +470,7 @@ public sealed record DeclaredType(
 
     // MixinHandlers property
     // ----------------------------------------------------------------- //
+    writer.WriteLine($"[{Constants.EXCLUDE_COVERAGE}]");
     writer.WriteLine(
       "public System.Collections.Generic.IReadOnlyDictionary" +
       "<System.Type, System.Action<object>> MixinHandlers { get; } = " +
@@ -486,6 +494,7 @@ public sealed record DeclaredType(
 
     // Generate constructor for init properties, if needed
     // ----------------------------------------------------------------- //
+    writer.WriteLine($"[{Constants.EXCLUDE_COVERAGE}]");
     writer.WriteLine(
       "public object Construct(" +
       "System.Collections.Generic.IReadOnlyDictionary<string, object?>? " +
@@ -542,7 +551,9 @@ public sealed record DeclaredType(
 
     // Generate constructor for init properties, if needed
     // ----------------------------------------------------------------- //
+    writer.WriteLine($"[{Constants.EXCLUDE_COVERAGE}]");
     writer.WriteLine("public override bool Equals(object obj) => true;");
+    writer.WriteLine($"[{Constants.EXCLUDE_COVERAGE}]");
     writer.WriteLine(
       "public override int GetHashCode() => base.GetHashCode();"
     );
