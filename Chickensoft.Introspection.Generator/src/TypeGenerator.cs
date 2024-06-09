@@ -496,6 +496,10 @@ public class TypeGenerator : IIncrementalGenerator {
   ) {
     var properties = ImmutableArray.CreateBuilder<DeclaredProperty>();
     foreach (var property in type.Members.OfType<PropertyDeclarationSyntax>()) {
+      if (property.Modifiers.Any(SyntaxKind.StaticKeyword)) {
+        continue;
+      }
+
       var propertyAttributes = GetAttributes(property.AttributeLists);
 
       // Never identified a situation in which the accessor list is null.
