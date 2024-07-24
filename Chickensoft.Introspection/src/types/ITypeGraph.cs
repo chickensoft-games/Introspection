@@ -12,6 +12,11 @@ using Chickensoft.Collections;
 /// </summary>
 public interface ITypeGraph {
   /// <summary>
+  /// Enumerable of all registered (or promoted) identifiable types.
+  /// </summary>
+  IEnumerable<Type> IdentifiableTypes { get; }
+
+  /// <summary>
   /// Computes and caches secondary type lookup tables based on the types
   /// registered in the provided type registry.
   /// </summary>
