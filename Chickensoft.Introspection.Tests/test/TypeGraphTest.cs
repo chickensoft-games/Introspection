@@ -29,6 +29,17 @@ public partial class TypeGraphTest {
   public partial class NoSubtypes { }
 
   [Fact]
+  public void EnumeratesRegisteredTypes() {
+    Types.Graph.IdentifiableTypes.ShouldContain(typeof(Model));
+    Types.Graph.IdentifiableTypes.ShouldContain(typeof(SubtypeA));
+    Types.Graph.IdentifiableTypes.ShouldContain(typeof(SubtypeA.SubtypeB));
+    Types.Graph.IdentifiableTypes.ShouldContain(typeof(SubtypeC));
+
+    // Not an identifiable type.
+    Types.Graph.IdentifiableTypes.ShouldNotContain(typeof(NoSubtypes));
+  }
+
+  [Fact]
   public void GetIdentifiableType() =>
     Types.Graph.GetIdentifiableType("test_model").ShouldBe(typeof(Model));
 

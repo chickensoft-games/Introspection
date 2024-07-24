@@ -10,8 +10,6 @@ using Chickensoft.Collections;
 internal class TypeGraph : ITypeGraph {
   #region Caches
   private readonly ConcurrentDictionary<Type, ITypeMetadata> _types = new();
-  private readonly ConcurrentDictionary<Type, IIdentifiableTypeMetadata>
-    _identifiableTypes = new();
   private readonly ConcurrentDictionary<string, Dictionary<int, Type>>
     _identifiableTypesByIdAndVersion = new();
   private readonly ConcurrentDictionary<string, int>
@@ -34,7 +32,6 @@ internal class TypeGraph : ITypeGraph {
 
   internal void Reset() {
     _types.Clear();
-    _identifiableTypes.Clear();
     _identifiableTypesByIdAndVersion.Clear();
     _identifiableLatestVersionsById.Clear();
     _typesByBaseType.Clear();
@@ -44,6 +41,10 @@ internal class TypeGraph : ITypeGraph {
   }
 
   #region ITypeGraph
+  public IEnumerable<Type> IdentifiableTypes => _identifiableTypesByIdAndVersion
+    .Values
+    .SelectMany(versions => versions.Values);
+
   public void Register(ITypeRegistry registry) {
     RegisterTypes(registry);
     PromoteInheritedIdentifiableTypes(registry);
@@ -120,9 +121,15 @@ internal class TypeGraph : ITypeGraph {
         .Select(type => _types[type])
         .OfType<IIntrospectiveTypeMetadata>()
         .SelectMany((metadata) => metadata.Metatype.Attributes)
+        .GroupBy(
+          kvp => kvp.Key,
+          kvp => kvp.Value
+        )
         .ToDictionary(
-          keySelector: (typeToAttr) => typeToAttr.Key,
-          elementSelector: (typeToAttr) => typeToAttr.Value
+          group => group.Key,
+          elementSelector: group => group
+            .SelectMany(attributes => attributes)
+            .ToArray()
         );
     }
     return _attributes[type];
