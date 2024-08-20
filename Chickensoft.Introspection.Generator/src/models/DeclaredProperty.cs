@@ -9,12 +9,14 @@ using Chickensoft.Introspection.Generator.Utils;
 /// Represents a property on a metatype. Properties are opt-in and persisted.
 /// </summary>
 /// <param name="Name">Name of the </param>
+/// <param name="HasGetter">True if the property has a getter.</param>
 /// <param name="HasSetter">True if the property has a setter.</param>
 /// <param name="IsNullable">True if the property is nullable.</param>
 /// <param name="GenericType">Type of the </param>
 /// <param name="Attributes">Attributes applied to the </param>
 public sealed record DeclaredProperty(
   string Name,
+  bool HasGetter,
   bool HasSetter,
   bool IsInit,
   bool IsRequired,
@@ -28,6 +30,10 @@ public sealed record DeclaredProperty(
 
     var propertyValue = "value" + (IsNullable ? "" : "!");
 
+    var getter = HasGetter
+      ? $"(object obj) => (({typeSimpleNameClosed})obj).{Name}"
+      : "null";
+
     var setter = HasSetter
       ? (
         IsInit
@@ -40,9 +46,7 @@ public sealed record DeclaredProperty(
     writer.WriteLine($"Name: \"{Name}\",");
     writer.WriteLine($"IsInit: {(IsInit ? "true" : "false")},");
     writer.WriteLine($"IsRequired: {(IsRequired ? "true" : "false")},");
-    writer.WriteLine(
-      $"Getter: (object obj) => (({typeSimpleNameClosed})obj).{Name},"
-    );
+    writer.WriteLine($"Getter: {getter},");
     writer.WriteLine($"Setter: {setter},");
     writer.Write("GenericType: ");
     GenericType.Write(writer);
@@ -64,6 +68,7 @@ public sealed record DeclaredProperty(
   public bool Equals(DeclaredProperty? other) =>
     other is not null &&
     Name == other.Name &&
+    HasGetter == other.HasGetter &&
     HasSetter == other.HasSetter &&
     IsInit == other.IsInit &&
     IsNullable == other.IsNullable &&
@@ -72,6 +77,7 @@ public sealed record DeclaredProperty(
 
   public override int GetHashCode() => HashCode.Combine(
     Name,
+    HasGetter,
     HasSetter,
     IsInit,
     IsNullable,
