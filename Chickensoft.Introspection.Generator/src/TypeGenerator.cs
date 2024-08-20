@@ -502,6 +502,11 @@ public class TypeGenerator : IIncrementalGenerator {
 
       var propertyAttributes = GetAttributes(property.AttributeLists);
 
+      var hasGetter = property.AccessorList?.Accessors
+        .Any(
+          accessor => accessor.IsKind(SyntaxKind.GetAccessorDeclaration)
+        ) ?? property.ExpressionBody is not null;
+
       // Never identified a situation in which the accessor list is null.
       var hasSetter = property.AccessorList?.Accessors
         .Any(
@@ -540,6 +545,7 @@ public class TypeGenerator : IIncrementalGenerator {
       properties.Add(
         new DeclaredProperty(
           Name: property.Identifier.ValueText,
+          HasGetter: hasGetter,
           HasSetter: hasSetter,
           IsInit: isInit,
           IsRequired: isRequired,

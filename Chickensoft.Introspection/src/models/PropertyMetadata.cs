@@ -21,7 +21,7 @@ public sealed record PropertyMetadata(
   string Name,
   bool IsInit,
   bool IsRequired,
-  Func<object, object?> Getter,
+  Func<object, object?>? Getter,
   Action<object, object?>? Setter,
   GenericType GenericType,
   Dictionary<Type, Attribute[]> Attributes

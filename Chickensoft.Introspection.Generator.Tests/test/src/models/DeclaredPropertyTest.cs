@@ -10,6 +10,7 @@ public class DeclaredPropertyTest {
   public void Equality() {
     var prop = new DeclaredProperty(
       Name: "Name",
+      HasGetter: true,
       HasSetter: true,
       IsInit: false,
       IsRequired: false,
@@ -27,6 +28,7 @@ public class DeclaredPropertyTest {
     prop.ShouldBe(
       new DeclaredProperty(
         Name: "Name",
+        HasGetter: true,
         HasSetter: true,
         IsInit: false,
         IsRequired: false,
@@ -40,6 +42,7 @@ public class DeclaredPropertyTest {
 
     new DeclaredProperty(
       Name: "Name",
+      HasGetter: true,
       HasSetter: true,
       IsInit: false,
       IsRequired: false,
@@ -53,6 +56,7 @@ public class DeclaredPropertyTest {
     ).ShouldNotBe(
       new DeclaredProperty(
         Name: "Name",
+        HasGetter: true,
         HasSetter: true,
         IsInit: false,
         IsRequired: false,
