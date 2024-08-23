@@ -31,13 +31,14 @@ partial class TypeGraphMemberMetadataTest {
           Name: "Age",
           IsInit: true,
           IsRequired: true,
+          HasDefaultValue: false,
           Getter: static (object obj) => ((Model)obj).Age,
           Setter: null,
           GenericType: new GenericType(
             OpenType: typeof(int),
             ClosedType: typeof(int),
             Arguments: System.Array.Empty<GenericType>(),
-            GenericTypeGetter: receiver => receiver.Receive<int>(),
+            GenericTypeGetter: static receiver => receiver.Receive<int>(),
             GenericTypeGetter2: default
           ),
           Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
@@ -50,13 +51,14 @@ partial class TypeGraphMemberMetadataTest {
           Name: "Name",
           IsInit: true,
           IsRequired: false,
+          HasDefaultValue: false,
           Getter: static (object obj) => ((Model)obj).Name,
           Setter: null,
           GenericType: new GenericType(
             OpenType: typeof(string),
             ClosedType: typeof(string),
             Arguments: System.Array.Empty<GenericType>(),
-            GenericTypeGetter: receiver => receiver.Receive<string>(),
+            GenericTypeGetter: static receiver => receiver.Receive<string>(),
             GenericTypeGetter2: default
           ),
           Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {

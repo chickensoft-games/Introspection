@@ -24,6 +24,7 @@ partial class AttributesWithNamedArgs : Chickensoft.Introspection.IIntrospective
         Name: "Name",
         IsInit: true,
         IsRequired: true,
+        HasDefaultValue: false,
         Getter: static (object obj) => ((AttributesWithNamedArgs)obj).Name,
         Setter: null,
         GenericType: new GenericType(

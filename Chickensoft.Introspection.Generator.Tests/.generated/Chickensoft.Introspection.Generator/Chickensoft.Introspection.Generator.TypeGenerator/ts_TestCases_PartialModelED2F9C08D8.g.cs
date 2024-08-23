@@ -24,6 +24,7 @@ partial class PartialModel : Chickensoft.Introspection.IIntrospective, Chickenso
         Name: "Age",
         IsInit: true,
         IsRequired: true,
+        HasDefaultValue: false,
         Getter: static (object obj) => ((PartialModel)obj).Age,
         Setter: null,
         GenericType: new GenericType(
@@ -43,6 +44,7 @@ partial class PartialModel : Chickensoft.Introspection.IIntrospective, Chickenso
         Name: "Name",
         IsInit: true,
         IsRequired: true,
+        HasDefaultValue: false,
         Getter: static (object obj) => ((PartialModel)obj).Name,
         Setter: null,
         GenericType: new GenericType(

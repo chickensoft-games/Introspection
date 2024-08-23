@@ -21,6 +21,7 @@ partial record class PropertyModel : Chickensoft.Introspection.IIntrospective {
         Name: "Value",
         IsInit: false,
         IsRequired: false,
+        HasDefaultValue: false,
         Getter: static (object obj) => ((PropertyModel)obj).Value,
         Setter: null,
         GenericType: new GenericType(

@@ -28,6 +28,7 @@ partial class MyType : Chickensoft.Introspection.IIntrospective, Chickensoft.Int
         Name: "MyProperty",
         IsInit: false,
         IsRequired: false,
+        HasDefaultValue: true,
         Getter: static (object obj) => ((MyType)obj).MyProperty,
         Setter: static (object obj, object? value) => ((MyType)obj).MyProperty = (string)value!,
         GenericType: new GenericType(
@@ -51,6 +52,7 @@ partial class MyType : Chickensoft.Introspection.IIntrospective, Chickensoft.Int
         Name: "NoAttributeSoNoMetadata",
         IsInit: false,
         IsRequired: false,
+        HasDefaultValue: true,
         Getter: static (object obj) => ((MyType)obj).NoAttributeSoNoMetadata,
         Setter: null,
         GenericType: new GenericType(
@@ -67,6 +69,7 @@ partial class MyType : Chickensoft.Introspection.IIntrospective, Chickensoft.Int
         Name: "OptionalFloat",
         IsInit: false,
         IsRequired: false,
+        HasDefaultValue: true,
         Getter: static (object obj) => ((MyType)obj).OptionalFloat,
         Setter: static (object obj, object? value) => ((MyType)obj).OptionalFloat = (Nullable<float>)value,
         GenericType: new GenericType(
@@ -94,6 +97,7 @@ partial class MyType : Chickensoft.Introspection.IIntrospective, Chickensoft.Int
         Name: "OptionalInt",
         IsInit: false,
         IsRequired: false,
+        HasDefaultValue: true,
         Getter: static (object obj) => ((MyType)obj).OptionalInt,
         Setter: static (object obj, object? value) => ((MyType)obj).OptionalInt = (int)value,
         GenericType: new GenericType(

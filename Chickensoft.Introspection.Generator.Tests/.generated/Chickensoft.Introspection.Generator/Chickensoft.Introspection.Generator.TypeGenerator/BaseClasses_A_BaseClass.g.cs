@@ -23,6 +23,7 @@ partial class BaseClass : Chickensoft.Introspection.IIntrospective {
         Name: "Name",
         IsInit: true,
         IsRequired: true,
+        HasDefaultValue: false,
         Getter: static (object obj) => ((BaseClass)obj).Name,
         Setter: null,
         GenericType: new GenericType(

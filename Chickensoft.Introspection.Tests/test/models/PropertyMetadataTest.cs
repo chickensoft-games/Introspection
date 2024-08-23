@@ -10,6 +10,7 @@ public class PropertyMetadataTest {
       Name: "Name",
       IsInit: false,
       IsRequired: false,
+      HasDefaultValue: false,
       Getter: _ => "Value",
       Setter: (_, _) => { },
       GenericType: new GenericType(typeof(string), typeof(string), [], _ => { }, _ => { }),

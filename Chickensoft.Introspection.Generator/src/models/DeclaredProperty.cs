@@ -50,6 +50,9 @@ public sealed record DeclaredProperty(
     writer.WriteLine($"Name: \"{Name}\",");
     writer.WriteLine($"IsInit: {(IsInit ? "true" : "false")},");
     writer.WriteLine($"IsRequired: {(IsRequired ? "true" : "false")},");
+    writer.WriteLine(
+      $"HasDefaultValue: {(DefaultValueExpression is not null ? "true" : "false")},"
+    );
     writer.WriteLine($"Getter: {getter},");
     writer.WriteLine($"Setter: {setter},");
     writer.Write("GenericType: ");
@@ -75,6 +78,7 @@ public sealed record DeclaredProperty(
     HasGetter == other.HasGetter &&
     HasSetter == other.HasSetter &&
     IsInit == other.IsInit &&
+    IsRequired == other.IsRequired &&
     IsNullable == other.IsNullable &&
     DefaultValueExpression == other.DefaultValueExpression &&
     GenericType.Equals(other.GenericType) &&
@@ -85,6 +89,7 @@ public sealed record DeclaredProperty(
     HasGetter,
     HasSetter,
     IsInit,
+    IsRequired,
     IsNullable,
     DefaultValueExpression,
     GenericType,

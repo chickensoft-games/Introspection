@@ -31,13 +31,14 @@ partial class TypeGraphTest {
           Name: "Name",
           IsInit: false,
           IsRequired: false,
+          HasDefaultValue: true,
           Getter: static (object obj) => ((Model)obj).Name,
           Setter: null,
           GenericType: new GenericType(
             OpenType: typeof(string),
             ClosedType: typeof(string),
             Arguments: System.Array.Empty<GenericType>(),
-            GenericTypeGetter: receiver => receiver.Receive<string>(),
+            GenericTypeGetter: static receiver => receiver.Receive<string>(),
             GenericTypeGetter2: default
           ),
           Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
