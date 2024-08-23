@@ -78,6 +78,44 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         }
       ), 
       new Chickensoft.Introspection.PropertyMetadata(
+        Name: "HasAttended",
+        IsInit: true,
+        IsRequired: false,
+        Getter: (object obj) => ((InitArgsModel)obj).HasAttended,
+        Setter: null,
+        GenericType: new GenericType(
+          OpenType: typeof(InitArgsEnum),
+          ClosedType: typeof(InitArgsEnum),
+          Arguments: System.Array.Empty<GenericType>(),
+          GenericTypeGetter: receiver => receiver.Receive<InitArgsEnum>(),
+          GenericTypeGetter2: default
+        ),
+        Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
+          [typeof(TagAttribute)] = new System.Attribute[] {
+            new TagAttribute("has_attended")
+          }
+        }
+      ), 
+      new Chickensoft.Introspection.PropertyMetadata(
+        Name: "IsAttending",
+        IsInit: false,
+        IsRequired: false,
+        Getter: (object obj) => ((InitArgsModel)obj).IsAttending,
+        Setter: (object obj, object? value) => ((InitArgsModel)obj).IsAttending = (InitArgsEnum)value!,
+        GenericType: new GenericType(
+          OpenType: typeof(InitArgsEnum),
+          ClosedType: typeof(InitArgsEnum),
+          Arguments: System.Array.Empty<GenericType>(),
+          GenericTypeGetter: receiver => receiver.Receive<InitArgsEnum>(),
+          GenericTypeGetter2: default
+        ),
+        Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
+          [typeof(TagAttribute)] = new System.Attribute[] {
+            new TagAttribute("is_attending")
+          }
+        }
+      ), 
+      new Chickensoft.Introspection.PropertyMetadata(
         Name: "Name",
         IsInit: true,
         IsRequired: true,
@@ -121,10 +159,10 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
     public object Construct(System.Collections.Generic.IReadOnlyDictionary<string, object?>? args = null) {
       args = args ?? throw new System.ArgumentNullException(nameof(args), "Constructing InitArgsModel requires init args.");
       return new InitArgsModel() {
-        Address = args.ContainsKey("Address") ? (string)args["Address"] : default!, 
-        Age = args.ContainsKey("Age") ? (int)args["Age"] : default!, 
-        Description = args.ContainsKey("Description") ? (string)args["Description"] : default!, 
-        Name = args.ContainsKey("Name") ? (string)args["Name"] : default!
+        Age = args.ContainsKey("Age") ? (int)args["Age"] : default(int)!, 
+        Description = args.ContainsKey("Description") ? (string)args["Description"] : default(string)!, 
+        HasAttended = args.ContainsKey("HasAttended") ? (InitArgsEnum)args["HasAttended"] : InitArgsEnum.No, 
+        Name = args.ContainsKey("Name") ? (string)args["Name"] : default(string)!
       };
     }
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]

@@ -83,8 +83,8 @@ partial class PartialModel : Chickensoft.Introspection.IIntrospective, Chickenso
     public object Construct(System.Collections.Generic.IReadOnlyDictionary<string, object?>? args = null) {
       args = args ?? throw new System.ArgumentNullException(nameof(args), "Constructing PartialModel requires init args.");
       return new PartialModel() {
-        Age = args.ContainsKey("Age") ? (int)args["Age"] : default!, 
-        Name = args.ContainsKey("Name") ? (string)args["Name"] : default!
+        Age = args.ContainsKey("Age") ? (int)args["Age"] : default(int)!, 
+        Name = args.ContainsKey("Name") ? (string)args["Name"] : default(string)!
       };
     }
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]

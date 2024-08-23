@@ -12,6 +12,8 @@ using Chickensoft.Introspection.Generator.Utils;
 /// <param name="HasGetter">True if the property has a getter.</param>
 /// <param name="HasSetter">True if the property has a setter.</param>
 /// <param name="IsNullable">True if the property is nullable.</param>
+/// <param name="DefaultValueExpression">Expression to use as the default
+/// value.</param>
 /// <param name="GenericType">Type of the </param>
 /// <param name="Attributes">Attributes applied to the </param>
 public sealed record DeclaredProperty(
@@ -21,6 +23,7 @@ public sealed record DeclaredProperty(
   bool IsInit,
   bool IsRequired,
   bool IsNullable,
+  string? DefaultValueExpression,
   GenericTypeNode GenericType,
   ImmutableArray<DeclaredAttribute> Attributes
 ) {
@@ -72,6 +75,7 @@ public sealed record DeclaredProperty(
     HasSetter == other.HasSetter &&
     IsInit == other.IsInit &&
     IsNullable == other.IsNullable &&
+    DefaultValueExpression == other.DefaultValueExpression &&
     GenericType.Equals(other.GenericType) &&
     Attributes.SequenceEqual(other.Attributes);
 
@@ -81,6 +85,7 @@ public sealed record DeclaredProperty(
     HasSetter,
     IsInit,
     IsNullable,
+    DefaultValueExpression,
     GenericType,
     Attributes
   );

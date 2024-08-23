@@ -59,7 +59,7 @@ partial class Container {
         public object Construct(System.Collections.Generic.IReadOnlyDictionary<string, object?>? args = null) {
           args = args ?? throw new System.ArgumentNullException(nameof(args), "Constructing DeeplyNestedBaseClass requires init args.");
           return new DeeplyNestedBaseClass() {
-            DeepName = args.ContainsKey("DeepName") ? (string)args["DeepName"] : default!
+            DeepName = args.ContainsKey("DeepName") ? (string)args["DeepName"] : default(string)!
           };
         }
         [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]

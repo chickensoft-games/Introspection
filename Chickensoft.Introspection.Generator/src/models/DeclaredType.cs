@@ -529,11 +529,12 @@ public sealed record DeclaredType(
     writer.WriteLine($"return new {Reference.SimpleNameClosed}() {{");
 
     var propStrings = allProperties
-      .Where(prop => prop.HasSetter)
+      .Where(prop => prop.IsInit || prop.IsRequired)
       .Select(
         (prop) =>
           $"{prop.Name} = args.ContainsKey(\"{prop.Name}\") " +
-          $"? ({prop.GenericType.ClosedType})args[\"{prop.Name}\"] : default!"
+          $"? ({prop.GenericType.ClosedType})args[\"{prop.Name}\"] : " +
+          $"{(prop.DefaultValueExpression is { } value ? value : $"default({prop.GenericType.ClosedType})!")}"
       );
 
     writer.WriteCommaSeparatedList(

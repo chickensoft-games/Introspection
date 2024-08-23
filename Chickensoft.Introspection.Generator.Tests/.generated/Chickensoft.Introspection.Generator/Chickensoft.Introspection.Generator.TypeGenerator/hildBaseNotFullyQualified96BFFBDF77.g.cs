@@ -42,7 +42,7 @@ partial class ChildBaseNotFullyQualified : Chickensoft.Introspection.IIntrospect
     public object Construct(System.Collections.Generic.IReadOnlyDictionary<string, object?>? args = null) {
       args = args ?? throw new System.ArgumentNullException(nameof(args), "Constructing ChildBaseNotFullyQualified requires init args.");
       return new ChildBaseNotFullyQualified() {
-        Identifier = args.ContainsKey("Identifier") ? (string)args["Identifier"] : default!
+        Identifier = args.ContainsKey("Identifier") ? (string)args["Identifier"] : default(string)!
       };
     }
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
