@@ -25,6 +25,7 @@ partial class MyContainerClass {
           Name: "Age",
           IsInit: false,
           IsRequired: false,
+          HasDefaultValue: true,
           Getter: static (object obj) => ((MyModel)obj).Age,
           Setter: static (object obj, object? value) => ((MyModel)obj).Age = (int)value,
           GenericType: new GenericType(
@@ -44,6 +45,7 @@ partial class MyContainerClass {
           Name: "Name",
           IsInit: false,
           IsRequired: false,
+          HasDefaultValue: true,
           Getter: static (object obj) => ((MyModel)obj).Name,
           Setter: static (object obj, object? value) => ((MyModel)obj).Name = (string)value!,
           GenericType: new GenericType(

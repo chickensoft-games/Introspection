@@ -21,6 +21,7 @@ partial record class SetOnlyProperty : Chickensoft.Introspection.IIntrospective 
         Name: "Value",
         IsInit: false,
         IsRequired: false,
+        HasDefaultValue: false,
         Getter: null,
         Setter: static (object obj, object? value) => ((SetOnlyProperty)obj).Value = (string)value!,
         GenericType: new GenericType(

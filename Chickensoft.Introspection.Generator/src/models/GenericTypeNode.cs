@@ -75,12 +75,12 @@ public sealed record GenericTypeNode(
     }
 
     writer.WriteLine(
-      "GenericTypeGetter: receiver => " +
+      "GenericTypeGetter: static receiver => " +
       $"receiver.Receive<{closedType}>(),"
     );
     if (Children.Length >= 2) {
       writer.WriteLine(
-        "GenericTypeGetter2: receiver => " +
+        "GenericTypeGetter2: static receiver => " +
         $"receiver.Receive<{Children[0].ClosedType}, {Children[1].ClosedType}>()"
       );
     }

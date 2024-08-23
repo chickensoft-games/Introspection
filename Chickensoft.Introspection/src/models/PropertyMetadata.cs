@@ -9,6 +9,8 @@ using System.Collections.Generic;
 /// <param name="Name">Property name.</param>
 /// <param name="IsInit">True if the property is init-only.</param>
 /// <param name="IsRequired">True if the property is required.</param>
+/// <param name="HasDefaultValue">True if the property has a default value.
+/// </param>
 /// <param name="Getter">Getter function.</param>
 /// <param name="Setter">Setter function.</param>
 /// <param name="GenericType">If the property's type is a closed constructed
@@ -21,6 +23,7 @@ public sealed record PropertyMetadata(
   string Name,
   bool IsInit,
   bool IsRequired,
+  bool HasDefaultValue,
   Func<object, object?>? Getter,
   Action<object, object?>? Setter,
   GenericType GenericType,

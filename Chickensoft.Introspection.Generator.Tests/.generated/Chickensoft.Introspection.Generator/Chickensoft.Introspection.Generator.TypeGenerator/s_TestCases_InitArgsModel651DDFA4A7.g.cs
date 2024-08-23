@@ -24,6 +24,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         Name: "Address",
         IsInit: false,
         IsRequired: false,
+        HasDefaultValue: false,
         Getter: static (object obj) => ((InitArgsModel)obj).Address,
         Setter: static (object obj, object? value) => ((InitArgsModel)obj).Address = (string)value,
         GenericType: new GenericType(
@@ -43,6 +44,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         Name: "Age",
         IsInit: true,
         IsRequired: true,
+        HasDefaultValue: false,
         Getter: static (object obj) => ((InitArgsModel)obj).Age,
         Setter: null,
         GenericType: new GenericType(
@@ -62,6 +64,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         Name: "Description",
         IsInit: true,
         IsRequired: false,
+        HasDefaultValue: false,
         Getter: static (object obj) => ((InitArgsModel)obj).Description,
         Setter: null,
         GenericType: new GenericType(
@@ -81,6 +84,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         Name: "HasAttended",
         IsInit: true,
         IsRequired: false,
+        HasDefaultValue: true,
         Getter: static (object obj) => ((InitArgsModel)obj).HasAttended,
         Setter: null,
         GenericType: new GenericType(
@@ -100,6 +104,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         Name: "IsAttending",
         IsInit: false,
         IsRequired: false,
+        HasDefaultValue: true,
         Getter: static (object obj) => ((InitArgsModel)obj).IsAttending,
         Setter: static (object obj, object? value) => ((InitArgsModel)obj).IsAttending = (InitArgsEnum)value!,
         GenericType: new GenericType(
@@ -119,6 +124,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         Name: "Name",
         IsInit: true,
         IsRequired: true,
+        HasDefaultValue: false,
         Getter: static (object obj) => ((InitArgsModel)obj).Name,
         Setter: null,
         GenericType: new GenericType(

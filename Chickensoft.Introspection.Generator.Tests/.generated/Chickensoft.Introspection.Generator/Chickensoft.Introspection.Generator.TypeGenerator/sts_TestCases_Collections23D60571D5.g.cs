@@ -24,6 +24,7 @@ partial class Collections : Chickensoft.Introspection.IIntrospective {
         Name: "NestedCollections",
         IsInit: false,
         IsRequired: false,
+        HasDefaultValue: true,
         Getter: static (object obj) => ((Collections)obj).NestedCollections,
         Setter: null,
         GenericType: new GenericType(

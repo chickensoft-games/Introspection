@@ -27,6 +27,7 @@ partial class A {
                 Name: "Identifier",
                 IsInit: true,
                 IsRequired: true,
+                HasDefaultValue: false,
                 Getter: static (object obj) => ((SomeBaseClass)obj).Identifier,
                 Setter: null,
                 GenericType: new GenericType(

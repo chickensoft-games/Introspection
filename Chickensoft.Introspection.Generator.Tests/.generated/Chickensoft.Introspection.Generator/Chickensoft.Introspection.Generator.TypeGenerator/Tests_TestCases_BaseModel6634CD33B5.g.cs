@@ -24,6 +24,7 @@ partial class BaseModel : Chickensoft.Introspection.IIntrospective {
         Name: "Name",
         IsInit: false,
         IsRequired: false,
+        HasDefaultValue: true,
         Getter: static (object obj) => ((BaseModel)obj).Name,
         Setter: static (object obj, object? value) => ((BaseModel)obj).Name = (string)value!,
         GenericType: new GenericType(
