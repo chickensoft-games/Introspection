@@ -32,8 +32,8 @@ static partial class One {
                 Name: "MyProperty",
                 IsInit: false,
                 IsRequired: false,
-                Getter: (object obj) => ((NestedType)obj).MyProperty,
-                Setter: (object obj, object? value) => ((NestedType)obj).MyProperty = (string)value!,
+                Getter: static (object obj) => ((NestedType)obj).MyProperty,
+                Setter: static (object obj, object? value) => ((NestedType)obj).MyProperty = (string)value!,
                 GenericType: new GenericType(
                   OpenType: typeof(string),
                   ClosedType: typeof(string),
@@ -55,8 +55,8 @@ static partial class One {
                 Name: "OptionalFloat",
                 IsInit: false,
                 IsRequired: false,
-                Getter: (object obj) => ((NestedType)obj).OptionalFloat,
-                Setter: (object obj, object? value) => ((NestedType)obj).OptionalFloat = (float)value,
+                Getter: static (object obj) => ((NestedType)obj).OptionalFloat,
+                Setter: static (object obj, object? value) => ((NestedType)obj).OptionalFloat = (float)value,
                 GenericType: new GenericType(
                   OpenType: typeof(float),
                   ClosedType: typeof(float),
@@ -74,8 +74,8 @@ static partial class One {
                 Name: "OptionalInt",
                 IsInit: false,
                 IsRequired: false,
-                Getter: (object obj) => ((NestedType)obj).OptionalInt,
-                Setter: (object obj, object? value) => ((NestedType)obj).OptionalInt = (int)value,
+                Getter: static (object obj) => ((NestedType)obj).OptionalInt,
+                Setter: static (object obj, object? value) => ((NestedType)obj).OptionalInt = (int)value,
                 GenericType: new GenericType(
                   OpenType: typeof(int),
                   ClosedType: typeof(int),

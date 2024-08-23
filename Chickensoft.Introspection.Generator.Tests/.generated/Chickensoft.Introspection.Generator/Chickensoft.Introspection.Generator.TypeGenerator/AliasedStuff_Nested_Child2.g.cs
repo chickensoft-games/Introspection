@@ -43,7 +43,7 @@ partial class Child2 : Chickensoft.Introspection.IIntrospective {
     public object Construct(System.Collections.Generic.IReadOnlyDictionary<string, object?>? args = null) {
       args = args ?? throw new System.ArgumentNullException(nameof(args), "Constructing Child2 requires init args.");
       return new Child2() {
-        Identifier = args.ContainsKey("Identifier") ? (string)args["Identifier"] : default!
+        Identifier = args.ContainsKey("Identifier") ? (string)args["Identifier"] : default(string)!
       };
     }
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]

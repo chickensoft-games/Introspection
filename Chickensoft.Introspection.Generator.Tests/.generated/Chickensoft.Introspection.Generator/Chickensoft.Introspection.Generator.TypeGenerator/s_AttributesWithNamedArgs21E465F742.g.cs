@@ -24,7 +24,7 @@ partial class AttributesWithNamedArgs : Chickensoft.Introspection.IIntrospective
         Name: "Name",
         IsInit: true,
         IsRequired: true,
-        Getter: (object obj) => ((AttributesWithNamedArgs)obj).Name,
+        Getter: static (object obj) => ((AttributesWithNamedArgs)obj).Name,
         Setter: null,
         GenericType: new GenericType(
           OpenType: typeof(string),
@@ -64,7 +64,7 @@ partial class AttributesWithNamedArgs : Chickensoft.Introspection.IIntrospective
     public object Construct(System.Collections.Generic.IReadOnlyDictionary<string, object?>? args = null) {
       args = args ?? throw new System.ArgumentNullException(nameof(args), "Constructing AttributesWithNamedArgs requires init args.");
       return new AttributesWithNamedArgs() {
-        Name = args.ContainsKey("Name") ? (string)args["Name"] : default!
+        Name = args.ContainsKey("Name") ? (string)args["Name"] : default(string)!
       };
     }
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]

@@ -23,7 +23,7 @@ partial class BaseClass : Chickensoft.Introspection.IIntrospective {
         Name: "Name",
         IsInit: true,
         IsRequired: true,
-        Getter: (object obj) => ((BaseClass)obj).Name,
+        Getter: static (object obj) => ((BaseClass)obj).Name,
         Setter: null,
         GenericType: new GenericType(
           OpenType: typeof(string),
@@ -57,7 +57,7 @@ partial class BaseClass : Chickensoft.Introspection.IIntrospective {
     public object Construct(System.Collections.Generic.IReadOnlyDictionary<string, object?>? args = null) {
       args = args ?? throw new System.ArgumentNullException(nameof(args), "Constructing BaseClass requires init args.");
       return new BaseClass() {
-        Name = args.ContainsKey("Name") ? (string)args["Name"] : default!
+        Name = args.ContainsKey("Name") ? (string)args["Name"] : default(string)!
       };
     }
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]

@@ -33,7 +33,7 @@ partial class SomeType : Chickensoft.Introspection.IIntrospective, ISomeMixin {
     
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public System.Collections.Generic.IReadOnlyDictionary<System.Type, System.Action<object>> MixinHandlers { get; } = new System.Collections.Generic.Dictionary<System.Type, System.Action<object>>() {
-      [typeof(ISomeMixin)] = (obj) => ((ISomeMixin)obj).Handler()
+      [typeof(ISomeMixin)] = static (obj) => ((ISomeMixin)obj).Handler()
     };
     
     

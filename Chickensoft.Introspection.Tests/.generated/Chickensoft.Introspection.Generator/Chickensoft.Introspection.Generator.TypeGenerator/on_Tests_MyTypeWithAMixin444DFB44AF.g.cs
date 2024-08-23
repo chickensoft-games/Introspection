@@ -38,8 +38,8 @@ partial class MyTypeWithAMixin : Chickensoft.Introspection.IIntrospective, IMixi
     
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public System.Collections.Generic.IReadOnlyDictionary<System.Type, System.Action<object>> MixinHandlers { get; } = new System.Collections.Generic.Dictionary<System.Type, System.Action<object>>() {
-      [typeof(IMixin1)] = (obj) => ((IMixin1)obj).Handler(), 
-      [typeof(IMixin2)] = (obj) => ((IMixin2)obj).Handler()
+      [typeof(IMixin1)] = static (obj) => ((IMixin1)obj).Handler(), 
+      [typeof(IMixin2)] = static (obj) => ((IMixin2)obj).Handler()
     };
     
     

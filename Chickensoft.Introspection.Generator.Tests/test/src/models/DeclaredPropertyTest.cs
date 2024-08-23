@@ -15,6 +15,7 @@ public class DeclaredPropertyTest {
       IsInit: false,
       IsRequired: false,
       IsNullable: false,
+      DefaultValueExpression: null,
       GenericType: new GenericTypeNode(
         "System.String", Children: ImmutableArray<GenericTypeNode>.Empty
       ),
@@ -33,6 +34,7 @@ public class DeclaredPropertyTest {
         IsInit: false,
         IsRequired: false,
         IsNullable: false,
+        DefaultValueExpression: null,
         GenericType: new GenericTypeNode(
           "System.String", Children: ImmutableArray<GenericTypeNode>.Empty
         ),
@@ -47,6 +49,7 @@ public class DeclaredPropertyTest {
       IsInit: false,
       IsRequired: false,
       IsNullable: false,
+      DefaultValueExpression: null,
       GenericType: new GenericTypeNode(
         "System.String", Children: ImmutableArray<GenericTypeNode>.Empty
       ),
@@ -61,6 +64,7 @@ public class DeclaredPropertyTest {
         IsInit: false,
         IsRequired: false,
         IsNullable: false,
+        DefaultValueExpression: null,
         GenericType: new GenericTypeNode(
           "System.String", Children: ImmutableArray<GenericTypeNode>.Empty
         ),

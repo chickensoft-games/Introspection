@@ -25,8 +25,8 @@ partial class MyContainerClass {
           Name: "Age",
           IsInit: false,
           IsRequired: false,
-          Getter: (object obj) => ((MyModel)obj).Age,
-          Setter: (object obj, object? value) => ((MyModel)obj).Age = (int)value,
+          Getter: static (object obj) => ((MyModel)obj).Age,
+          Setter: static (object obj, object? value) => ((MyModel)obj).Age = (int)value,
           GenericType: new GenericType(
             OpenType: typeof(int),
             ClosedType: typeof(int),
@@ -44,8 +44,8 @@ partial class MyContainerClass {
           Name: "Name",
           IsInit: false,
           IsRequired: false,
-          Getter: (object obj) => ((MyModel)obj).Name,
-          Setter: (object obj, object? value) => ((MyModel)obj).Name = (string)value!,
+          Getter: static (object obj) => ((MyModel)obj).Name,
+          Setter: static (object obj, object? value) => ((MyModel)obj).Name = (string)value!,
           GenericType: new GenericType(
             OpenType: typeof(string),
             ClosedType: typeof(string),
@@ -79,8 +79,8 @@ partial class MyContainerClass {
       
       [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
       public System.Collections.Generic.IReadOnlyDictionary<System.Type, System.Action<object>> MixinHandlers { get; } = new System.Collections.Generic.Dictionary<System.Type, System.Action<object>>() {
-        [typeof(IMyMixin)] = (obj) => ((IMyMixin)obj).Handler(), 
-        [typeof(IMySecondMixin)] = (obj) => ((IMySecondMixin)obj).Handler()
+        [typeof(IMyMixin)] = static (obj) => ((IMyMixin)obj).Handler(), 
+        [typeof(IMySecondMixin)] = static (obj) => ((IMySecondMixin)obj).Handler()
       };
       
       

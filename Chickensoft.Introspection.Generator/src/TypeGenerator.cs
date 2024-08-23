@@ -529,6 +529,9 @@ public class TypeGenerator : IIncrementalGenerator {
           generic.Identifier.ValueText == "Nullable"
         );
 
+      var defaultValueExpression =
+        property.Initializer?.Value.NormalizeWhitespace().ToString();
+
       var propType = property.Type;
 
       if (property.Type is NullableTypeSyntax nullableType) {
@@ -550,6 +553,7 @@ public class TypeGenerator : IIncrementalGenerator {
           IsInit: isInit,
           IsRequired: isRequired,
           IsNullable: isNullable,
+          DefaultValueExpression: defaultValueExpression,
           GenericType: genericType,
           Attributes: propertyAttributes
         )

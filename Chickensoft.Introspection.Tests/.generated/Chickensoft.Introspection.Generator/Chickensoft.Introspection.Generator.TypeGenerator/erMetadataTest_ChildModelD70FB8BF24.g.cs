@@ -31,7 +31,7 @@ partial class TypeGraphMemberMetadataTest {
           Name: "ChildName",
           IsInit: true,
           IsRequired: false,
-          Getter: (object obj) => ((ChildModel)obj).ChildName,
+          Getter: static (object obj) => ((ChildModel)obj).ChildName,
           Setter: null,
           GenericType: new GenericType(
             OpenType: typeof(string),
@@ -68,9 +68,9 @@ partial class TypeGraphMemberMetadataTest {
       public object Construct(System.Collections.Generic.IReadOnlyDictionary<string, object?>? args = null) {
         args = args ?? throw new System.ArgumentNullException(nameof(args), "Constructing ChildModel requires init args.");
         return new ChildModel() {
-          Age = args.ContainsKey("Age") ? (int)args["Age"] : default!, 
-          ChildName = args.ContainsKey("ChildName") ? (string)args["ChildName"] : default!, 
-          Name = args.ContainsKey("Name") ? (string)args["Name"] : default!
+          Age = args.ContainsKey("Age") ? (int)args["Age"] : default(int)!, 
+          ChildName = args.ContainsKey("ChildName") ? (string)args["ChildName"] : default(string)!, 
+          Name = args.ContainsKey("Name") ? (string)args["Name"] : default(string)!
         };
       }
       [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
