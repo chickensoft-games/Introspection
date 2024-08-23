@@ -28,8 +28,8 @@ partial class MyType : Chickensoft.Introspection.IIntrospective, Chickensoft.Int
         Name: "MyProperty",
         IsInit: false,
         IsRequired: false,
-        Getter: (object obj) => ((MyType)obj).MyProperty,
-        Setter: (object obj, object? value) => ((MyType)obj).MyProperty = (string)value!,
+        Getter: static (object obj) => ((MyType)obj).MyProperty,
+        Setter: static (object obj, object? value) => ((MyType)obj).MyProperty = (string)value!,
         GenericType: new GenericType(
           OpenType: typeof(string),
           ClosedType: typeof(string),
@@ -51,7 +51,7 @@ partial class MyType : Chickensoft.Introspection.IIntrospective, Chickensoft.Int
         Name: "NoAttributeSoNoMetadata",
         IsInit: false,
         IsRequired: false,
-        Getter: (object obj) => ((MyType)obj).NoAttributeSoNoMetadata,
+        Getter: static (object obj) => ((MyType)obj).NoAttributeSoNoMetadata,
         Setter: null,
         GenericType: new GenericType(
           OpenType: typeof(int),
@@ -67,8 +67,8 @@ partial class MyType : Chickensoft.Introspection.IIntrospective, Chickensoft.Int
         Name: "OptionalFloat",
         IsInit: false,
         IsRequired: false,
-        Getter: (object obj) => ((MyType)obj).OptionalFloat,
-        Setter: (object obj, object? value) => ((MyType)obj).OptionalFloat = (Nullable<float>)value,
+        Getter: static (object obj) => ((MyType)obj).OptionalFloat,
+        Setter: static (object obj, object? value) => ((MyType)obj).OptionalFloat = (Nullable<float>)value,
         GenericType: new GenericType(
           OpenType: typeof(Nullable<>),
           ClosedType: typeof(Nullable<float>),
@@ -94,8 +94,8 @@ partial class MyType : Chickensoft.Introspection.IIntrospective, Chickensoft.Int
         Name: "OptionalInt",
         IsInit: false,
         IsRequired: false,
-        Getter: (object obj) => ((MyType)obj).OptionalInt,
-        Setter: (object obj, object? value) => ((MyType)obj).OptionalInt = (int)value,
+        Getter: static (object obj) => ((MyType)obj).OptionalInt,
+        Setter: static (object obj, object? value) => ((MyType)obj).OptionalInt = (int)value,
         GenericType: new GenericType(
           OpenType: typeof(int),
           ClosedType: typeof(int),

@@ -27,7 +27,7 @@ partial class A {
                 Name: "Identifier",
                 IsInit: true,
                 IsRequired: true,
-                Getter: (object obj) => ((SomeBaseClass)obj).Identifier,
+                Getter: static (object obj) => ((SomeBaseClass)obj).Identifier,
                 Setter: null,
                 GenericType: new GenericType(
                   OpenType: typeof(string),

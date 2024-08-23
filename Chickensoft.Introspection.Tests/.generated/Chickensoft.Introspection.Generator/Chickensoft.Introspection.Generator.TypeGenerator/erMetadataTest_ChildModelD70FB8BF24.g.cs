@@ -31,7 +31,7 @@ partial class TypeGraphMemberMetadataTest {
           Name: "ChildName",
           IsInit: true,
           IsRequired: false,
-          Getter: (object obj) => ((ChildModel)obj).ChildName,
+          Getter: static (object obj) => ((ChildModel)obj).ChildName,
           Setter: null,
           GenericType: new GenericType(
             OpenType: typeof(string),

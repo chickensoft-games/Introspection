@@ -22,7 +22,7 @@ partial record class SetOnlyProperty : Chickensoft.Introspection.IIntrospective 
         IsInit: false,
         IsRequired: false,
         Getter: null,
-        Setter: (object obj, object? value) => ((SetOnlyProperty)obj).Value = (string)value!,
+        Setter: static (object obj, object? value) => ((SetOnlyProperty)obj).Value = (string)value!,
         GenericType: new GenericType(
           OpenType: typeof(string),
           ClosedType: typeof(string),

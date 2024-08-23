@@ -25,7 +25,7 @@ partial class Container {
             Name: "DeepName",
             IsInit: true,
             IsRequired: true,
-            Getter: (object obj) => ((DeeplyNestedBaseClass)obj).DeepName,
+            Getter: static (object obj) => ((DeeplyNestedBaseClass)obj).DeepName,
             Setter: null,
             GenericType: new GenericType(
               OpenType: typeof(string),

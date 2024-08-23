@@ -34,15 +34,16 @@ public sealed record DeclaredProperty(
     var propertyValue = "value" + (IsNullable ? "" : "!");
 
     var getter = HasGetter
-      ? $"(object obj) => (({typeSimpleNameClosed})obj).{Name}"
+      ? $"static (object obj) => (({typeSimpleNameClosed})obj).{Name}"
       : "null";
 
     var setter = HasSetter
       ? (
         IsInit
           ? "null"
-          : $"(object obj, object? value) => (({typeSimpleNameClosed})obj)" +
-          $".{Name} = ({GenericType.ClosedType}){propertyValue}"
+          : $"static (object obj, object? value) => " +
+            $"(({typeSimpleNameClosed})obj)" +
+            $".{Name} = ({GenericType.ClosedType}){propertyValue}"
       )
       : "null";
 

@@ -31,7 +31,7 @@ partial class TypeGraphMemberMetadataTest {
           Name: "Age",
           IsInit: true,
           IsRequired: true,
-          Getter: (object obj) => ((Model)obj).Age,
+          Getter: static (object obj) => ((Model)obj).Age,
           Setter: null,
           GenericType: new GenericType(
             OpenType: typeof(int),
@@ -50,7 +50,7 @@ partial class TypeGraphMemberMetadataTest {
           Name: "Name",
           IsInit: true,
           IsRequired: false,
-          Getter: (object obj) => ((Model)obj).Name,
+          Getter: static (object obj) => ((Model)obj).Name,
           Setter: null,
           GenericType: new GenericType(
             OpenType: typeof(string),

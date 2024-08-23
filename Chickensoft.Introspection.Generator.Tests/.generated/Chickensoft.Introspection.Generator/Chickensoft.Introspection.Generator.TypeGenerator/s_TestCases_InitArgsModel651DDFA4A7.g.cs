@@ -24,8 +24,8 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         Name: "Address",
         IsInit: false,
         IsRequired: false,
-        Getter: (object obj) => ((InitArgsModel)obj).Address,
-        Setter: (object obj, object? value) => ((InitArgsModel)obj).Address = (string)value,
+        Getter: static (object obj) => ((InitArgsModel)obj).Address,
+        Setter: static (object obj, object? value) => ((InitArgsModel)obj).Address = (string)value,
         GenericType: new GenericType(
           OpenType: typeof(string),
           ClosedType: typeof(string),
@@ -43,7 +43,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         Name: "Age",
         IsInit: true,
         IsRequired: true,
-        Getter: (object obj) => ((InitArgsModel)obj).Age,
+        Getter: static (object obj) => ((InitArgsModel)obj).Age,
         Setter: null,
         GenericType: new GenericType(
           OpenType: typeof(int),
@@ -62,7 +62,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         Name: "Description",
         IsInit: true,
         IsRequired: false,
-        Getter: (object obj) => ((InitArgsModel)obj).Description,
+        Getter: static (object obj) => ((InitArgsModel)obj).Description,
         Setter: null,
         GenericType: new GenericType(
           OpenType: typeof(string),
@@ -81,7 +81,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         Name: "HasAttended",
         IsInit: true,
         IsRequired: false,
-        Getter: (object obj) => ((InitArgsModel)obj).HasAttended,
+        Getter: static (object obj) => ((InitArgsModel)obj).HasAttended,
         Setter: null,
         GenericType: new GenericType(
           OpenType: typeof(InitArgsEnum),
@@ -100,8 +100,8 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         Name: "IsAttending",
         IsInit: false,
         IsRequired: false,
-        Getter: (object obj) => ((InitArgsModel)obj).IsAttending,
-        Setter: (object obj, object? value) => ((InitArgsModel)obj).IsAttending = (InitArgsEnum)value!,
+        Getter: static (object obj) => ((InitArgsModel)obj).IsAttending,
+        Setter: static (object obj, object? value) => ((InitArgsModel)obj).IsAttending = (InitArgsEnum)value!,
         GenericType: new GenericType(
           OpenType: typeof(InitArgsEnum),
           ClosedType: typeof(InitArgsEnum),
@@ -119,7 +119,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         Name: "Name",
         IsInit: true,
         IsRequired: true,
-        Getter: (object obj) => ((InitArgsModel)obj).Name,
+        Getter: static (object obj) => ((InitArgsModel)obj).Name,
         Setter: null,
         GenericType: new GenericType(
           OpenType: typeof(string),

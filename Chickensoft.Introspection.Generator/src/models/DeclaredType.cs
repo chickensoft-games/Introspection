@@ -268,8 +268,9 @@ public sealed record DeclaredType(
   ) {
     const string prefix = "Chickensoft.Introspection";
     var name = $"\"{Reference.SimpleNameClosed}\"";
-    var genericTypeGetter = $"(r) => r.Receive<{FullNameClosed}>()";
-    var factory = $"() => System.Activator.CreateInstance<{FullNameClosed}>()";
+    var genericTypeGetter = $"static (r) => r.Receive<{FullNameClosed}>()";
+    var factory =
+      $"static () => System.Activator.CreateInstance<{FullNameClosed}>()";
     var metatype = $"new {FullNameClosed}.{Constants.METATYPE_IMPL}()";
     var id = Id ?? "";
     var version = $"{Version}";
@@ -481,7 +482,7 @@ public sealed record DeclaredType(
     writer.WriteCommaSeparatedList(
       orderedMixins,
       (mixin) => writer.Write(
-        $"[typeof({mixin})] = (obj) => (({mixin})obj).Handler()"
+        $"[typeof({mixin})] = static (obj) => (({mixin})obj).Handler()"
       ),
       multiline: true
     );
