@@ -39,7 +39,7 @@ static partial class One {
                   OpenType: typeof(string),
                   ClosedType: typeof(string),
                   Arguments: System.Array.Empty<GenericType>(),
-                  GenericTypeGetter: receiver => receiver.Receive<string>(),
+                  GenericTypeGetter: static receiver => receiver.Receive<string>(),
                   GenericTypeGetter2: default
                 ),
                 Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
@@ -63,7 +63,7 @@ static partial class One {
                   OpenType: typeof(float),
                   ClosedType: typeof(float),
                   Arguments: System.Array.Empty<GenericType>(),
-                  GenericTypeGetter: receiver => receiver.Receive<float>(),
+                  GenericTypeGetter: static receiver => receiver.Receive<float>(),
                   GenericTypeGetter2: default
                 ),
                 Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
@@ -83,7 +83,7 @@ static partial class One {
                   OpenType: typeof(int),
                   ClosedType: typeof(int),
                   Arguments: System.Array.Empty<GenericType>(),
-                  GenericTypeGetter: receiver => receiver.Receive<int>(),
+                  GenericTypeGetter: static receiver => receiver.Receive<int>(),
                   GenericTypeGetter2: default
                 ),
                 Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {

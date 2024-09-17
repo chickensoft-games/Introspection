@@ -83,6 +83,7 @@ public class TypeGenerator : IIncrementalGenerator {
               typeA.MergePartialDefinition(typeB)
           )
         )
+        .Where(type => type.Kind != DeclaredTypeKind.Error)
         .OrderBy(type => type.FullNameOpen);
 
       var uniqueTypes = uniqueTypeList.ToDictionary(
@@ -479,7 +480,15 @@ public class TypeGenerator : IIncrementalGenerator {
         allUsings = allUsings.AddRange(comp.Usings);
       }
     }
-    return allUsings.Select(GetUsing).ToImmutableHashSet();
+    return allUsings
+      // `Name` will be null if used as an alias for a tuple (unrelated to
+      // the using import directive).
+      //
+      // Note that we don't have access to the NamespaceOrType property
+      // introduced after Microsoft.CodeAnalysis.CSharp v4.4.0 which would
+      // reference the tuple aliasing.
+      .Where(@using => @using.Name is not null)
+      .Select(GetUsing).ToImmutableHashSet();
   }
 
   public static UsingDirective GetUsing(UsingDirectiveSyntax @using) =>
