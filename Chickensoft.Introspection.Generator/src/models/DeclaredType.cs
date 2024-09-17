@@ -243,7 +243,7 @@ public sealed record DeclaredType(
     Location: Location,
     BaseType: BaseType,
     Usings: Usings.Union(declaredType.Usings),
-    Kind: Kind,
+    Kind: PickDeclaredTypeKind(Kind, declaredType.Kind),
     IsStatic: PickIsStatic(declaredType.IsStatic),
     IsPublicOrInternal: PickIsPublicOrInternal(declaredType.IsPublicOrInternal),
     Properties
@@ -256,6 +256,31 @@ public sealed record DeclaredType(
 
   internal Location PickSyntaxLocation(Location other) =>
     HasIntrospectiveAttribute ? SyntaxLocation : other;
+
+  internal static DeclaredTypeKind PickDeclaredTypeKind(
+    DeclaredTypeKind kind,
+    DeclaredTypeKind other
+  ) => kind switch {
+    // both are the same — no change
+    _ when other == kind => kind,
+
+    // abstract + concrete = abstract
+    DeclaredTypeKind.AbstractType when other is DeclaredTypeKind.ConcreteType
+      => DeclaredTypeKind.AbstractType,
+    DeclaredTypeKind.ConcreteType when other is DeclaredTypeKind.AbstractType
+      => DeclaredTypeKind.AbstractType,
+    // ---
+
+    // static + concrete = static
+    DeclaredTypeKind.StaticClass when other is DeclaredTypeKind.ConcreteType
+      => DeclaredTypeKind.StaticClass,
+    DeclaredTypeKind.ConcreteType when other is DeclaredTypeKind.StaticClass
+      => DeclaredTypeKind.StaticClass,
+    // ---
+
+    // no other combinations have valid results
+    _ => DeclaredTypeKind.Error
+  };
 
   internal bool PickIsStatic(bool other) => IsStatic || other;
 

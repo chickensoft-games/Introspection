@@ -4,5 +4,6 @@ public enum DeclaredTypeKind {
   StaticClass,
   AbstractType,
   ConcreteType,
-  Interface
+  Interface,
+  Error
 }

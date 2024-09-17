@@ -39,11 +39,11 @@ partial class Collections : Chickensoft.Introspection.IIntrospective {
                       OpenType: typeof(string),
                       ClosedType: typeof(string),
                       Arguments: System.Array.Empty<GenericType>(),
-                      GenericTypeGetter: receiver => receiver.Receive<string>(),
+                      GenericTypeGetter: static receiver => receiver.Receive<string>(),
                       GenericTypeGetter2: default
                     )
                 },
-                GenericTypeGetter: receiver => receiver.Receive<List<string>>(),
+                GenericTypeGetter: static receiver => receiver.Receive<List<string>>(),
                 GenericTypeGetter2: default
               ), 
               new GenericType(
@@ -58,20 +58,20 @@ partial class Collections : Chickensoft.Introspection.IIntrospective {
                             OpenType: typeof(int),
                             ClosedType: typeof(int),
                             Arguments: System.Array.Empty<GenericType>(),
-                            GenericTypeGetter: receiver => receiver.Receive<int>(),
+                            GenericTypeGetter: static receiver => receiver.Receive<int>(),
                             GenericTypeGetter2: default
                           )
                       },
-                      GenericTypeGetter: receiver => receiver.Receive<List<int>>(),
+                      GenericTypeGetter: static receiver => receiver.Receive<List<int>>(),
                       GenericTypeGetter2: default
                     )
                 },
-                GenericTypeGetter: receiver => receiver.Receive<List<List<int>>>(),
+                GenericTypeGetter: static receiver => receiver.Receive<List<List<int>>>(),
                 GenericTypeGetter2: default
               )
           },
-          GenericTypeGetter: receiver => receiver.Receive<Dictionary<List<string>, List<List<int>>>>(),
-          GenericTypeGetter2: receiver => receiver.Receive<List<string>, List<List<int>>>()
+          GenericTypeGetter: static receiver => receiver.Receive<Dictionary<List<string>, List<List<int>>>>(),
+          GenericTypeGetter2: static receiver => receiver.Receive<List<string>, List<List<int>>>()
         ),
         Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
           [typeof(TagAttribute)] = new System.Attribute[] {

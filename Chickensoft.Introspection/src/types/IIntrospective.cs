@@ -30,8 +30,8 @@ public interface IIntrospective {
   /// Invokes the handler of each mixin that is applied to the type.
   /// </summary>
   public void InvokeMixins() {
-    foreach (var mixin in Metatype.Mixins) {
-      Metatype.MixinHandlers[mixin](this);
+    for (var i = 0; i < Metatype.Mixins.Count; i++) {
+      Metatype.MixinHandlers[Metatype.Mixins[i]](this);
     }
   }
 
