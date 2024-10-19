@@ -26,7 +26,7 @@ partial class BaseClass : Chickensoft.Introspection.IIntrospective {
         HasDefaultValue: false,
         Getter: static (object obj) => ((BaseClass)obj).Name,
         Setter: null,
-        GenericType: new Chickensoft.Introspection.TypeNode(
+        TypeNode: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(string),
           ClosedType: typeof(string),
           IsNullable: false,

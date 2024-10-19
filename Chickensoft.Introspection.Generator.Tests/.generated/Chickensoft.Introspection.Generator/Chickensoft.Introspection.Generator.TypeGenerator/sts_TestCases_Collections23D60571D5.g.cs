@@ -27,7 +27,7 @@ partial class Collections : Chickensoft.Introspection.IIntrospective {
         HasDefaultValue: true,
         Getter: static (object obj) => ((Collections)obj).NestedCollections,
         Setter: null,
-        GenericType: new Chickensoft.Introspection.TypeNode(
+        TypeNode: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(Dictionary<,>),
           ClosedType: typeof(Dictionary<List<string>, List<List<int>>>),
           IsNullable: false,

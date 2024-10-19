@@ -35,7 +35,7 @@ static partial class One {
                 HasDefaultValue: true,
                 Getter: static (object obj) => ((NestedType)obj).MyProperty,
                 Setter: static (object obj, object? value) => ((NestedType)obj).MyProperty = (string)value!,
-                GenericType: new Chickensoft.Introspection.TypeNode(
+                TypeNode: new Chickensoft.Introspection.TypeNode(
                   OpenType: typeof(string),
                   ClosedType: typeof(string),
                   IsNullable: false,
@@ -60,7 +60,7 @@ static partial class One {
                 HasDefaultValue: true,
                 Getter: static (object obj) => ((NestedType)obj).OptionalFloat,
                 Setter: static (object obj, object? value) => ((NestedType)obj).OptionalFloat = (float?)value,
-                GenericType: new Chickensoft.Introspection.TypeNode(
+                TypeNode: new Chickensoft.Introspection.TypeNode(
                   OpenType: typeof(float),
                   ClosedType: typeof(float),
                   IsNullable: true,
@@ -81,7 +81,7 @@ static partial class One {
                 HasDefaultValue: true,
                 Getter: static (object obj) => ((NestedType)obj).OptionalInt,
                 Setter: static (object obj, object? value) => ((NestedType)obj).OptionalInt = (int?)value,
-                GenericType: new Chickensoft.Introspection.TypeNode(
+                TypeNode: new Chickensoft.Introspection.TypeNode(
                   OpenType: typeof(int),
                   ClosedType: typeof(int),
                   IsNullable: true,

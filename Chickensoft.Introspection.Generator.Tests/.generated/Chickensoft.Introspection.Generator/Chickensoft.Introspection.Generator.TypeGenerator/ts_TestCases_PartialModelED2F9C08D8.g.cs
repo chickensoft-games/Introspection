@@ -27,7 +27,7 @@ partial class PartialModel : Chickensoft.Introspection.IIntrospective, Chickenso
         HasDefaultValue: false,
         Getter: static (object obj) => ((PartialModel)obj).Age,
         Setter: null,
-        GenericType: new Chickensoft.Introspection.TypeNode(
+        TypeNode: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(int),
           ClosedType: typeof(int),
           IsNullable: false,
@@ -48,7 +48,7 @@ partial class PartialModel : Chickensoft.Introspection.IIntrospective, Chickenso
         HasDefaultValue: false,
         Getter: static (object obj) => ((PartialModel)obj).Name,
         Setter: null,
-        GenericType: new Chickensoft.Introspection.TypeNode(
+        TypeNode: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(string),
           ClosedType: typeof(string),
           IsNullable: false,

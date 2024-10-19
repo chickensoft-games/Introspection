@@ -27,7 +27,7 @@ partial class DerivedModel : Chickensoft.Introspection.IIntrospective {
         HasDefaultValue: false,
         Getter: static (object obj) => ((DerivedModel)obj).Age,
         Setter: static (object obj, object? value) => ((DerivedModel)obj).Age = (int)value!,
-        GenericType: new Chickensoft.Introspection.TypeNode(
+        TypeNode: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(int),
           ClosedType: typeof(int),
           IsNullable: false,

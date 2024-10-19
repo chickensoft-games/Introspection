@@ -27,7 +27,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         HasDefaultValue: false,
         Getter: static (object obj) => ((InitArgsModel)obj).Address,
         Setter: static (object obj, object? value) => ((InitArgsModel)obj).Address = (string?)value,
-        GenericType: new Chickensoft.Introspection.TypeNode(
+        TypeNode: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(string),
           ClosedType: typeof(string),
           IsNullable: true,
@@ -48,7 +48,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         HasDefaultValue: false,
         Getter: static (object obj) => ((InitArgsModel)obj).Age,
         Setter: null,
-        GenericType: new Chickensoft.Introspection.TypeNode(
+        TypeNode: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(int),
           ClosedType: typeof(int),
           IsNullable: false,
@@ -69,7 +69,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         HasDefaultValue: false,
         Getter: static (object obj) => ((InitArgsModel)obj).Description,
         Setter: null,
-        GenericType: new Chickensoft.Introspection.TypeNode(
+        TypeNode: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(string),
           ClosedType: typeof(string),
           IsNullable: true,
@@ -90,7 +90,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         HasDefaultValue: true,
         Getter: static (object obj) => ((InitArgsModel)obj).HasAttended,
         Setter: null,
-        GenericType: new Chickensoft.Introspection.TypeNode(
+        TypeNode: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(InitArgsEnum),
           ClosedType: typeof(InitArgsEnum),
           IsNullable: false,
@@ -111,7 +111,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         HasDefaultValue: true,
         Getter: static (object obj) => ((InitArgsModel)obj).IsAttending,
         Setter: static (object obj, object? value) => ((InitArgsModel)obj).IsAttending = (InitArgsEnum)value!,
-        GenericType: new Chickensoft.Introspection.TypeNode(
+        TypeNode: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(InitArgsEnum),
           ClosedType: typeof(InitArgsEnum),
           IsNullable: false,
@@ -132,7 +132,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         HasDefaultValue: false,
         Getter: static (object obj) => ((InitArgsModel)obj).Name,
         Setter: null,
-        GenericType: new Chickensoft.Introspection.TypeNode(
+        TypeNode: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(string),
           ClosedType: typeof(string),
           IsNullable: false,

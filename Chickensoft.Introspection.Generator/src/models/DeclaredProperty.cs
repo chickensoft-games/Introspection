@@ -57,7 +57,7 @@ public sealed record DeclaredProperty(
     );
     writer.WriteLine($"Getter: {getter},");
     writer.WriteLine($"Setter: {setter},");
-    writer.Write("GenericType: ");
+    writer.Write("TypeNode: ");
     TypeNode.Write(writer);
     writer.WriteLine(",");
     writer.WriteLine(

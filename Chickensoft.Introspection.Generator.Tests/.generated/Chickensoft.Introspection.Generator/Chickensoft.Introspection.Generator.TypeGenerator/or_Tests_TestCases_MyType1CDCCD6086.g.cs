@@ -31,7 +31,7 @@ partial class MyType : Chickensoft.Introspection.IIntrospective, Chickensoft.Int
         HasDefaultValue: true,
         Getter: static (object obj) => ((MyType)obj).MyProperty,
         Setter: static (object obj, object? value) => ((MyType)obj).MyProperty = (string)value!,
-        GenericType: new Chickensoft.Introspection.TypeNode(
+        TypeNode: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(string),
           ClosedType: typeof(string),
           IsNullable: false,
@@ -56,7 +56,7 @@ partial class MyType : Chickensoft.Introspection.IIntrospective, Chickensoft.Int
         HasDefaultValue: true,
         Getter: static (object obj) => ((MyType)obj).NoAttributeSoNoMetadata,
         Setter: null,
-        GenericType: new Chickensoft.Introspection.TypeNode(
+        TypeNode: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(int),
           ClosedType: typeof(int),
           IsNullable: false,
@@ -74,7 +74,7 @@ partial class MyType : Chickensoft.Introspection.IIntrospective, Chickensoft.Int
         HasDefaultValue: true,
         Getter: static (object obj) => ((MyType)obj).OptionalFloat,
         Setter: static (object obj, object? value) => ((MyType)obj).OptionalFloat = (float?)value,
-        GenericType: new Chickensoft.Introspection.TypeNode(
+        TypeNode: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(float),
           ClosedType: typeof(float),
           IsNullable: true,
@@ -95,7 +95,7 @@ partial class MyType : Chickensoft.Introspection.IIntrospective, Chickensoft.Int
         HasDefaultValue: true,
         Getter: static (object obj) => ((MyType)obj).OptionalInt,
         Setter: static (object obj, object? value) => ((MyType)obj).OptionalInt = (int?)value,
-        GenericType: new Chickensoft.Introspection.TypeNode(
+        TypeNode: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(int),
           ClosedType: typeof(int),
           IsNullable: true,

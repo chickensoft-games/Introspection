@@ -30,7 +30,7 @@ partial class A {
                 HasDefaultValue: false,
                 Getter: static (object obj) => ((SomeBaseClass)obj).Identifier,
                 Setter: null,
-                GenericType: new Chickensoft.Introspection.TypeNode(
+                TypeNode: new Chickensoft.Introspection.TypeNode(
                   OpenType: typeof(string),
                   ClosedType: typeof(string),
                   IsNullable: false,

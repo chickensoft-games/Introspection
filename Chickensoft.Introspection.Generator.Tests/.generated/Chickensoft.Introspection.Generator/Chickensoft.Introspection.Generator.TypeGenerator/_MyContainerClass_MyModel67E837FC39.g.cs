@@ -28,7 +28,7 @@ partial class MyContainerClass {
           HasDefaultValue: true,
           Getter: static (object obj) => ((MyModel)obj).Age,
           Setter: static (object obj, object? value) => ((MyModel)obj).Age = (int?)value,
-          GenericType: new Chickensoft.Introspection.TypeNode(
+          TypeNode: new Chickensoft.Introspection.TypeNode(
             OpenType: typeof(int),
             ClosedType: typeof(int),
             IsNullable: true,
@@ -49,7 +49,7 @@ partial class MyContainerClass {
           HasDefaultValue: true,
           Getter: static (object obj) => ((MyModel)obj).Name,
           Setter: static (object obj, object? value) => ((MyModel)obj).Name = (string)value!,
-          GenericType: new Chickensoft.Introspection.TypeNode(
+          TypeNode: new Chickensoft.Introspection.TypeNode(
             OpenType: typeof(string),
             ClosedType: typeof(string),
             IsNullable: false,
