@@ -4,6 +4,7 @@ namespace Chickensoft.Introspection.Generator.Tests.TestCases;
 
 using Chickensoft.Introspection;
 using Chickensoft.Introspection.Generator.Tests.TestUtils;
+using System;
 using System.Collections.Generic;
 
 partial class NullablePropertyTypes : Chickensoft.Introspection.IIntrospective {
@@ -124,6 +125,45 @@ partial class NullablePropertyTypes : Chickensoft.Introspection.IIntrospective {
         Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
           [typeof(TagAttribute)] = new System.Attribute[] {
             new TagAttribute("name")
+          }
+        }
+      ), 
+      new Chickensoft.Introspection.PropertyMetadata(
+        Name: "Nullables",
+        IsInit: false,
+        IsRequired: false,
+        HasDefaultValue: false,
+        Getter: static (object obj) => ((NullablePropertyTypes)obj).Nullables,
+        Setter: static (object obj, object? value) => ((NullablePropertyTypes)obj).Nullables = (GenericStruct<GenericStruct<int?>?>?)value,
+        GenericType: new GenericType(
+          OpenType: typeof(GenericStruct<>),
+          ClosedType: typeof(GenericStruct<GenericStruct<int?>?>),
+          IsNullable: true,
+          Arguments: new GenericType[] {
+              new GenericType(
+                OpenType: typeof(GenericStruct<>),
+                ClosedType: typeof(GenericStruct<int?>),
+                IsNullable: true,
+                Arguments: new GenericType[] {
+                    new GenericType(
+                      OpenType: typeof(int),
+                      ClosedType: typeof(int),
+                      IsNullable: true,
+                      Arguments: System.Array.Empty<GenericType>(),
+                      GenericTypeGetter: static receiver => receiver.Receive<int?>(),
+                      GenericTypeGetter2: default
+                    )
+                },
+                GenericTypeGetter: static receiver => receiver.Receive<GenericStruct<int?>?>(),
+                GenericTypeGetter2: default
+              )
+          },
+          GenericTypeGetter: static receiver => receiver.Receive<GenericStruct<GenericStruct<int?>?>?>(),
+          GenericTypeGetter2: default
+        ),
+        Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
+          [typeof(TagAttribute)] = new System.Attribute[] {
+            new TagAttribute("map_verbose")
           }
         }
       )
