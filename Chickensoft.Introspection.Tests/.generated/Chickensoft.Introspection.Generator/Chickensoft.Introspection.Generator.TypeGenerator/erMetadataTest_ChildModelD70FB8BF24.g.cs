@@ -37,6 +37,7 @@ partial class TypeGraphMemberMetadataTest {
           GenericType: new GenericType(
             OpenType: typeof(string),
             ClosedType: typeof(string),
+            IsNullable: true,
             Arguments: System.Array.Empty<GenericType>(),
             GenericTypeGetter: static receiver => receiver.Receive<string>(),
             GenericTypeGetter2: default

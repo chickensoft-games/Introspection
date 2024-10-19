@@ -31,6 +31,7 @@ partial class MyContainerClass {
           GenericType: new GenericType(
             OpenType: typeof(int),
             ClosedType: typeof(int),
+            IsNullable: true,
             Arguments: System.Array.Empty<GenericType>(),
             GenericTypeGetter: static receiver => receiver.Receive<int>(),
             GenericTypeGetter2: default
@@ -51,6 +52,7 @@ partial class MyContainerClass {
           GenericType: new GenericType(
             OpenType: typeof(string),
             ClosedType: typeof(string),
+            IsNullable: false,
             Arguments: System.Array.Empty<GenericType>(),
             GenericTypeGetter: static receiver => receiver.Receive<string>(),
             GenericTypeGetter2: default

@@ -30,6 +30,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         GenericType: new GenericType(
           OpenType: typeof(string),
           ClosedType: typeof(string),
+          IsNullable: true,
           Arguments: System.Array.Empty<GenericType>(),
           GenericTypeGetter: static receiver => receiver.Receive<string>(),
           GenericTypeGetter2: default
@@ -50,6 +51,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         GenericType: new GenericType(
           OpenType: typeof(int),
           ClosedType: typeof(int),
+          IsNullable: false,
           Arguments: System.Array.Empty<GenericType>(),
           GenericTypeGetter: static receiver => receiver.Receive<int>(),
           GenericTypeGetter2: default
@@ -70,6 +72,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         GenericType: new GenericType(
           OpenType: typeof(string),
           ClosedType: typeof(string),
+          IsNullable: true,
           Arguments: System.Array.Empty<GenericType>(),
           GenericTypeGetter: static receiver => receiver.Receive<string>(),
           GenericTypeGetter2: default
@@ -90,6 +93,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         GenericType: new GenericType(
           OpenType: typeof(InitArgsEnum),
           ClosedType: typeof(InitArgsEnum),
+          IsNullable: false,
           Arguments: System.Array.Empty<GenericType>(),
           GenericTypeGetter: static receiver => receiver.Receive<InitArgsEnum>(),
           GenericTypeGetter2: default
@@ -110,6 +114,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         GenericType: new GenericType(
           OpenType: typeof(InitArgsEnum),
           ClosedType: typeof(InitArgsEnum),
+          IsNullable: false,
           Arguments: System.Array.Empty<GenericType>(),
           GenericTypeGetter: static receiver => receiver.Receive<InitArgsEnum>(),
           GenericTypeGetter2: default
@@ -130,6 +135,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         GenericType: new GenericType(
           OpenType: typeof(string),
           ClosedType: typeof(string),
+          IsNullable: false,
           Arguments: System.Array.Empty<GenericType>(),
           GenericTypeGetter: static receiver => receiver.Receive<string>(),
           GenericTypeGetter2: default

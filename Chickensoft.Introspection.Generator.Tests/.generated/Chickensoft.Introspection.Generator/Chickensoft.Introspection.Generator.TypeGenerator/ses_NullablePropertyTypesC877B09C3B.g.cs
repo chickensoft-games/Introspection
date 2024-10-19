@@ -4,117 +4,126 @@ namespace Chickensoft.Introspection.Generator.Tests.TestCases;
 
 using Chickensoft.Introspection;
 using Chickensoft.Introspection.Generator.Tests.TestUtils;
-using System;
-using static System.Console;
-using System.Text;
-using JSON = System.Text.Json;
+using System.Collections.Generic;
 
-partial class MyType : Chickensoft.Introspection.IIntrospective, Chickensoft.Introspection.IIdentifiable {
+partial class NullablePropertyTypes : Chickensoft.Introspection.IIntrospective {
   [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
   public Chickensoft.Introspection.MixinBlackboard MixinState { get; } = new();
   
   [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-  public Chickensoft.Introspection.IMetatype Metatype => ((Chickensoft.Introspection.IIntrospectiveTypeMetadata)Chickensoft.Introspection.Types.Graph.GetMetadata(typeof(MyType))).Metatype;
+  public Chickensoft.Introspection.IMetatype Metatype => ((Chickensoft.Introspection.IIntrospectiveTypeMetadata)Chickensoft.Introspection.Types.Graph.GetMetadata(typeof(NullablePropertyTypes))).Metatype;
   
   public class MetatypeMetadata : Chickensoft.Introspection.IMetatype {
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-    public System.Type Type => typeof(MyType);
+    public System.Type Type => typeof(NullablePropertyTypes);
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public bool HasInitProperties { get; } = false;
     
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public System.Collections.Generic.IReadOnlyList<Chickensoft.Introspection.PropertyMetadata> Properties { get; } = new System.Collections.Generic.List<Chickensoft.Introspection.PropertyMetadata>() {
       new Chickensoft.Introspection.PropertyMetadata(
-        Name: "MyProperty",
+        Name: "Age",
         IsInit: false,
         IsRequired: false,
-        HasDefaultValue: true,
-        Getter: static (object obj) => ((MyType)obj).MyProperty,
-        Setter: static (object obj, object? value) => ((MyType)obj).MyProperty = (string)value!,
+        HasDefaultValue: false,
+        Getter: static (object obj) => ((NullablePropertyTypes)obj).Age,
+        Setter: static (object obj, object? value) => ((NullablePropertyTypes)obj).Age = (int)value,
+        GenericType: new GenericType(
+          OpenType: typeof(int),
+          ClosedType: typeof(int),
+          IsNullable: true,
+          Arguments: System.Array.Empty<GenericType>(),
+          GenericTypeGetter: static receiver => receiver.Receive<int>(),
+          GenericTypeGetter2: default
+        ),
+        Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
+          [typeof(TagAttribute)] = new System.Attribute[] {
+            new TagAttribute("age")
+          }
+        }
+      ), 
+      new Chickensoft.Introspection.PropertyMetadata(
+        Name: "Map",
+        IsInit: false,
+        IsRequired: false,
+        HasDefaultValue: false,
+        Getter: static (object obj) => ((NullablePropertyTypes)obj).Map,
+        Setter: static (object obj, object? value) => ((NullablePropertyTypes)obj).Map = (Dictionary<int, Dictionary<string, List<object>>>)value,
+        GenericType: new GenericType(
+          OpenType: typeof(Dictionary<,>),
+          ClosedType: typeof(Dictionary<int, Dictionary<string, List<object>>>),
+          IsNullable: true,
+          Arguments: new GenericType[] {
+              new GenericType(
+                OpenType: typeof(int),
+                ClosedType: typeof(int),
+                IsNullable: false,
+                Arguments: System.Array.Empty<GenericType>(),
+                GenericTypeGetter: static receiver => receiver.Receive<int>(),
+                GenericTypeGetter2: default
+              ), 
+              new GenericType(
+                OpenType: typeof(Dictionary<,>),
+                ClosedType: typeof(Dictionary<string, List<object>>),
+                IsNullable: true,
+                Arguments: new GenericType[] {
+                    new GenericType(
+                      OpenType: typeof(string),
+                      ClosedType: typeof(string),
+                      IsNullable: false,
+                      Arguments: System.Array.Empty<GenericType>(),
+                      GenericTypeGetter: static receiver => receiver.Receive<string>(),
+                      GenericTypeGetter2: default
+                    ), 
+                    new GenericType(
+                      OpenType: typeof(List<>),
+                      ClosedType: typeof(List<object>),
+                      IsNullable: true,
+                      Arguments: new GenericType[] {
+                          new GenericType(
+                            OpenType: typeof(object),
+                            ClosedType: typeof(object),
+                            IsNullable: true,
+                            Arguments: System.Array.Empty<GenericType>(),
+                            GenericTypeGetter: static receiver => receiver.Receive<object>(),
+                            GenericTypeGetter2: default
+                          )
+                      },
+                      GenericTypeGetter: static receiver => receiver.Receive<List<object>>(),
+                      GenericTypeGetter2: default
+                    )
+                },
+                GenericTypeGetter: static receiver => receiver.Receive<Dictionary<string, List<object>>>(),
+                GenericTypeGetter2: static receiver => receiver.Receive<string, List<object>>()
+              )
+          },
+          GenericTypeGetter: static receiver => receiver.Receive<Dictionary<int, Dictionary<string, List<object>>>>(),
+          GenericTypeGetter2: static receiver => receiver.Receive<int, Dictionary<string, List<object>>>()
+        ),
+        Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
+          [typeof(TagAttribute)] = new System.Attribute[] {
+            new TagAttribute("map")
+          }
+        }
+      ), 
+      new Chickensoft.Introspection.PropertyMetadata(
+        Name: "Name",
+        IsInit: false,
+        IsRequired: false,
+        HasDefaultValue: false,
+        Getter: static (object obj) => ((NullablePropertyTypes)obj).Name,
+        Setter: static (object obj, object? value) => ((NullablePropertyTypes)obj).Name = (string)value,
         GenericType: new GenericType(
           OpenType: typeof(string),
           ClosedType: typeof(string),
-          IsNullable: false,
+          IsNullable: true,
           Arguments: System.Array.Empty<GenericType>(),
           GenericTypeGetter: static receiver => receiver.Receive<string>(),
           GenericTypeGetter2: default
         ),
         Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
-          [typeof(JunkAttribute)] = new System.Attribute[] {
-            new JunkAttribute(), 
-            new JunkAttribute()
-          }, 
           [typeof(TagAttribute)] = new System.Attribute[] {
-            new TagAttribute("my_property")
-          }
-        }
-      ), 
-      new Chickensoft.Introspection.PropertyMetadata(
-        Name: "NoAttributeSoNoMetadata",
-        IsInit: false,
-        IsRequired: false,
-        HasDefaultValue: true,
-        Getter: static (object obj) => ((MyType)obj).NoAttributeSoNoMetadata,
-        Setter: null,
-        GenericType: new GenericType(
-          OpenType: typeof(int),
-          ClosedType: typeof(int),
-          IsNullable: false,
-          Arguments: System.Array.Empty<GenericType>(),
-          GenericTypeGetter: static receiver => receiver.Receive<int>(),
-          GenericTypeGetter2: default
-        ),
-        Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
-        }
-      ), 
-      new Chickensoft.Introspection.PropertyMetadata(
-        Name: "OptionalFloat",
-        IsInit: false,
-        IsRequired: false,
-        HasDefaultValue: true,
-        Getter: static (object obj) => ((MyType)obj).OptionalFloat,
-        Setter: static (object obj, object? value) => ((MyType)obj).OptionalFloat = (Nullable<float>)value,
-        GenericType: new GenericType(
-          OpenType: typeof(Nullable<>),
-          ClosedType: typeof(Nullable<float>),
-          IsNullable: true,
-          Arguments: new GenericType[] {
-              new GenericType(
-                OpenType: typeof(float),
-                ClosedType: typeof(float),
-                IsNullable: false,
-                Arguments: System.Array.Empty<GenericType>(),
-                GenericTypeGetter: static receiver => receiver.Receive<float>(),
-                GenericTypeGetter2: default
-              )
-          },
-          GenericTypeGetter: static receiver => receiver.Receive<Nullable<float>>(),
-          GenericTypeGetter2: default
-        ),
-        Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
-          [typeof(TagAttribute)] = new System.Attribute[] {
-            new TagAttribute("optional_float")
-          }
-        }
-      ), 
-      new Chickensoft.Introspection.PropertyMetadata(
-        Name: "OptionalInt",
-        IsInit: false,
-        IsRequired: false,
-        HasDefaultValue: true,
-        Getter: static (object obj) => ((MyType)obj).OptionalInt,
-        Setter: static (object obj, object? value) => ((MyType)obj).OptionalInt = (int)value,
-        GenericType: new GenericType(
-          OpenType: typeof(int),
-          ClosedType: typeof(int),
-          IsNullable: true,
-          Arguments: System.Array.Empty<GenericType>(),
-          GenericTypeGetter: static receiver => receiver.Receive<int>(),
-          GenericTypeGetter2: default
-        ),
-        Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
-          [typeof(TagAttribute)] = new System.Attribute[] {
-            new TagAttribute("optional_int")
+            new TagAttribute("name")
           }
         }
       )
@@ -122,13 +131,6 @@ partial class MyType : Chickensoft.Introspection.IIntrospective, Chickensoft.Int
     
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public System.Collections.Generic.IReadOnlyDictionary<System.Type, System.Attribute[]> Attributes { get; } = new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
-      [typeof(IdAttribute)] = new System.Attribute[] {
-        new IdAttribute("my_type")
-      }, 
-      [typeof(JunkAttribute)] = new System.Attribute[] {
-        new JunkAttribute(), 
-        new JunkAttribute()
-      }, 
       [typeof(MetaAttribute)] = new System.Attribute[] {
         new MetaAttribute()
       }
@@ -145,7 +147,7 @@ partial class MyType : Chickensoft.Introspection.IIntrospective, Chickensoft.Int
     
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public object Construct(System.Collections.Generic.IReadOnlyDictionary<string, object?>? args = null) {
-      return new MyType();
+      return new NullablePropertyTypes();
     }
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public override bool Equals(object obj) => true;

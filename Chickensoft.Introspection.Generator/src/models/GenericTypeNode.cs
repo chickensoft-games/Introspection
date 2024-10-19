@@ -15,6 +15,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 // types that comprise it.
 public sealed record GenericTypeNode(
   string Type,
+  bool IsNullable,
   ImmutableArray<GenericTypeNode> Children
 ) {
   /// <summary>
@@ -30,20 +31,33 @@ public sealed record GenericTypeNode(
   /// </summary>
   /// <param name="genericName">Generic name syntax.</param>
   /// <returns>Generic type node tree.</returns>
-  public static GenericTypeNode Create(GenericNameSyntax genericName) {
+  public static GenericTypeNode Create(
+    GenericNameSyntax genericName, bool isNullable
+  ) {
     var type = genericName.Identifier.NormalizeWhitespace().ToString();
 
     var children = genericName.TypeArgumentList.Arguments
-      .Select(arg => arg switch {
-        GenericNameSyntax genericNameSyntax => Create(genericNameSyntax),
-        _ => new GenericTypeNode(
-          arg.NormalizeWhitespace().ToString(),
-          ImmutableArray<GenericTypeNode>.Empty
-        )
+      .Select(arg => {
+        var isNullable = false;
+        while (arg is NullableTypeSyntax nullableTypeSyntax) {
+          isNullable = true;
+          arg = nullableTypeSyntax.ElementType;
+        }
+        isNullable = isNullable || arg.IsNullable();
+        return arg switch {
+          GenericNameSyntax genericNameSyntax => Create(
+            genericNameSyntax, isNullable
+          ),
+          _ => new GenericTypeNode(
+            arg.NormalizeWhitespace().ToString(),
+            IsNullable: isNullable,
+            ImmutableArray<GenericTypeNode>.Empty
+          )
+        };
       })
       .ToImmutableArray();
 
-    return new GenericTypeNode(type, children);
+    return new GenericTypeNode(type, isNullable, children);
   }
 
   public void Write(IndentedTextWriter writer) {
@@ -56,6 +70,7 @@ public sealed record GenericTypeNode(
     writer.Indent++;
     writer.WriteLine($"OpenType: typeof({openType.TrimEnd('?')}),");
     writer.WriteLine($"ClosedType: typeof({closedType.TrimEnd('?')}),");
+    writer.WriteLine($"IsNullable: {(IsNullable ? "true" : "false")},");
 
     if (Children.Length > 0) {
       writer.WriteLine("Arguments: new GenericType[] {");

@@ -30,14 +30,17 @@ partial class Collections : Chickensoft.Introspection.IIntrospective {
         GenericType: new GenericType(
           OpenType: typeof(Dictionary<,>),
           ClosedType: typeof(Dictionary<List<string>, List<List<int>>>),
+          IsNullable: false,
           Arguments: new GenericType[] {
               new GenericType(
                 OpenType: typeof(List<>),
                 ClosedType: typeof(List<string>),
+                IsNullable: false,
                 Arguments: new GenericType[] {
                     new GenericType(
                       OpenType: typeof(string),
                       ClosedType: typeof(string),
+                      IsNullable: false,
                       Arguments: System.Array.Empty<GenericType>(),
                       GenericTypeGetter: static receiver => receiver.Receive<string>(),
                       GenericTypeGetter2: default
@@ -49,14 +52,17 @@ partial class Collections : Chickensoft.Introspection.IIntrospective {
               new GenericType(
                 OpenType: typeof(List<>),
                 ClosedType: typeof(List<List<int>>),
+                IsNullable: false,
                 Arguments: new GenericType[] {
                     new GenericType(
                       OpenType: typeof(List<>),
                       ClosedType: typeof(List<int>),
+                      IsNullable: false,
                       Arguments: new GenericType[] {
                           new GenericType(
                             OpenType: typeof(int),
                             ClosedType: typeof(int),
+                            IsNullable: false,
                             Arguments: System.Array.Empty<GenericType>(),
                             GenericTypeGetter: static receiver => receiver.Receive<int>(),
                             GenericTypeGetter2: default

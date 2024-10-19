@@ -30,6 +30,7 @@ partial class DerivedModel : Chickensoft.Introspection.IIntrospective {
         GenericType: new GenericType(
           OpenType: typeof(int),
           ClosedType: typeof(int),
+          IsNullable: false,
           Arguments: System.Array.Empty<GenericType>(),
           GenericTypeGetter: static receiver => receiver.Receive<int>(),
           GenericTypeGetter2: default

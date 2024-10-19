@@ -30,6 +30,7 @@ partial class BaseModel : Chickensoft.Introspection.IIntrospective {
         GenericType: new GenericType(
           OpenType: typeof(string),
           ClosedType: typeof(string),
+          IsNullable: false,
           Arguments: System.Array.Empty<GenericType>(),
           GenericTypeGetter: static receiver => receiver.Receive<string>(),
           GenericTypeGetter2: default

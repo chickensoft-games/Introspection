@@ -38,6 +38,7 @@ static partial class One {
                 GenericType: new GenericType(
                   OpenType: typeof(string),
                   ClosedType: typeof(string),
+                  IsNullable: false,
                   Arguments: System.Array.Empty<GenericType>(),
                   GenericTypeGetter: static receiver => receiver.Receive<string>(),
                   GenericTypeGetter2: default
@@ -62,6 +63,7 @@ static partial class One {
                 GenericType: new GenericType(
                   OpenType: typeof(float),
                   ClosedType: typeof(float),
+                  IsNullable: true,
                   Arguments: System.Array.Empty<GenericType>(),
                   GenericTypeGetter: static receiver => receiver.Receive<float>(),
                   GenericTypeGetter2: default
@@ -82,6 +84,7 @@ static partial class One {
                 GenericType: new GenericType(
                   OpenType: typeof(int),
                   ClosedType: typeof(int),
+                  IsNullable: true,
                   Arguments: System.Array.Empty<GenericType>(),
                   GenericTypeGetter: static receiver => receiver.Receive<int>(),
                   GenericTypeGetter2: default

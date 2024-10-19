@@ -9,7 +9,7 @@ public class GenericTypeNodeTest {
   [Fact]
   public void Equality() {
     var node = new GenericTypeNode(
-      "Type", ImmutableArray<GenericTypeNode>.Empty
+      "Type", false, ImmutableArray<GenericTypeNode>.Empty
     );
 
     node.Equals(null).ShouldBeFalse();

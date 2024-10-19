@@ -8,6 +8,7 @@ public class GenericTypeTest {
   private readonly GenericType _type = new(
     OpenType: typeof(string),
     ClosedType: typeof(string),
+    IsNullable: false,
     Arguments: [],
     GenericTypeGetter: receiver => receiver.Receive<string>(),
     GenericTypeGetter2: (_) => throw new NotImplementedException()
