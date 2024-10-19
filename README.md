@@ -21,18 +21,27 @@ Find the latest version of the [Introspection] and [Introspection Generator] pac
 
 ## 📙 Background
 
-This package powers several other Chickensoft tools and directly supersedes [SuperNodes]. It is designed to be leveraged by simple metaprogramming tools like [PowerUps], as well as provide the foundation for other systems, such as [Serialization].
+This is a metaprogramming tool that powers some of the other Chickensoft tools. Introspection exists to enable C# developers to get information about a type at runtime without needing reflection that wouldn't work or be guaranteed to work in all scenarios when compiling for ahead-of-time targets like iOS.
 
 The introspection package provides the following features:
 
-- Create a registry of all types visible from the global scope.
-- Generate metadata about visible types.
-- Track types by id and version.
-- Allow types to implement and look up mixins.
-- Compute and cache type hierarchies, attributes, and properties.
-- Track generic types of properties in a way that enables convenient serialization in AOT environments.
+- ✅ Create a registry of all types visible from the global scope.
+- ✅ Generate metadata about visible types.
+- ✅ Track types by id and version.
+- ✅ Allow types to implement and look up mixins.
+- ✅ Compute and cache type hierarchies, attributes, and properties.
+- ✅ Track generic types of properties in a way that enables convenient serialization in AOT environments.
+
+You don't need to fully understand this package to make the most of it. In fact, you may never need to use it directly since you are more likely to encounter it as a dependency of one of the other Chickensoft tools:
+
+- 💾 [Serialization] uses this tool to gather information about types at build-time to perform serialization and deserialization at runtime without having to resort to unsupported reflection techniques in AOT environments.
+- 💉 [AutoInject] uses this tool to allow you to add mixins to classes at build-time and invoke their methods at runtime without reflection. It also leverages this to read attributes on types without having to use reflection.
+- 💡 [LogicBlocks] uses this tool to look up possible states for a state machine so it can pre-allocate them at runtime without needing reflection.
 
 The introspection generator is designed to be performant as a project grows. The generator only uses syntax information to generate metadata, rather than relying on the C# analyzer's symbol data, which can be very slow.
+
+> [!NOTE]
+> This tool exists because many reflection-based API's don't work (or aren't guaranteed to work reliably in all scenarios) when compiling for AOT targets (like iOS). Chickensoft is striving to create packages that work in AOT environments like iOS, as mobile games and apps are extremely widespread. For more information, read our [philosophy].
 
 ## 📄 Usage
 
@@ -245,6 +254,7 @@ public partial class MyModel {
 
 [chickensoft-badge]: https://raw.githubusercontent.com/chickensoft-games/chickensoft_site/main/static/img/badges/chickensoft_badge.svg
 [chickensoft-website]: https://chickensoft.games
+[philosophy]: https://chickensoft.games/philosophy
 [discord-badge]: https://raw.githubusercontent.com/chickensoft-games/chickensoft_site/main/static/img/badges/discord_badge.svg
 [discord]: https://discord.gg/gSjaPgMmYW
 [read-the-docs-badge]: https://raw.githubusercontent.com/chickensoft-games/chickensoft_site/main/static/img/badges/read_the_docs_badge.svg
@@ -254,9 +264,9 @@ public partial class MyModel {
 
 [Introspection]: https://www.nuget.org/packages/Chickensoft.Introspection
 [Introspection Generator]: https://www.nuget.org/packages/Chickensoft.Introspection.Generator
-[SuperNodes]: https://github.com/chickensoft-games/SuperNodes
-[PowerUps]: https://github.com/chickensoft-games/PowerUps
 [Serialization]: https://github.com/chickensoft-games/Serialization
+[AutoInject]: https://github.com/chickensoft-games/AutoInject
+[LogicBlocks]: https://github.com/chickensoft-games/LogicBlocks
 [type registry]: Chickensoft.Introspection.Generator.Tests/.generated/Chickensoft.Introspection.Generator/Chickensoft.Introspection.Generator.TypeGenerator/TypeRegistry.g.cs
 [type graph]: Chickensoft.Introspection/src/TypeGraph.cs
 [module initializer]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-9.0/module-initializers
