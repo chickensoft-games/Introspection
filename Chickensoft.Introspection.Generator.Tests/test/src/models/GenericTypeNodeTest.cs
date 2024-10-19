@@ -5,11 +5,11 @@ using Chickensoft.Introspection.Generator.Models;
 using Shouldly;
 using Xunit;
 
-public class GenericTypeNodeTest {
+public class TypeNodeTest {
   [Fact]
   public void Equality() {
-    var node = new GenericTypeNode(
-      "Type", false, ImmutableArray<GenericTypeNode>.Empty
+    var node = new TypeNode(
+      "Type", false, ImmutableArray<TypeNode>.Empty
     );
 
     node.Equals(null).ShouldBeFalse();
