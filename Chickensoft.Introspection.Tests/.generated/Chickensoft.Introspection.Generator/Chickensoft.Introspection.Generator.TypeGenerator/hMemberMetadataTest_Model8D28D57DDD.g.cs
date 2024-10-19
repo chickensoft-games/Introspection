@@ -34,11 +34,11 @@ partial class TypeGraphMemberMetadataTest {
           HasDefaultValue: false,
           Getter: static (object obj) => ((Model)obj).Age,
           Setter: null,
-          GenericType: new GenericType(
+          TypeNode: new Chickensoft.Introspection.TypeNode(
             OpenType: typeof(int),
             ClosedType: typeof(int),
             IsNullable: false,
-            Arguments: System.Array.Empty<GenericType>(),
+            Arguments: System.Array.Empty<TypeNode>(),
             GenericTypeGetter: static receiver => receiver.Receive<int>(),
             GenericTypeGetter2: default
           ),
@@ -55,11 +55,11 @@ partial class TypeGraphMemberMetadataTest {
           HasDefaultValue: false,
           Getter: static (object obj) => ((Model)obj).Name,
           Setter: null,
-          GenericType: new GenericType(
+          TypeNode: new Chickensoft.Introspection.TypeNode(
             OpenType: typeof(string),
             ClosedType: typeof(string),
             IsNullable: true,
-            Arguments: System.Array.Empty<GenericType>(),
+            Arguments: System.Array.Empty<TypeNode>(),
             GenericTypeGetter: static receiver => receiver.Receive<string?>(),
             GenericTypeGetter2: default
           ),

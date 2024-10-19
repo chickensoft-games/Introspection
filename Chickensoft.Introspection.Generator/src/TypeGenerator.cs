@@ -539,7 +539,7 @@ public class TypeGenerator : IIncrementalGenerator {
       var defaultValueExpression =
         property.Initializer?.Value.NormalizeWhitespace().ToString();
 
-      var genericType = GenericTypeNode.Create(propType, isNullable);
+      var genericType = TypeNode.Create(propType, isNullable);
 
       properties.Add(
         new DeclaredProperty(
@@ -550,7 +550,7 @@ public class TypeGenerator : IIncrementalGenerator {
           IsRequired: isRequired,
           IsNullable: isNullable,
           DefaultValueExpression: defaultValueExpression,
-          GenericType: genericType,
+          TypeNode: genericType,
           Attributes: propertyAttributes
         )
       );

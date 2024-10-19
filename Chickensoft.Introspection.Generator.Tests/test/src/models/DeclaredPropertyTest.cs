@@ -16,8 +16,8 @@ public class DeclaredPropertyTest {
       IsRequired: false,
       IsNullable: false,
       DefaultValueExpression: null,
-      GenericType: new GenericTypeNode(
-        "System.String", false, Children: ImmutableArray<GenericTypeNode>.Empty
+      TypeNode: new TypeNode(
+        "System.String", false, Children: ImmutableArray<TypeNode>.Empty
       ),
       Attributes: ImmutableArray<DeclaredAttribute>.Empty
     );
@@ -35,8 +35,8 @@ public class DeclaredPropertyTest {
         IsRequired: false,
         IsNullable: false,
         DefaultValueExpression: null,
-        GenericType: new GenericTypeNode(
-          "System.String", false, Children: ImmutableArray<GenericTypeNode>.Empty
+        TypeNode: new TypeNode(
+          "System.String", false, Children: ImmutableArray<TypeNode>.Empty
         ),
         Attributes: ImmutableArray<DeclaredAttribute>.Empty
       )
@@ -50,8 +50,8 @@ public class DeclaredPropertyTest {
       IsRequired: false,
       IsNullable: false,
       DefaultValueExpression: null,
-      GenericType: new GenericTypeNode(
-        "System.String", false, Children: ImmutableArray<GenericTypeNode>.Empty
+      TypeNode: new TypeNode(
+        "System.String", false, Children: ImmutableArray<TypeNode>.Empty
       ),
       Attributes: new DeclaredAttribute[] {
         new("", ImmutableArray<string>.Empty, ImmutableArray<string>.Empty)
@@ -65,8 +65,8 @@ public class DeclaredPropertyTest {
         IsRequired: false,
         IsNullable: false,
         DefaultValueExpression: null,
-        GenericType: new GenericTypeNode(
-          "System.String", false, Children: ImmutableArray<GenericTypeNode>.Empty
+        TypeNode: new TypeNode(
+          "System.String", false, Children: ImmutableArray<TypeNode>.Empty
         ),
         Attributes: ImmutableArray<DeclaredAttribute>.Empty
       )

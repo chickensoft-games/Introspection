@@ -4,8 +4,8 @@ using System;
 using Shouldly;
 using Xunit;
 
-public class GenericTypeTest {
-  private readonly GenericType _type = new(
+public class TypeNodeTest {
+  private readonly TypeNode _type = new(
     OpenType: typeof(string),
     ClosedType: typeof(string),
     IsNullable: false,
@@ -15,5 +15,5 @@ public class GenericTypeTest {
   );
 
   [Fact]
-  public void InitializesGenericType() => _type.ShouldBeOfType<GenericType>();
+  public void InitializesGenericType() => _type.ShouldBeOfType<TypeNode>();
 }

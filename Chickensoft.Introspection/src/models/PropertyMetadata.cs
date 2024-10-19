@@ -13,7 +13,7 @@ using System.Collections.Generic;
 /// </param>
 /// <param name="Getter">Getter function.</param>
 /// <param name="Setter">Setter function.</param>
-/// <param name="GenericType">If the property's type is a closed constructed
+/// <param name="TypeNode">If the property's type is a closed constructed
 /// generic type, this will be the root node of a generic node tree that
 /// provides access to the individual types comprising the closed constructed
 /// type.</param>
@@ -26,6 +26,6 @@ public sealed record PropertyMetadata(
   bool HasDefaultValue,
   Func<object, object?>? Getter,
   Action<object, object?>? Setter,
-  GenericType GenericType,
+  TypeNode TypeNode,
   Dictionary<Type, Attribute[]> Attributes
 );

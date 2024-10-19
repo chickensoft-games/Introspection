@@ -28,11 +28,11 @@ partial class MyContainerClass {
           HasDefaultValue: true,
           Getter: static (object obj) => ((MyModel)obj).Age,
           Setter: static (object obj, object? value) => ((MyModel)obj).Age = (int?)value,
-          GenericType: new GenericType(
+          TypeNode: new Chickensoft.Introspection.TypeNode(
             OpenType: typeof(int),
             ClosedType: typeof(int),
             IsNullable: true,
-            Arguments: System.Array.Empty<GenericType>(),
+            Arguments: System.Array.Empty<TypeNode>(),
             GenericTypeGetter: static receiver => receiver.Receive<int?>(),
             GenericTypeGetter2: default
           ),
@@ -49,11 +49,11 @@ partial class MyContainerClass {
           HasDefaultValue: true,
           Getter: static (object obj) => ((MyModel)obj).Name,
           Setter: static (object obj, object? value) => ((MyModel)obj).Name = (string)value!,
-          GenericType: new GenericType(
+          TypeNode: new Chickensoft.Introspection.TypeNode(
             OpenType: typeof(string),
             ClosedType: typeof(string),
             IsNullable: false,
-            Arguments: System.Array.Empty<GenericType>(),
+            Arguments: System.Array.Empty<TypeNode>(),
             GenericTypeGetter: static receiver => receiver.Receive<string>(),
             GenericTypeGetter2: default
           ),

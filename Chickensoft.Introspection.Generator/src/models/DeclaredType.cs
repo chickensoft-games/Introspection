@@ -558,14 +558,14 @@ public sealed record DeclaredType(
       .Where(prop => prop.IsInit || prop.IsRequired)
       .Select(
         (prop) => {
-          var bang = prop.GenericType.IsNullable ? "" : "!";
+          var bang = prop.TypeNode.IsNullable ? "" : "!";
           return
             $"{prop.Name} = args.ContainsKey(\"{prop.Name}\") " +
-            $"? ({prop.GenericType.ClosedType})args[\"{prop.Name}\"] : " +
+            $"? ({prop.TypeNode.ClosedType})args[\"{prop.Name}\"] : " +
             $"{(
             prop.DefaultValueExpression is { } value
               ? value
-              : $"default({prop.GenericType.ClosedType}){bang}"
+              : $"default({prop.TypeNode.ClosedType}){bang}"
             )}";
         }
       );

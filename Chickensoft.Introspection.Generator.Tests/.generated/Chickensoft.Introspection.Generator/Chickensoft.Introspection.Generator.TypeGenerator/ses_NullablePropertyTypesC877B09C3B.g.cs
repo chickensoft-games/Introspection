@@ -29,11 +29,11 @@ partial class NullablePropertyTypes : Chickensoft.Introspection.IIntrospective {
         HasDefaultValue: false,
         Getter: static (object obj) => ((NullablePropertyTypes)obj).Age,
         Setter: static (object obj, object? value) => ((NullablePropertyTypes)obj).Age = (int?)value,
-        GenericType: new GenericType(
+        TypeNode: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(int),
           ClosedType: typeof(int),
           IsNullable: true,
-          Arguments: System.Array.Empty<GenericType>(),
+          Arguments: System.Array.Empty<TypeNode>(),
           GenericTypeGetter: static receiver => receiver.Receive<int?>(),
           GenericTypeGetter2: default
         ),
@@ -50,42 +50,42 @@ partial class NullablePropertyTypes : Chickensoft.Introspection.IIntrospective {
         HasDefaultValue: false,
         Getter: static (object obj) => ((NullablePropertyTypes)obj).Map,
         Setter: static (object obj, object? value) => ((NullablePropertyTypes)obj).Map = (Dictionary<int, Dictionary<string, List<object?>?>?>?)value,
-        GenericType: new GenericType(
+        TypeNode: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(Dictionary<,>),
           ClosedType: typeof(Dictionary<int, Dictionary<string, List<object?>?>?>),
           IsNullable: true,
-          Arguments: new GenericType[] {
-              new GenericType(
+          Arguments: new TypeNode[] {
+              new Chickensoft.Introspection.TypeNode(
                 OpenType: typeof(int),
                 ClosedType: typeof(int),
                 IsNullable: false,
-                Arguments: System.Array.Empty<GenericType>(),
+                Arguments: System.Array.Empty<TypeNode>(),
                 GenericTypeGetter: static receiver => receiver.Receive<int>(),
                 GenericTypeGetter2: default
               ), 
-              new GenericType(
+              new Chickensoft.Introspection.TypeNode(
                 OpenType: typeof(Dictionary<,>),
                 ClosedType: typeof(Dictionary<string, List<object?>?>),
                 IsNullable: true,
-                Arguments: new GenericType[] {
-                    new GenericType(
+                Arguments: new TypeNode[] {
+                    new Chickensoft.Introspection.TypeNode(
                       OpenType: typeof(string),
                       ClosedType: typeof(string),
                       IsNullable: false,
-                      Arguments: System.Array.Empty<GenericType>(),
+                      Arguments: System.Array.Empty<TypeNode>(),
                       GenericTypeGetter: static receiver => receiver.Receive<string>(),
                       GenericTypeGetter2: default
                     ), 
-                    new GenericType(
+                    new Chickensoft.Introspection.TypeNode(
                       OpenType: typeof(List<>),
                       ClosedType: typeof(List<object?>),
                       IsNullable: true,
-                      Arguments: new GenericType[] {
-                          new GenericType(
+                      Arguments: new TypeNode[] {
+                          new Chickensoft.Introspection.TypeNode(
                             OpenType: typeof(object),
                             ClosedType: typeof(object),
                             IsNullable: true,
-                            Arguments: System.Array.Empty<GenericType>(),
+                            Arguments: System.Array.Empty<TypeNode>(),
                             GenericTypeGetter: static receiver => receiver.Receive<object?>(),
                             GenericTypeGetter2: default
                           )
@@ -114,11 +114,11 @@ partial class NullablePropertyTypes : Chickensoft.Introspection.IIntrospective {
         HasDefaultValue: false,
         Getter: static (object obj) => ((NullablePropertyTypes)obj).Name,
         Setter: static (object obj, object? value) => ((NullablePropertyTypes)obj).Name = (string?)value,
-        GenericType: new GenericType(
+        TypeNode: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(string),
           ClosedType: typeof(string),
           IsNullable: true,
-          Arguments: System.Array.Empty<GenericType>(),
+          Arguments: System.Array.Empty<TypeNode>(),
           GenericTypeGetter: static receiver => receiver.Receive<string?>(),
           GenericTypeGetter2: default
         ),
@@ -135,21 +135,21 @@ partial class NullablePropertyTypes : Chickensoft.Introspection.IIntrospective {
         HasDefaultValue: false,
         Getter: static (object obj) => ((NullablePropertyTypes)obj).Nullables,
         Setter: static (object obj, object? value) => ((NullablePropertyTypes)obj).Nullables = (GenericStruct<GenericStruct<int?>?>?)value,
-        GenericType: new GenericType(
+        TypeNode: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(GenericStruct<>),
           ClosedType: typeof(GenericStruct<GenericStruct<int?>?>),
           IsNullable: true,
-          Arguments: new GenericType[] {
-              new GenericType(
+          Arguments: new TypeNode[] {
+              new Chickensoft.Introspection.TypeNode(
                 OpenType: typeof(GenericStruct<>),
                 ClosedType: typeof(GenericStruct<int?>),
                 IsNullable: true,
-                Arguments: new GenericType[] {
-                    new GenericType(
+                Arguments: new TypeNode[] {
+                    new Chickensoft.Introspection.TypeNode(
                       OpenType: typeof(int),
                       ClosedType: typeof(int),
                       IsNullable: true,
-                      Arguments: System.Array.Empty<GenericType>(),
+                      Arguments: System.Array.Empty<TypeNode>(),
                       GenericTypeGetter: static receiver => receiver.Receive<int?>(),
                       GenericTypeGetter2: default
                     )

@@ -14,7 +14,7 @@ using Chickensoft.Introspection.Generator.Utils;
 /// <param name="IsNullable">True if the property is nullable.</param>
 /// <param name="DefaultValueExpression">Expression to use as the default
 /// value.</param>
-/// <param name="GenericType">Type of the </param>
+/// <param name="TypeNode">Type of the </param>
 /// <param name="Attributes">Attributes applied to the </param>
 public sealed record DeclaredProperty(
   string Name,
@@ -24,7 +24,7 @@ public sealed record DeclaredProperty(
   bool IsRequired,
   bool IsNullable,
   string? DefaultValueExpression,
-  GenericTypeNode GenericType,
+  TypeNode TypeNode,
   ImmutableArray<DeclaredAttribute> Attributes
 ) {
   public void Write(IndentedTextWriter writer, string typeSimpleNameClosed) {
@@ -37,7 +37,7 @@ public sealed record DeclaredProperty(
       ? $"static (object obj) => (({typeSimpleNameClosed})obj).{Name}"
       : "null";
 
-    var type = GenericType.ClosedType;
+    var type = TypeNode.ClosedType;
 
     var setter = HasSetter
       ? (
@@ -57,8 +57,8 @@ public sealed record DeclaredProperty(
     );
     writer.WriteLine($"Getter: {getter},");
     writer.WriteLine($"Setter: {setter},");
-    writer.Write("GenericType: ");
-    GenericType.Write(writer);
+    writer.Write("TypeNode: ");
+    TypeNode.Write(writer);
     writer.WriteLine(",");
     writer.WriteLine(
       "Attributes: new System.Collections.Generic.Dictionary" +
@@ -83,7 +83,7 @@ public sealed record DeclaredProperty(
     IsRequired == other.IsRequired &&
     IsNullable == other.IsNullable &&
     DefaultValueExpression == other.DefaultValueExpression &&
-    GenericType.Equals(other.GenericType) &&
+    TypeNode.Equals(other.TypeNode) &&
     Attributes.SequenceEqual(other.Attributes);
 
   public override int GetHashCode() => HashCode.Combine(
@@ -94,7 +94,7 @@ public sealed record DeclaredProperty(
     IsRequired,
     IsNullable,
     DefaultValueExpression,
-    GenericType,
+    TypeNode,
     Attributes
   );
 }

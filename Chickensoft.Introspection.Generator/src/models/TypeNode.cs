@@ -13,10 +13,10 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 // Not to be confused with the type resolution tree node, which has to do with
 // where types are. This represents a generic type as a hierarchy of all the
 // types that comprise it.
-public sealed record GenericTypeNode(
+public sealed record TypeNode(
   string Type,
   bool IsNullable,
-  ImmutableArray<GenericTypeNode> Children
+  ImmutableArray<TypeNode> Children
 ) {
   /// <summary>
   /// Name of the type, including any generic type arguments — i.e., the closed
@@ -36,17 +36,17 @@ public sealed record GenericTypeNode(
   /// </summary>
   /// <param name="typeSyntax">Generic name syntax.</param>
   /// <returns>Generic type node tree.</returns>
-  public static GenericTypeNode Create(
+  public static TypeNode Create(
     TypeSyntax typeSyntax, bool isNullable
   ) {
     isNullable = isNullable || typeSyntax.IsNullable();
     typeSyntax = typeSyntax.UnwrapNullable();
 
     if (typeSyntax is not GenericNameSyntax genericNameSyntax) {
-      return new GenericTypeNode(
+      return new TypeNode(
         typeSyntax.NormalizeWhitespace().ToString(),
         IsNullable: isNullable,
-        Children: ImmutableArray<GenericTypeNode>.Empty
+        Children: ImmutableArray<TypeNode>.Empty
       );
     }
 
@@ -61,18 +61,18 @@ public sealed record GenericTypeNode(
       })
       .ToImmutableArray();
 
-    return new GenericTypeNode(type, isNullable, children);
+    return new TypeNode(type, isNullable, children);
   }
 
   public void Write(IndentedTextWriter writer) {
-    writer.WriteLine("new GenericType(");
+    writer.WriteLine("new Chickensoft.Introspection.TypeNode(");
     writer.Indent++;
     writer.WriteLine($"OpenType: typeof({OpenType.TrimEnd('?')}),");
     writer.WriteLine($"ClosedType: typeof({ClosedType.TrimEnd('?')}),");
     writer.WriteLine($"IsNullable: {(IsNullable ? "true" : "false")},");
 
     if (Children.Length > 0) {
-      writer.WriteLine("Arguments: new GenericType[] {");
+      writer.WriteLine("Arguments: new TypeNode[] {");
       writer.Indent++;
 
       writer.WriteCommaSeparatedList(
@@ -85,7 +85,7 @@ public sealed record GenericTypeNode(
       writer.WriteLine("},");
     }
     else {
-      writer.WriteLine("Arguments: System.Array.Empty<GenericType>(),");
+      writer.WriteLine("Arguments: System.Array.Empty<TypeNode>(),");
     }
 
     writer.WriteLine(
@@ -105,13 +105,15 @@ public sealed record GenericTypeNode(
     writer.Write(")");
   }
 
-  public bool Equals(GenericTypeNode? other) =>
+  public bool Equals(TypeNode? other) =>
     other is not null &&
     Type == other.Type &&
+    IsNullable == other.IsNullable &&
     Children.SequenceEqual(other.Children);
 
   public override int GetHashCode() => HashCode.Combine(
     Type,
+    IsNullable,
     Children
   );
 }

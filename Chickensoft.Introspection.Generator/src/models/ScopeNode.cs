@@ -9,7 +9,7 @@ using System.Collections.Generic;
 /// <param name="Name">Name of the namespace or type.</param>
 /// <param name="TypeChildren">Map of type names to type nodes.</param>
 public abstract record ScopeNode(
-  ScopeNode? Parent, string Name, Dictionary<string, TypeNode> TypeChildren
+  ScopeNode? Parent, string Name, Dictionary<string, TypeTreeNode> TypeChildren
 );
 
 /// <summary>
@@ -18,10 +18,10 @@ public abstract record ScopeNode(
 /// <param name="Parent">Parent node.</param>
 /// <param name="Type">Declared type.</param> 
 /// <param name="TypeChildren">Map of type names to type nodes.</param>
-public sealed record TypeNode(
+public sealed record TypeTreeNode(
   ScopeNode? Parent,
   DeclaredType Type,
-  Dictionary<string, TypeNode> TypeChildren
+  Dictionary<string, TypeTreeNode> TypeChildren
 ) : ScopeNode(Parent, Type.Reference.SimpleNameOpen, TypeChildren);
 
 /// <summary>
@@ -36,5 +36,5 @@ public sealed record NamespaceNode(
     ScopeNode? Parent,
     string Name,
     Dictionary<string, NamespaceNode> Children,
-    Dictionary<string, TypeNode> TypeChildren
+    Dictionary<string, TypeTreeNode> TypeChildren
 ) : ScopeNode(Parent, Name, TypeChildren);

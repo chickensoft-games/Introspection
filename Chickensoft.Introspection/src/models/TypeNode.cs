@@ -16,11 +16,11 @@ using System;
 /// <param name="GenericTypeGetter2">Action which invokes the generic type
 /// receiver with its two child type arguments, if present. Obviously only
 /// applies to types with exactly two type parameters.</param>
-public record GenericType(
+public record TypeNode(
   Type OpenType,
   Type ClosedType,
   bool IsNullable,
-  GenericType[] Arguments,
+  TypeNode[] Arguments,
   Action<ITypeReceiver> GenericTypeGetter,
   Action<ITypeReceiver2>? GenericTypeGetter2
 );

@@ -34,11 +34,11 @@ partial class TypeGraphTest {
           HasDefaultValue: true,
           Getter: static (object obj) => ((Model)obj).Name,
           Setter: null,
-          GenericType: new GenericType(
+          TypeNode: new Chickensoft.Introspection.TypeNode(
             OpenType: typeof(string),
             ClosedType: typeof(string),
             IsNullable: false,
-            Arguments: System.Array.Empty<GenericType>(),
+            Arguments: System.Array.Empty<TypeNode>(),
             GenericTypeGetter: static receiver => receiver.Receive<string>(),
             GenericTypeGetter2: default
           ),
