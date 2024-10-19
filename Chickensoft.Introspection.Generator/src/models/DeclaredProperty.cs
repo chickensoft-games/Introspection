@@ -37,13 +37,15 @@ public sealed record DeclaredProperty(
       ? $"static (object obj) => (({typeSimpleNameClosed})obj).{Name}"
       : "null";
 
+    var type = GenericType.ClosedType;
+
     var setter = HasSetter
       ? (
         IsInit
           ? "null"
           : $"static (object obj, object? value) => " +
             $"(({typeSimpleNameClosed})obj)" +
-            $".{Name} = ({GenericType.ClosedType}){propertyValue}"
+            $".{Name} = ({type}){propertyValue}"
       )
       : "null";
 

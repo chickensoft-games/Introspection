@@ -27,13 +27,13 @@ partial class NullablePropertyTypes : Chickensoft.Introspection.IIntrospective {
         IsRequired: false,
         HasDefaultValue: false,
         Getter: static (object obj) => ((NullablePropertyTypes)obj).Age,
-        Setter: static (object obj, object? value) => ((NullablePropertyTypes)obj).Age = (int)value,
+        Setter: static (object obj, object? value) => ((NullablePropertyTypes)obj).Age = (int?)value,
         GenericType: new GenericType(
           OpenType: typeof(int),
           ClosedType: typeof(int),
           IsNullable: true,
           Arguments: System.Array.Empty<GenericType>(),
-          GenericTypeGetter: static receiver => receiver.Receive<int>(),
+          GenericTypeGetter: static receiver => receiver.Receive<int?>(),
           GenericTypeGetter2: default
         ),
         Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
@@ -48,10 +48,10 @@ partial class NullablePropertyTypes : Chickensoft.Introspection.IIntrospective {
         IsRequired: false,
         HasDefaultValue: false,
         Getter: static (object obj) => ((NullablePropertyTypes)obj).Map,
-        Setter: static (object obj, object? value) => ((NullablePropertyTypes)obj).Map = (Dictionary<int, Dictionary<string, List<object>>>)value,
+        Setter: static (object obj, object? value) => ((NullablePropertyTypes)obj).Map = (Dictionary<int, Dictionary<string, List<object?>?>?>?)value,
         GenericType: new GenericType(
           OpenType: typeof(Dictionary<,>),
-          ClosedType: typeof(Dictionary<int, Dictionary<string, List<object>>>),
+          ClosedType: typeof(Dictionary<int, Dictionary<string, List<object?>?>?>),
           IsNullable: true,
           Arguments: new GenericType[] {
               new GenericType(
@@ -64,7 +64,7 @@ partial class NullablePropertyTypes : Chickensoft.Introspection.IIntrospective {
               ), 
               new GenericType(
                 OpenType: typeof(Dictionary<,>),
-                ClosedType: typeof(Dictionary<string, List<object>>),
+                ClosedType: typeof(Dictionary<string, List<object?>?>),
                 IsNullable: true,
                 Arguments: new GenericType[] {
                     new GenericType(
@@ -77,7 +77,7 @@ partial class NullablePropertyTypes : Chickensoft.Introspection.IIntrospective {
                     ), 
                     new GenericType(
                       OpenType: typeof(List<>),
-                      ClosedType: typeof(List<object>),
+                      ClosedType: typeof(List<object?>),
                       IsNullable: true,
                       Arguments: new GenericType[] {
                           new GenericType(
@@ -85,20 +85,20 @@ partial class NullablePropertyTypes : Chickensoft.Introspection.IIntrospective {
                             ClosedType: typeof(object),
                             IsNullable: true,
                             Arguments: System.Array.Empty<GenericType>(),
-                            GenericTypeGetter: static receiver => receiver.Receive<object>(),
+                            GenericTypeGetter: static receiver => receiver.Receive<object?>(),
                             GenericTypeGetter2: default
                           )
                       },
-                      GenericTypeGetter: static receiver => receiver.Receive<List<object>>(),
+                      GenericTypeGetter: static receiver => receiver.Receive<List<object?>?>(),
                       GenericTypeGetter2: default
                     )
                 },
-                GenericTypeGetter: static receiver => receiver.Receive<Dictionary<string, List<object>>>(),
-                GenericTypeGetter2: static receiver => receiver.Receive<string, List<object>>()
+                GenericTypeGetter: static receiver => receiver.Receive<Dictionary<string, List<object?>?>?>(),
+                GenericTypeGetter2: static receiver => receiver.Receive<string, List<object?>?>()
               )
           },
-          GenericTypeGetter: static receiver => receiver.Receive<Dictionary<int, Dictionary<string, List<object>>>>(),
-          GenericTypeGetter2: static receiver => receiver.Receive<int, Dictionary<string, List<object>>>()
+          GenericTypeGetter: static receiver => receiver.Receive<Dictionary<int, Dictionary<string, List<object?>?>?>?>(),
+          GenericTypeGetter2: static receiver => receiver.Receive<int, Dictionary<string, List<object?>?>?>()
         ),
         Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
           [typeof(TagAttribute)] = new System.Attribute[] {
@@ -112,13 +112,13 @@ partial class NullablePropertyTypes : Chickensoft.Introspection.IIntrospective {
         IsRequired: false,
         HasDefaultValue: false,
         Getter: static (object obj) => ((NullablePropertyTypes)obj).Name,
-        Setter: static (object obj, object? value) => ((NullablePropertyTypes)obj).Name = (string)value,
+        Setter: static (object obj, object? value) => ((NullablePropertyTypes)obj).Name = (string?)value,
         GenericType: new GenericType(
           OpenType: typeof(string),
           ClosedType: typeof(string),
           IsNullable: true,
           Arguments: System.Array.Empty<GenericType>(),
-          GenericTypeGetter: static receiver => receiver.Receive<string>(),
+          GenericTypeGetter: static receiver => receiver.Receive<string?>(),
           GenericTypeGetter2: default
         ),
         Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {

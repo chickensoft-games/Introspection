@@ -59,13 +59,13 @@ static partial class One {
                 IsRequired: false,
                 HasDefaultValue: true,
                 Getter: static (object obj) => ((NestedType)obj).OptionalFloat,
-                Setter: static (object obj, object? value) => ((NestedType)obj).OptionalFloat = (float)value,
+                Setter: static (object obj, object? value) => ((NestedType)obj).OptionalFloat = (float?)value,
                 GenericType: new GenericType(
                   OpenType: typeof(float),
                   ClosedType: typeof(float),
                   IsNullable: true,
                   Arguments: System.Array.Empty<GenericType>(),
-                  GenericTypeGetter: static receiver => receiver.Receive<float>(),
+                  GenericTypeGetter: static receiver => receiver.Receive<float?>(),
                   GenericTypeGetter2: default
                 ),
                 Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
@@ -80,13 +80,13 @@ static partial class One {
                 IsRequired: false,
                 HasDefaultValue: true,
                 Getter: static (object obj) => ((NestedType)obj).OptionalInt,
-                Setter: static (object obj, object? value) => ((NestedType)obj).OptionalInt = (int)value,
+                Setter: static (object obj, object? value) => ((NestedType)obj).OptionalInt = (int?)value,
                 GenericType: new GenericType(
                   OpenType: typeof(int),
                   ClosedType: typeof(int),
                   IsNullable: true,
                   Arguments: System.Array.Empty<GenericType>(),
-                  GenericTypeGetter: static receiver => receiver.Receive<int>(),
+                  GenericTypeGetter: static receiver => receiver.Receive<int?>(),
                   GenericTypeGetter2: default
                 ),
                 Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {

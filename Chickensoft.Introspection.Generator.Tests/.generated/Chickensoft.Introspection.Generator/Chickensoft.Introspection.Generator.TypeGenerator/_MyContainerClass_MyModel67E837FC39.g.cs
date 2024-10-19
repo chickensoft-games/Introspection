@@ -27,13 +27,13 @@ partial class MyContainerClass {
           IsRequired: false,
           HasDefaultValue: true,
           Getter: static (object obj) => ((MyModel)obj).Age,
-          Setter: static (object obj, object? value) => ((MyModel)obj).Age = (int)value,
+          Setter: static (object obj, object? value) => ((MyModel)obj).Age = (int?)value,
           GenericType: new GenericType(
             OpenType: typeof(int),
             ClosedType: typeof(int),
             IsNullable: true,
             Arguments: System.Array.Empty<GenericType>(),
-            GenericTypeGetter: static receiver => receiver.Receive<int>(),
+            GenericTypeGetter: static receiver => receiver.Receive<int?>(),
             GenericTypeGetter2: default
           ),
           Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {

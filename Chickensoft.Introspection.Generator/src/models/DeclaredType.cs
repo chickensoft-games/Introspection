@@ -557,10 +557,17 @@ public sealed record DeclaredType(
     var propStrings = allProperties
       .Where(prop => prop.IsInit || prop.IsRequired)
       .Select(
-        (prop) =>
-          $"{prop.Name} = args.ContainsKey(\"{prop.Name}\") " +
-          $"? ({prop.GenericType.ClosedType})args[\"{prop.Name}\"] : " +
-          $"{(prop.DefaultValueExpression is { } value ? value : $"default({prop.GenericType.ClosedType})!")}"
+        (prop) => {
+          var bang = prop.GenericType.IsNullable ? "" : "!";
+          return
+            $"{prop.Name} = args.ContainsKey(\"{prop.Name}\") " +
+            $"? ({prop.GenericType.ClosedType})args[\"{prop.Name}\"] : " +
+            $"{(
+            prop.DefaultValueExpression is { } value
+              ? value
+              : $"default({prop.GenericType.ClosedType}){bang}"
+            )}";
+        }
       );
 
     writer.WriteCommaSeparatedList(

@@ -9,4 +9,14 @@ public static class Extensions {
       generic.Identifier.ValueText == "Nullable"
     );
   }
+
+  public static TypeSyntax UnwrapNullable(this TypeSyntax type) {
+    return type switch {
+      NullableTypeSyntax nullable => nullable.ElementType,
+      GenericNameSyntax generic
+        when generic.Identifier.ValueText == "Nullable" =>
+          generic.TypeArgumentList.Arguments.First(),
+      _ => type
+    };
+  }
 }

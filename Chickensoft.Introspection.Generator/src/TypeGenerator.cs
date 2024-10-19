@@ -531,24 +531,15 @@ public class TypeGenerator : IIncrementalGenerator {
 
       hasSetter = hasSetter || isInit;
 
-      var isNullable = property.Type.IsNullable();
+      var propType = property.Type;
+
+      var isNullable = propType.IsNullable();
+      propType = property.Type.UnwrapNullable();
 
       var defaultValueExpression =
         property.Initializer?.Value.NormalizeWhitespace().ToString();
 
-      var propType = property.Type;
-
-      if (property.Type is NullableTypeSyntax nullableType) {
-        propType = nullableType.ElementType;
-      }
-
-      var genericType = propType is GenericNameSyntax genericSyntax
-        ? GenericTypeNode.Create(genericSyntax, isNullable)
-        : new GenericTypeNode(
-          Type: propType.NormalizeWhitespace().ToString(),
-          IsNullable: isNullable,
-          Children: ImmutableArray<GenericTypeNode>.Empty
-        );
+      var genericType = GenericTypeNode.Create(propType, isNullable);
 
       properties.Add(
         new DeclaredProperty(
