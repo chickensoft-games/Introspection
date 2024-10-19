@@ -27,11 +27,11 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         HasDefaultValue: false,
         Getter: static (object obj) => ((InitArgsModel)obj).Address,
         Setter: static (object obj, object? value) => ((InitArgsModel)obj).Address = (string?)value,
-        GenericType: new GenericType(
+        GenericType: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(string),
           ClosedType: typeof(string),
           IsNullable: true,
-          Arguments: System.Array.Empty<GenericType>(),
+          Arguments: System.Array.Empty<TypeNode>(),
           GenericTypeGetter: static receiver => receiver.Receive<string?>(),
           GenericTypeGetter2: default
         ),
@@ -48,11 +48,11 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         HasDefaultValue: false,
         Getter: static (object obj) => ((InitArgsModel)obj).Age,
         Setter: null,
-        GenericType: new GenericType(
+        GenericType: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(int),
           ClosedType: typeof(int),
           IsNullable: false,
-          Arguments: System.Array.Empty<GenericType>(),
+          Arguments: System.Array.Empty<TypeNode>(),
           GenericTypeGetter: static receiver => receiver.Receive<int>(),
           GenericTypeGetter2: default
         ),
@@ -69,11 +69,11 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         HasDefaultValue: false,
         Getter: static (object obj) => ((InitArgsModel)obj).Description,
         Setter: null,
-        GenericType: new GenericType(
+        GenericType: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(string),
           ClosedType: typeof(string),
           IsNullable: true,
-          Arguments: System.Array.Empty<GenericType>(),
+          Arguments: System.Array.Empty<TypeNode>(),
           GenericTypeGetter: static receiver => receiver.Receive<string?>(),
           GenericTypeGetter2: default
         ),
@@ -90,11 +90,11 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         HasDefaultValue: true,
         Getter: static (object obj) => ((InitArgsModel)obj).HasAttended,
         Setter: null,
-        GenericType: new GenericType(
+        GenericType: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(InitArgsEnum),
           ClosedType: typeof(InitArgsEnum),
           IsNullable: false,
-          Arguments: System.Array.Empty<GenericType>(),
+          Arguments: System.Array.Empty<TypeNode>(),
           GenericTypeGetter: static receiver => receiver.Receive<InitArgsEnum>(),
           GenericTypeGetter2: default
         ),
@@ -111,11 +111,11 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         HasDefaultValue: true,
         Getter: static (object obj) => ((InitArgsModel)obj).IsAttending,
         Setter: static (object obj, object? value) => ((InitArgsModel)obj).IsAttending = (InitArgsEnum)value!,
-        GenericType: new GenericType(
+        GenericType: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(InitArgsEnum),
           ClosedType: typeof(InitArgsEnum),
           IsNullable: false,
-          Arguments: System.Array.Empty<GenericType>(),
+          Arguments: System.Array.Empty<TypeNode>(),
           GenericTypeGetter: static receiver => receiver.Receive<InitArgsEnum>(),
           GenericTypeGetter2: default
         ),
@@ -132,11 +132,11 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         HasDefaultValue: false,
         Getter: static (object obj) => ((InitArgsModel)obj).Name,
         Setter: null,
-        GenericType: new GenericType(
+        GenericType: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(string),
           ClosedType: typeof(string),
           IsNullable: false,
-          Arguments: System.Array.Empty<GenericType>(),
+          Arguments: System.Array.Empty<TypeNode>(),
           GenericTypeGetter: static receiver => receiver.Receive<string>(),
           GenericTypeGetter2: default
         ),

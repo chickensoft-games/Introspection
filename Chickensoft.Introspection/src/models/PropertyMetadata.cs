@@ -26,6 +26,6 @@ public sealed record PropertyMetadata(
   bool HasDefaultValue,
   Func<object, object?>? Getter,
   Action<object, object?>? Setter,
-  GenericType GenericType,
+  TypeNode GenericType,
   Dictionary<Type, Attribute[]> Attributes
 );

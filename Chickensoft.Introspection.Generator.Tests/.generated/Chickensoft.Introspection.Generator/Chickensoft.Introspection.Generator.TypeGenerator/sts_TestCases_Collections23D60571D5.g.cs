@@ -27,21 +27,21 @@ partial class Collections : Chickensoft.Introspection.IIntrospective {
         HasDefaultValue: true,
         Getter: static (object obj) => ((Collections)obj).NestedCollections,
         Setter: null,
-        GenericType: new GenericType(
+        GenericType: new Chickensoft.Introspection.TypeNode(
           OpenType: typeof(Dictionary<,>),
           ClosedType: typeof(Dictionary<List<string>, List<List<int>>>),
           IsNullable: false,
-          Arguments: new GenericType[] {
-              new GenericType(
+          Arguments: new TypeNode[] {
+              new Chickensoft.Introspection.TypeNode(
                 OpenType: typeof(List<>),
                 ClosedType: typeof(List<string>),
                 IsNullable: false,
-                Arguments: new GenericType[] {
-                    new GenericType(
+                Arguments: new TypeNode[] {
+                    new Chickensoft.Introspection.TypeNode(
                       OpenType: typeof(string),
                       ClosedType: typeof(string),
                       IsNullable: false,
-                      Arguments: System.Array.Empty<GenericType>(),
+                      Arguments: System.Array.Empty<TypeNode>(),
                       GenericTypeGetter: static receiver => receiver.Receive<string>(),
                       GenericTypeGetter2: default
                     )
@@ -49,21 +49,21 @@ partial class Collections : Chickensoft.Introspection.IIntrospective {
                 GenericTypeGetter: static receiver => receiver.Receive<List<string>>(),
                 GenericTypeGetter2: default
               ), 
-              new GenericType(
+              new Chickensoft.Introspection.TypeNode(
                 OpenType: typeof(List<>),
                 ClosedType: typeof(List<List<int>>),
                 IsNullable: false,
-                Arguments: new GenericType[] {
-                    new GenericType(
+                Arguments: new TypeNode[] {
+                    new Chickensoft.Introspection.TypeNode(
                       OpenType: typeof(List<>),
                       ClosedType: typeof(List<int>),
                       IsNullable: false,
-                      Arguments: new GenericType[] {
-                          new GenericType(
+                      Arguments: new TypeNode[] {
+                          new Chickensoft.Introspection.TypeNode(
                             OpenType: typeof(int),
                             ClosedType: typeof(int),
                             IsNullable: false,
-                            Arguments: System.Array.Empty<GenericType>(),
+                            Arguments: System.Array.Empty<TypeNode>(),
                             GenericTypeGetter: static receiver => receiver.Receive<int>(),
                             GenericTypeGetter2: default
                           )

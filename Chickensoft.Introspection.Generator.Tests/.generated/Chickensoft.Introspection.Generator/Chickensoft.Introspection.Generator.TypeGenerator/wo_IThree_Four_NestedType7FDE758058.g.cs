@@ -35,11 +35,11 @@ static partial class One {
                 HasDefaultValue: true,
                 Getter: static (object obj) => ((NestedType)obj).MyProperty,
                 Setter: static (object obj, object? value) => ((NestedType)obj).MyProperty = (string)value!,
-                GenericType: new GenericType(
+                GenericType: new Chickensoft.Introspection.TypeNode(
                   OpenType: typeof(string),
                   ClosedType: typeof(string),
                   IsNullable: false,
-                  Arguments: System.Array.Empty<GenericType>(),
+                  Arguments: System.Array.Empty<TypeNode>(),
                   GenericTypeGetter: static receiver => receiver.Receive<string>(),
                   GenericTypeGetter2: default
                 ),
@@ -60,11 +60,11 @@ static partial class One {
                 HasDefaultValue: true,
                 Getter: static (object obj) => ((NestedType)obj).OptionalFloat,
                 Setter: static (object obj, object? value) => ((NestedType)obj).OptionalFloat = (float?)value,
-                GenericType: new GenericType(
+                GenericType: new Chickensoft.Introspection.TypeNode(
                   OpenType: typeof(float),
                   ClosedType: typeof(float),
                   IsNullable: true,
-                  Arguments: System.Array.Empty<GenericType>(),
+                  Arguments: System.Array.Empty<TypeNode>(),
                   GenericTypeGetter: static receiver => receiver.Receive<float?>(),
                   GenericTypeGetter2: default
                 ),
@@ -81,11 +81,11 @@ static partial class One {
                 HasDefaultValue: true,
                 Getter: static (object obj) => ((NestedType)obj).OptionalInt,
                 Setter: static (object obj, object? value) => ((NestedType)obj).OptionalInt = (int?)value,
-                GenericType: new GenericType(
+                GenericType: new Chickensoft.Introspection.TypeNode(
                   OpenType: typeof(int),
                   ClosedType: typeof(int),
                   IsNullable: true,
-                  Arguments: System.Array.Empty<GenericType>(),
+                  Arguments: System.Array.Empty<TypeNode>(),
                   GenericTypeGetter: static receiver => receiver.Receive<int?>(),
                   GenericTypeGetter2: default
                 ),

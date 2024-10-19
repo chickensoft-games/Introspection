@@ -65,14 +65,14 @@ public sealed record GenericTypeNode(
   }
 
   public void Write(IndentedTextWriter writer) {
-    writer.WriteLine("new GenericType(");
+    writer.WriteLine("new Chickensoft.Introspection.TypeNode(");
     writer.Indent++;
     writer.WriteLine($"OpenType: typeof({OpenType.TrimEnd('?')}),");
     writer.WriteLine($"ClosedType: typeof({ClosedType.TrimEnd('?')}),");
     writer.WriteLine($"IsNullable: {(IsNullable ? "true" : "false")},");
 
     if (Children.Length > 0) {
-      writer.WriteLine("Arguments: new GenericType[] {");
+      writer.WriteLine("Arguments: new TypeNode[] {");
       writer.Indent++;
 
       writer.WriteCommaSeparatedList(
@@ -85,7 +85,7 @@ public sealed record GenericTypeNode(
       writer.WriteLine("},");
     }
     else {
-      writer.WriteLine("Arguments: System.Array.Empty<GenericType>(),");
+      writer.WriteLine("Arguments: System.Array.Empty<TypeNode>(),");
     }
 
     writer.WriteLine(
