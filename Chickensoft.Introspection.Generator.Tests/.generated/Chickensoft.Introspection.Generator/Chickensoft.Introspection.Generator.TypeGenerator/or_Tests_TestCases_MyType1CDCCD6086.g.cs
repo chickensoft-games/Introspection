@@ -34,6 +34,7 @@ partial class MyType : Chickensoft.Introspection.IIntrospective, Chickensoft.Int
         GenericType: new GenericType(
           OpenType: typeof(string),
           ClosedType: typeof(string),
+          IsNullable: false,
           Arguments: System.Array.Empty<GenericType>(),
           GenericTypeGetter: static receiver => receiver.Receive<string>(),
           GenericTypeGetter2: default
@@ -58,6 +59,7 @@ partial class MyType : Chickensoft.Introspection.IIntrospective, Chickensoft.Int
         GenericType: new GenericType(
           OpenType: typeof(int),
           ClosedType: typeof(int),
+          IsNullable: false,
           Arguments: System.Array.Empty<GenericType>(),
           GenericTypeGetter: static receiver => receiver.Receive<int>(),
           GenericTypeGetter2: default
@@ -71,20 +73,13 @@ partial class MyType : Chickensoft.Introspection.IIntrospective, Chickensoft.Int
         IsRequired: false,
         HasDefaultValue: true,
         Getter: static (object obj) => ((MyType)obj).OptionalFloat,
-        Setter: static (object obj, object? value) => ((MyType)obj).OptionalFloat = (Nullable<float>)value,
+        Setter: static (object obj, object? value) => ((MyType)obj).OptionalFloat = (float?)value,
         GenericType: new GenericType(
-          OpenType: typeof(Nullable<>),
-          ClosedType: typeof(Nullable<float>),
-          Arguments: new GenericType[] {
-              new GenericType(
-                OpenType: typeof(float),
-                ClosedType: typeof(float),
-                Arguments: System.Array.Empty<GenericType>(),
-                GenericTypeGetter: static receiver => receiver.Receive<float>(),
-                GenericTypeGetter2: default
-              )
-          },
-          GenericTypeGetter: static receiver => receiver.Receive<Nullable<float>>(),
+          OpenType: typeof(float),
+          ClosedType: typeof(float),
+          IsNullable: true,
+          Arguments: System.Array.Empty<GenericType>(),
+          GenericTypeGetter: static receiver => receiver.Receive<float?>(),
           GenericTypeGetter2: default
         ),
         Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
@@ -99,12 +94,13 @@ partial class MyType : Chickensoft.Introspection.IIntrospective, Chickensoft.Int
         IsRequired: false,
         HasDefaultValue: true,
         Getter: static (object obj) => ((MyType)obj).OptionalInt,
-        Setter: static (object obj, object? value) => ((MyType)obj).OptionalInt = (int)value,
+        Setter: static (object obj, object? value) => ((MyType)obj).OptionalInt = (int?)value,
         GenericType: new GenericType(
           OpenType: typeof(int),
           ClosedType: typeof(int),
+          IsNullable: true,
           Arguments: System.Array.Empty<GenericType>(),
-          GenericTypeGetter: static receiver => receiver.Receive<int>(),
+          GenericTypeGetter: static receiver => receiver.Receive<int?>(),
           GenericTypeGetter2: default
         ),
         Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {

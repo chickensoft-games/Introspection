@@ -37,6 +37,7 @@ partial class TypeGraphMemberMetadataTest {
           GenericType: new GenericType(
             OpenType: typeof(int),
             ClosedType: typeof(int),
+            IsNullable: false,
             Arguments: System.Array.Empty<GenericType>(),
             GenericTypeGetter: static receiver => receiver.Receive<int>(),
             GenericTypeGetter2: default
@@ -57,8 +58,9 @@ partial class TypeGraphMemberMetadataTest {
           GenericType: new GenericType(
             OpenType: typeof(string),
             ClosedType: typeof(string),
+            IsNullable: true,
             Arguments: System.Array.Empty<GenericType>(),
-            GenericTypeGetter: static receiver => receiver.Receive<string>(),
+            GenericTypeGetter: static receiver => receiver.Receive<string?>(),
             GenericTypeGetter2: default
           ),
           Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
@@ -90,7 +92,7 @@ partial class TypeGraphMemberMetadataTest {
         args = args ?? throw new System.ArgumentNullException(nameof(args), "Constructing Model requires init args.");
         return new Model() {
           Age = args.ContainsKey("Age") ? (int)args["Age"] : default(int)!, 
-          Name = args.ContainsKey("Name") ? (string)args["Name"] : default(string)!
+          Name = args.ContainsKey("Name") ? (string?)args["Name"] : default(string?)
         };
       }
       [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]

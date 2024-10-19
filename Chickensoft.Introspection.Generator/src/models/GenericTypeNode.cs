@@ -15,6 +15,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 // types that comprise it.
 public sealed record GenericTypeNode(
   string Type,
+  bool IsNullable,
   ImmutableArray<GenericTypeNode> Children
 ) {
   /// <summary>
@@ -23,39 +24,52 @@ public sealed record GenericTypeNode(
   /// </summary>
   public string ClosedType => Type + TypeReference.GetGenerics(
     Children.Select(child => child.ClosedType).ToImmutableArray()
-  );
+  ) + Q;
+
+  public string OpenType =>
+    Type + TypeReference.GetOpenGenerics(Children.Length) + Q;
+
+  private string Q => IsNullable ? "?" : "";
 
   /// <summary>
   /// Recursively constructs a generic type node from a generic name syntax.
   /// </summary>
-  /// <param name="genericName">Generic name syntax.</param>
+  /// <param name="typeSyntax">Generic name syntax.</param>
   /// <returns>Generic type node tree.</returns>
-  public static GenericTypeNode Create(GenericNameSyntax genericName) {
-    var type = genericName.Identifier.NormalizeWhitespace().ToString();
+  public static GenericTypeNode Create(
+    TypeSyntax typeSyntax, bool isNullable
+  ) {
+    isNullable = isNullable || typeSyntax.IsNullable();
+    typeSyntax = typeSyntax.UnwrapNullable();
 
-    var children = genericName.TypeArgumentList.Arguments
-      .Select(arg => arg switch {
-        GenericNameSyntax genericNameSyntax => Create(genericNameSyntax),
-        _ => new GenericTypeNode(
-          arg.NormalizeWhitespace().ToString(),
-          ImmutableArray<GenericTypeNode>.Empty
-        )
+    if (typeSyntax is not GenericNameSyntax genericNameSyntax) {
+      return new GenericTypeNode(
+        typeSyntax.NormalizeWhitespace().ToString(),
+        IsNullable: isNullable,
+        Children: ImmutableArray<GenericTypeNode>.Empty
+      );
+    }
+
+    var type = genericNameSyntax.Identifier.NormalizeWhitespace().ToString();
+
+    var children = genericNameSyntax.TypeArgumentList.Arguments
+      .Select(arg => {
+        typeSyntax = typeSyntax.UnwrapNullable();
+        isNullable = arg.IsNullable();
+
+        return Create(arg, isNullable);
       })
       .ToImmutableArray();
 
-    return new GenericTypeNode(type, children);
+    return new GenericTypeNode(type, isNullable, children);
   }
 
   public void Write(IndentedTextWriter writer) {
-    var openType = Type + TypeReference.GetOpenGenerics(Children.Length);
-    var closedType = Type + TypeReference.GetGenerics(
-      Children.Select(child => child.ClosedType).ToImmutableArray()
-    );
-
     writer.WriteLine("new GenericType(");
     writer.Indent++;
-    writer.WriteLine($"OpenType: typeof({openType.TrimEnd('?')}),");
-    writer.WriteLine($"ClosedType: typeof({closedType.TrimEnd('?')}),");
+    writer.WriteLine($"OpenType: typeof({OpenType.TrimEnd('?')}),");
+    writer.WriteLine($"ClosedType: typeof({ClosedType.TrimEnd('?')}),");
+    writer.WriteLine($"IsNullable: {(IsNullable ? "true" : "false")},");
 
     if (Children.Length > 0) {
       writer.WriteLine("Arguments: new GenericType[] {");
@@ -76,7 +90,7 @@ public sealed record GenericTypeNode(
 
     writer.WriteLine(
       "GenericTypeGetter: static receiver => " +
-      $"receiver.Receive<{closedType}>(),"
+      $"receiver.Receive<{ClosedType}>(),"
     );
     if (Children.Length >= 2) {
       writer.WriteLine(

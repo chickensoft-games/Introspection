@@ -26,12 +26,13 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         IsRequired: false,
         HasDefaultValue: false,
         Getter: static (object obj) => ((InitArgsModel)obj).Address,
-        Setter: static (object obj, object? value) => ((InitArgsModel)obj).Address = (string)value,
+        Setter: static (object obj, object? value) => ((InitArgsModel)obj).Address = (string?)value,
         GenericType: new GenericType(
           OpenType: typeof(string),
           ClosedType: typeof(string),
+          IsNullable: true,
           Arguments: System.Array.Empty<GenericType>(),
-          GenericTypeGetter: static receiver => receiver.Receive<string>(),
+          GenericTypeGetter: static receiver => receiver.Receive<string?>(),
           GenericTypeGetter2: default
         ),
         Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
@@ -50,6 +51,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         GenericType: new GenericType(
           OpenType: typeof(int),
           ClosedType: typeof(int),
+          IsNullable: false,
           Arguments: System.Array.Empty<GenericType>(),
           GenericTypeGetter: static receiver => receiver.Receive<int>(),
           GenericTypeGetter2: default
@@ -70,8 +72,9 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         GenericType: new GenericType(
           OpenType: typeof(string),
           ClosedType: typeof(string),
+          IsNullable: true,
           Arguments: System.Array.Empty<GenericType>(),
-          GenericTypeGetter: static receiver => receiver.Receive<string>(),
+          GenericTypeGetter: static receiver => receiver.Receive<string?>(),
           GenericTypeGetter2: default
         ),
         Attributes: new System.Collections.Generic.Dictionary<System.Type, System.Attribute[]>() {
@@ -90,6 +93,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         GenericType: new GenericType(
           OpenType: typeof(InitArgsEnum),
           ClosedType: typeof(InitArgsEnum),
+          IsNullable: false,
           Arguments: System.Array.Empty<GenericType>(),
           GenericTypeGetter: static receiver => receiver.Receive<InitArgsEnum>(),
           GenericTypeGetter2: default
@@ -110,6 +114,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         GenericType: new GenericType(
           OpenType: typeof(InitArgsEnum),
           ClosedType: typeof(InitArgsEnum),
+          IsNullable: false,
           Arguments: System.Array.Empty<GenericType>(),
           GenericTypeGetter: static receiver => receiver.Receive<InitArgsEnum>(),
           GenericTypeGetter2: default
@@ -130,6 +135,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
         GenericType: new GenericType(
           OpenType: typeof(string),
           ClosedType: typeof(string),
+          IsNullable: false,
           Arguments: System.Array.Empty<GenericType>(),
           GenericTypeGetter: static receiver => receiver.Receive<string>(),
           GenericTypeGetter2: default
@@ -166,7 +172,7 @@ partial class InitArgsModel : Chickensoft.Introspection.IIntrospective, Chickens
       args = args ?? throw new System.ArgumentNullException(nameof(args), "Constructing InitArgsModel requires init args.");
       return new InitArgsModel() {
         Age = args.ContainsKey("Age") ? (int)args["Age"] : default(int)!, 
-        Description = args.ContainsKey("Description") ? (string)args["Description"] : default(string)!, 
+        Description = args.ContainsKey("Description") ? (string?)args["Description"] : default(string?), 
         HasAttended = args.ContainsKey("HasAttended") ? (InitArgsEnum)args["HasAttended"] : InitArgsEnum.No, 
         Name = args.ContainsKey("Name") ? (string)args["Name"] : default(string)!
       };

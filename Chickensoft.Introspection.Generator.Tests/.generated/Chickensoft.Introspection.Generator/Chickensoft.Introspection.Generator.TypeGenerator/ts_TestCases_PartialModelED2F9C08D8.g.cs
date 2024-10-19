@@ -30,6 +30,7 @@ partial class PartialModel : Chickensoft.Introspection.IIntrospective, Chickenso
         GenericType: new GenericType(
           OpenType: typeof(int),
           ClosedType: typeof(int),
+          IsNullable: false,
           Arguments: System.Array.Empty<GenericType>(),
           GenericTypeGetter: static receiver => receiver.Receive<int>(),
           GenericTypeGetter2: default
@@ -50,6 +51,7 @@ partial class PartialModel : Chickensoft.Introspection.IIntrospective, Chickenso
         GenericType: new GenericType(
           OpenType: typeof(string),
           ClosedType: typeof(string),
+          IsNullable: false,
           Arguments: System.Array.Empty<GenericType>(),
           GenericTypeGetter: static receiver => receiver.Receive<string>(),
           GenericTypeGetter2: default

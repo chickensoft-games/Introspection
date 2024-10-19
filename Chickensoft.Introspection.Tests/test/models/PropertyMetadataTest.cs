@@ -13,7 +13,7 @@ public class PropertyMetadataTest {
       HasDefaultValue: false,
       Getter: _ => "Value",
       Setter: (_, _) => { },
-      GenericType: new GenericType(typeof(string), typeof(string), [], _ => { }, _ => { }),
+      GenericType: new GenericType(typeof(string), typeof(string), false, [], _ => { }, _ => { }),
       Attributes: []
     );
 
