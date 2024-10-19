@@ -60,7 +60,7 @@ public class ScopeTree {
           containingType.Reference.SimpleNameOpen, out var child
         )
       ) {
-        child = new TypeNode(
+        child = new TypeTreeNode(
           Parent: current,
           Type: containingType,
           TypeChildren: []
@@ -81,7 +81,7 @@ public class ScopeTree {
     }
 
     // Add the type to the tree.
-    var typeNode = new TypeNode(
+    var typeNode = new TypeTreeNode(
       Parent: current, Type: type, TypeChildren: []
     );
 
@@ -102,7 +102,7 @@ public class ScopeTree {
   /// visible from the global scope (default is false).</param>
   /// <returns>Enumeration of declared types matching the predicate.</returns>
   public IEnumerable<DeclaredType> GetTypes(
-    Func<TypeNode, bool>? predicate = null,
+    Func<TypeTreeNode, bool>? predicate = null,
     bool searchGenericTypes = true,
     bool searchPrivateTypes = false
   ) => GetTypes(
@@ -114,7 +114,7 @@ public class ScopeTree {
 
   private IEnumerable<DeclaredType> GetTypes(
     ScopeNode node,
-    Func<TypeNode, bool> predicate,
+    Func<TypeTreeNode, bool> predicate,
     bool generic = true,
     bool @private = false
   ) {
@@ -134,7 +134,7 @@ public class ScopeTree {
       }
     }
 
-    if (node is not TypeNode typeNode) {
+    if (node is not TypeTreeNode typeNode) {
       yield break;
     }
 
@@ -187,7 +187,7 @@ public class ScopeTree {
     var nodes = new LinkedList<ScopeNode>();
 
     // Map of using directive aliases to the type resolution node they alias.
-    var aliasedTypes = new Dictionary<string, TypeNode>();
+    var aliasedTypes = new Dictionary<string, TypeTreeNode>();
 
     // First, add the scope of the containing types to search.
     // We search containing types from innermost to outermost.
@@ -208,7 +208,7 @@ public class ScopeTree {
         continue;
       }
 
-      if (@using.Alias is { } alias && node is TypeNode typeNode) {
+      if (@using.Alias is { } alias && node is TypeTreeNode typeNode) {
         aliasedTypes[alias] = typeNode;
         continue;
       }
@@ -256,7 +256,7 @@ public class ScopeTree {
   private DeclaredType? GetTypeByAliasReference(
     string reference,
     string alias,
-    TypeNode aliasedTypeNode
+    TypeTreeNode aliasedTypeNode
   ) {
     if (reference == alias) {
       // Type reference is nothing but the alias. Easy.
