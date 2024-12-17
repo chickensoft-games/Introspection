@@ -494,7 +494,8 @@ public class TypeGenerator : IIncrementalGenerator {
   public static UsingDirective GetUsing(UsingDirectiveSyntax @using) =>
     new(
       Alias: @using.Alias?.Name.NormalizeWhitespace().ToString(),
-      Name: @using.Name.NormalizeWhitespace().ToString(),
+      Name: @using.Name?.NormalizeWhitespace().ToString()
+        ?? @using.NamespaceOrType.NormalizeWhitespace().ToString(),
       IsGlobal: @using.GlobalKeyword is { ValueText: "global" },
       IsStatic: @using.StaticKeyword is { ValueText: "static" },
       IsAlias: @using.Alias != default
