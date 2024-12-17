@@ -15,6 +15,8 @@
 
     <!-- Tracks generator performance when dotnet build /binaryLogger -->
     <ReportAnalyzer>true</ReportAnalyzer>
+
+    <NoWarn>CA1010;NU1903</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -38,6 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../Chickensoft.Introspection.OutsideAssemblyForTests/Chickensoft.Introspection.OutsideAssemblyForTests.csproj" />
     <ProjectReference Include="../Chickensoft.Introspection/Chickensoft.Introspection.csproj" />
     <ProjectReference Include="../Chickensoft.Introspection.Generator/Chickensoft.Introspection.Generator.csproj" />
     <ProjectReference Include="../Chickensoft.Introspection.Generator/Chickensoft.Introspection.Generator.csproj" PrivateAssets="all" OutputItemType="analyzer" />
