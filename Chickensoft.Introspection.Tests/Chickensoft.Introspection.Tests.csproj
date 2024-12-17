@@ -16,6 +16,8 @@
 
     <!-- Tracks generator performance when dotnet build /binaryLogger -->
     <ReportAnalyzer>true</ReportAnalyzer>
+
+    <NoWarn>NU1903</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
