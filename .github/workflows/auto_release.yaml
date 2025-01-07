@@ -33,8 +33,6 @@ jobs:
       - name: 🧾 Checkout
         uses: actions/checkout@v4
         with:
-          # Use your GitHub Personal Access Token variable here.
-          token: ${{ secrets.GH_BASIC }}
           lfs: true
           submodules: "recursive"
 
