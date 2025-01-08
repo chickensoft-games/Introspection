@@ -12,12 +12,13 @@
     <OutputPath>./nupkg</OutputPath>
     <IsRoslynComponent>true</IsRoslynComponent>
     <AnalyzerLanguage>cs</AnalyzerLanguage>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
     <DebugType>portable</DebugType>
 
     <Title>Introspection</Title>
     <Version>0.0.0-devbuild</Version>
     <Description>Let types self-reflect in AOT environments by generating metadata about them at build time.</Description>
-    <Copyright>© 2024 Chickensoft</Copyright>
+    <Copyright>© 2025 Chickensoft</Copyright>
     <Authors>Chickensoft</Authors>
     <Company>Chickensoft</Company>
 
