@@ -14,9 +14,24 @@ Create mixins and generate metadata about types at build time to enable reflecti
 
 Find the latest version of the [Introspection] and [Introspection Generator] packages from nuget and add them to your C# project.
 
+> [!WARNING]
+> Introspection is compiled against the latest .NET 8 SDK. Because .NET 8 encompasses multiple versions of the [.NET compiler], compiling your project against an older version of .NET 8 may generate a `CS9057` warning to indicate a compiler-version mismatch. However, if the warning is ignored, less-tractable downstream compilation errors, or even runtime errors, may result. Therefore, we strongly recommend treating `CS9057` as an error to catch compiler versioning issues at the earliest opportunity.
+
 ```xml
-<PackageReference Include="Chickensoft.Introspection" Version=... />
-<PackageReference Include="Chickensoft.Introspection.Generator" Version=... PrivateAssets="all" OutputItemType="analyzer" />
+<Project Sdk=...>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    ...
+    <!-- Catch compiler-mismatch issues -->
+    <WarningsAsErrors>CS9057</WarningsAsErrors>
+    ...
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Chickensoft.Introspection" Version=... />
+    <PackageReference Include="Chickensoft.Introspection.Generator" Version=... PrivateAssets="all" OutputItemType="analyzer" />
+  </ItemGroup>
+</Project>
 ```
 
 ## 📙 Background
@@ -83,7 +98,7 @@ The type graph can be used to query information about types at runtime. If the t
 
 ```csharp
 
-// Get every type that is a valid subtype of Ancestor.  
+// Get every type that is a valid subtype of Ancestor.
 var allSubtypes = Types.Graph.GetDescendantSubtypes(typeof(Ancestor));
 
 // Only get the types that directly inherit from Parent.
@@ -274,3 +289,4 @@ public partial class MyModel {
 [instance state]: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-8.0/default-interface-methods#detailed-design
 [blackboard]: https://github.com/chickensoft-games/Collections?tab=readme-ov-file#blackboard
 [metatype]: Chickensoft.Introspection/src/types/IMetatype.cs
+[.NET compiler]: https://github.com/dotnet/roslyn/blob/main/docs/wiki/NuGet-packages.md
