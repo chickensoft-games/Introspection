@@ -44,7 +44,6 @@ public sealed record DeclaredType(
   ImmutableArray<string> Mixins
 )
 {
-  private static readonly MD5 _md5 = MD5.Create();
   private const int NAME_PORTION = 25;
   private const int HASH_PORTION = 10;
 
@@ -62,7 +61,8 @@ public sealed record DeclaredType(
 
       // Name is too long, grab last section of the string
       var truncated = name.Substring(name.Length - NAME_PORTION);
-      var hash = _md5.ComputeHash(System.Text.Encoding.UTF8.GetBytes(name));
+      using var md5 = MD5.Create();
+      var hash = md5.ComputeHash(System.Text.Encoding.UTF8.GetBytes(name));
       var hashString = BitConverter.ToString(hash).Replace("-", "");
       var hashLast = hashString.Substring(
         hashString.Length - HASH_PORTION
