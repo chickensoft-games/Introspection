@@ -95,7 +95,11 @@ public class TypeGenerator : IIncrementalGenerator
 
       var tree = new ScopeTree(uniqueTypeList, uniqueTypes);
 
-      var visibleTypeFullNames = tree.GetTypes().Select(t => t.FullNameOpen);
+      // Tree.GetTypes() returns a Linq IEnumerable. Convert to a
+      // HashSet to optimize name lookups.
+      var visibleTypeFullNames = new HashSet<string>(
+        tree.GetTypes().Select(t => t.FullNameOpen)
+      );
 
       var visibleTypesBuilder =
         ImmutableHashSet.CreateBuilder<DeclaredType>();
