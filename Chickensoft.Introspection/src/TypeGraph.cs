@@ -101,7 +101,8 @@ internal class TypeGraph : ITypeGraph
           .OfType<IIntrospectiveTypeMetadata>()
           .SelectMany(metadata => metadata.Metatype.Properties)
           .Distinct()
-          .OrderBy(property => property.Name);
+          .OrderBy(property => property.Name)
+          .ToArray();
     }
     return _properties[type];
   }
