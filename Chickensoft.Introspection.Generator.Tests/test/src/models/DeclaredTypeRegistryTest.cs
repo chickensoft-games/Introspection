@@ -1,7 +1,6 @@
 namespace Chickensoft.Introspection.Generator.Tests.Models;
 
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using Chickensoft.Introspection.Generator.Models;
 using Shouldly;
 using Xunit;
@@ -14,7 +13,7 @@ public class DeclaredTypeRegistryTest
     var registry = new DeclaredTypeRegistry(
       globalUsings: [],
       scopeTree: new ScopeTree([], new Dictionary<string, DeclaredType>()),
-      allTypes: ImmutableDictionary<string, DeclaredType>.Empty,
+      allTypes: [],
       visibleTypes: []
     );
 
@@ -28,7 +27,7 @@ public class DeclaredTypeRegistryTest
         scopeTree: new ScopeTree(
           [], new Dictionary<string, DeclaredType>()
         ),
-        allTypes: ImmutableDictionary<string, DeclaredType>.Empty,
+        allTypes: [],
         visibleTypes: []
       )
     );
@@ -36,7 +35,7 @@ public class DeclaredTypeRegistryTest
     new DeclaredTypeRegistry(
       globalUsings: [],
       scopeTree: new ScopeTree([], new Dictionary<string, DeclaredType>()),
-      allTypes: ImmutableDictionary<string, DeclaredType>.Empty,
+      allTypes: [],
       visibleTypes: []
     ).ShouldNotBe(
       new DeclaredTypeRegistry(
@@ -44,7 +43,7 @@ public class DeclaredTypeRegistryTest
         scopeTree: new ScopeTree(
           [], new Dictionary<string, DeclaredType>()
         ),
-        allTypes: ImmutableDictionary<string, DeclaredType>.Empty,
+        allTypes: [],
         visibleTypes:
         [
           new(

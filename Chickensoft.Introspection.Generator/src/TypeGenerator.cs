@@ -570,7 +570,7 @@ public class TypeGenerator : IIncrementalGenerator
       var hasGetter = property.AccessorList?.Accessors
         .Any(
           accessor => accessor.IsKind(SyntaxKind.GetAccessorDeclaration)
-        ) ?? property.ExpressionBody is not null;
+        ) ?? (property.ExpressionBody is not null);
 
       // Never identified a situation in which the accessor list is null.
       var hasSetter = property.AccessorList?.Accessors

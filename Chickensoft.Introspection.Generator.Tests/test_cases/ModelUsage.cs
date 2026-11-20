@@ -46,7 +46,7 @@ public static partial class One
   {
     public partial interface IThree
     {
-      public sealed partial record Four
+      sealed partial record Four
       {
         [Meta, Id("nested_type")]
         public sealed partial class NestedType
